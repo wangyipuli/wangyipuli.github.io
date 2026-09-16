@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>教育经历 — 王一璞</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F7F6F3; --ink: #1A1A1A; --ink-muted: #6B6B6B;
+      --accent: #2D5BE3; --accent-light: #EEF2FD; --rule: #E0DDD8;
+      --serif: "Noto Serif SC", Georgia, serif;
+      --sans: "Noto Sans SC", system-ui, sans-serif;
+    }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-weight: 300; line-height: 1.7; min-height: 100vh; }
+    .page { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(247,246,243,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+    .nav-inner { max-width: 860px; margin: 0 auto; padding: 0 24px; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-inner a { display: block; padding: 14px 16px; font-size: .88rem; font-weight: 500; color: var(--ink-muted); text-decoration: none; white-space: nowrap; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
+    .nav-inner a:hover, .nav-inner a.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .page-header { padding: 52px 0 36px; border-bottom: 1px solid var(--rule); }
+    .page-header h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; }
+    .section { padding: 40px 0 0; }
+    .section-label { font-family: var(--serif); font-size: .78rem; letter-spacing: .14em; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 24px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+    .entry { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; margin-bottom: 32px; align-items: start; }
+    .entry-title { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; line-height: 1.3; }
+    .entry-org { font-size: .93rem; color: var(--accent); font-weight: 500; margin-top: 2px; }
+    .entry-date { font-size: .82rem; color: var(--ink-muted); white-space: nowrap; text-align: right; padding-top: 3px; }
+    .entry-desc { grid-column: 1 / -1; font-size: .92rem; color: var(--ink-muted); margin-top: 8px; max-width: 620px; }
+    .entry-desc ul { padding-left: 1.2em; }
+    .entry-desc li { margin-bottom: 4px; }
+    footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--rule); font-size: .82rem; color: var(--ink-muted); }
+    footer a { color: var(--accent); text-decoration: none; }
+    @media (max-width: 540px) { .entry { grid-template-columns: 1fr; } .entry-date { text-align: left; } }
+    @media (prefers-reduced-motion: no-preference) {
+      .page-header, .section { animation: fadeUp .45s ease both; }
+      .section { animation-delay: .1s; }
+      @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/">关于我</a>
+    <a href="/education/" class="active">教育经历</a>
+    <a href="/publications/">出版物</a>
+    <a href="/activities/">学术活动</a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="page-header">
+    <h1>教育经历</h1>
+  </div>
+
+  <section class="section">
+    <!-- ── 第一段学历 ── -->
+    <div class="entry">
+      <div>
+        <div class="entry-title">博士 · 【专业名称】</div>
+        <div class="entry-org">【大学名称】</div>
+      </div>
+      <div class="entry-date">2024 — 至今</div>
+      <div class="entry-desc">
+        <ul>
+          <li>导师：【导师姓名】教授</li>
+          <li>研究方向：【研究方向，例如：自然语言处理、计算机视觉】</li>
+          <li>【其他信息，例如：获得全额奖学金】</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── 第二段学历 ── -->
+    <div class="entry">
+      <div>
+        <div class="entry-title">本科 · 【专业名称】</div>
+        <div class="entry-org">【大学名称】</div>
+      </div>
+      <div class="entry-date">2020 — 2024</div>
+      <div class="entry-desc">
+        <ul>
+          <li>GPA：【成绩】/ 4.0 &nbsp;·&nbsp; 排名：【排名】</li>
+          <li>主修课程：【课程1】、【课程2】、【课程3】</li>
+          <li>荣誉奖项：【奖项，例如：优秀毕业生、国家奖学金】</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 复制上方 entry 块可以添加更多学历 -->
+
+  </section>
+
+  <footer>© 2026 王一璞 &nbsp;·&nbsp; <a href="/">wangyipuli.github.io</a></footer>
+</div>
+</body>
+</html>
