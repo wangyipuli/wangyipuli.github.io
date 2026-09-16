@@ -1,100 +1,163 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>教育经历 — 王一璞</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #F7F6F3; --ink: #1A1A1A; --ink-muted: #6B6B6B;
-      --accent: #2D5BE3; --accent-light: #EEF2FD; --rule: #E0DDD8;
-      --serif: "Noto Serif SC", Georgia, serif;
-      --sans: "Noto Sans SC", system-ui, sans-serif;
-    }
-    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-weight: 300; line-height: 1.7; min-height: 100vh; }
-    .page { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(247,246,243,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
-    .nav-inner { max-width: 860px; margin: 0 auto; padding: 0 24px; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
-    .nav-inner::-webkit-scrollbar { display: none; }
-    .nav-inner a { display: block; padding: 14px 16px; font-size: .88rem; font-weight: 500; color: var(--ink-muted); text-decoration: none; white-space: nowrap; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
-    .nav-inner a:hover, .nav-inner a.active { color: var(--accent); border-bottom-color: var(--accent); }
-    .page-header { padding: 52px 0 36px; border-bottom: 1px solid var(--rule); }
-    .page-header h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; }
-    .section { padding: 40px 0 0; }
-    .section-label { font-family: var(--serif); font-size: .78rem; letter-spacing: .14em; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 24px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
-    .entry { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; margin-bottom: 32px; align-items: start; }
-    .entry-title { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; line-height: 1.3; }
-    .entry-org { font-size: .93rem; color: var(--accent); font-weight: 500; margin-top: 2px; }
-    .entry-date { font-size: .82rem; color: var(--ink-muted); white-space: nowrap; text-align: right; padding-top: 3px; }
-    .entry-desc { grid-column: 1 / -1; font-size: .92rem; color: var(--ink-muted); margin-top: 8px; max-width: 620px; }
-    .entry-desc ul { padding-left: 1.2em; }
-    .entry-desc li { margin-bottom: 4px; }
-    footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--rule); font-size: .82rem; color: var(--ink-muted); }
-    footer a { color: var(--accent); text-decoration: none; }
-    @media (max-width: 540px) { .entry { grid-template-columns: 1fr; } .entry-date { text-align: left; } }
-    @media (prefers-reduced-motion: no-preference) {
-      .page-header, .section { animation: fadeUp .45s ease both; }
-      .section { animation-delay: .1s; }
-      @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Education — Yipu Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Inter:wght@400;450;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root{
+    --paper:#FCFCFB;--ink:#15181B;--quiet:#6A7075;--faint:#9AA0A4;
+    --rule:#E6E4DF;--moss:#2C5A4E;--moss-wash:#F0F4F2;
+    --display:"Newsreader",Georgia,serif;
+    --text:"Inter",system-ui,-apple-system,sans-serif;
+  }
+
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+
+  .masthead{position:sticky;top:0;z-index:50;background:rgba(252,252,251,.88);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--rule)}
+  .masthead-in{max-width:920px;margin:0 auto;padding:0 32px;height:60px;display:flex;align-items:center;gap:28px}
+  .wordmark{font-family:var(--display);font-size:1.08rem;font-weight:500;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+  .wordmark::after{content:"";display:block;height:1px;background:var(--moss);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+  .wordmark:hover::after{transform:scaleX(1)}
+  .menu{margin-left:auto;display:flex;gap:26px;overflow-x:auto;scrollbar-width:none}
+  .menu::-webkit-scrollbar{display:none}
+  .menu a{font-size:.86rem;font-weight:450;color:var(--quiet);text-decoration:none;white-space:nowrap;padding:3px 0;position:relative;transition:color .2s ease}
+  .menu a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:var(--moss);transform:scaleX(0);transform-origin:center;transition:transform .25s cubic-bezier(.4,0,.2,1)}
+  .menu a:hover{color:var(--ink)}
+  .menu a:hover::after,.menu a[aria-current="page"]::after{transform:scaleX(1)}
+  .menu a[aria-current="page"]{color:var(--ink);font-weight:500}
+
+  .shell{max-width:920px;margin:0 auto;padding:0 32px 96px}
+
+  .pagehead{padding:76px 0 40px}
+  .pagehead h1{font-family:var(--display);font-size:clamp(2.2rem,5vw,3rem);font-weight:300;letter-spacing:-.022em;line-height:1.05;margin-bottom:12px}
+  .pagehead p{font-family:var(--display);font-size:1.05rem;font-weight:300;color:var(--quiet);max-width:34em}
+
+  .band{padding:44px 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:168px 1fr;gap:40px}
+  .rail{font-family:var(--display);font-size:.96rem;font-style:italic;font-weight:300;color:var(--faint);padding-top:3px}
+  .body-col{min-width:0;max-width:42em}
+
+  /* ── Record (degree entry) ── */
+  .record{padding-bottom:30px}
+  .record+.record{border-top:1px solid var(--rule);padding-top:30px}
+  .record-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
+  .record-degree{font-family:var(--display);font-size:1.2rem;font-weight:400;letter-spacing:-.012em;line-height:1.3}
+  .record-when{font-size:.82rem;color:var(--faint);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .record-where{font-size:.95rem;color:var(--moss);font-weight:450;margin-top:3px}
+  .record-notes{margin-top:12px;font-size:.92rem;color:var(--quiet);line-height:1.7}
+  .record-notes dl{display:grid;grid-template-columns:auto 1fr;gap:5px 16px}
+  .record-notes dt{color:var(--faint);font-size:.86rem}
+  .record-notes dd{color:#3A4045}
+
+  .colophon{margin-top:24px;padding-top:26px;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.81rem;color:var(--faint)}
+  .colophon a{color:var(--quiet);text-decoration:none}
+  .colophon a:hover{color:var(--moss)}
+
+  a:focus-visible{outline:2px solid var(--moss);outline-offset:3px;border-radius:2px}
+
+  @media(max-width:760px){.band{grid-template-columns:1fr;gap:16px}}
+  @media(max-width:600px){
+    .masthead-in,.shell{padding-left:22px;padding-right:22px}
+    .pagehead{padding:48px 0 32px}
+    .record-notes dl{grid-template-columns:1fr;gap:2px}
+    .record-notes dt{margin-top:8px}
+  }
+  @media(prefers-reduced-motion:no-preference){
+    .pagehead{animation:rise .55s cubic-bezier(.2,.7,.3,1) both}
+    @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  }
+  @media print{.masthead{display:none}body{font-size:11pt}.record{page-break-inside:avoid}}
+</style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a href="index.html">关于我</a>
-    <a href="education.html" class="active">教育经历</a>
-    <a href="publications.html">出版物</a>
-    <a href="activities.html">学术活动</a>
+<header class="masthead">
+  <div class="masthead-in">
+    <a class="wordmark" href="index.html">Yipu Wang</a>
+    <nav class="menu">
+      <a href="index.html">About</a>
+      <a href="education.html" aria-current="page">Education</a>
+      <a href="publications.html">Publications</a>
+      <a href="activities.html">Activities</a>
+    </nav>
   </div>
-</nav>
+</header>
 
-<div class="page">
-  <div class="page-header">
-    <h1>教育经历</h1>
-  </div>
+<div class="shell">
 
-  <section class="section">
-    <!-- ── 第一段学历 ── -->
-    <div class="entry">
-      <div>
-        <div class="entry-title">博士 · 【专业名称】</div>
-        <div class="entry-org">【大学名称】</div>
-      </div>
-      <div class="entry-date">2024 — 至今</div>
-      <div class="entry-desc">
-        <ul>
-          <li>导师：【导师姓名】教授</li>
-          <li>研究方向：【研究方向，例如：自然语言处理、计算机视觉】</li>
-          <li>【其他信息，例如：获得全额奖学金】</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ── 第二段学历 ── -->
-    <div class="entry">
-      <div>
-        <div class="entry-title">本科 · 【专业名称】</div>
-        <div class="entry-org">【大学名称】</div>
-      </div>
-      <div class="entry-date">2020 — 2024</div>
-      <div class="entry-desc">
-        <ul>
-          <li>GPA：【成绩】/ 4.0 &nbsp;·&nbsp; 排名：【排名】</li>
-          <li>主修课程：【课程1】、【课程2】、【课程3】</li>
-          <li>荣誉奖项：【奖项，例如：优秀毕业生、国家奖学金】</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 复制上方 entry 块可以添加更多学历 -->
-
+  <section class="pagehead">
+    <h1>Education</h1>
+    <p>Degrees, advisors, and the coursework that shaped how I work.</p>
   </section>
 
-  <footer>© 2026 王一璞 &nbsp;·&nbsp; <a href="index.html">wangyipuli.github.io</a></footer>
+  <section class="band">
+    <div class="rail">Degrees</div>
+    <div class="body-col">
+
+      <!-- ── Copy this block to add another degree ── -->
+      <article class="record">
+        <div class="record-top">
+          <div>
+            <div class="record-degree">PhD in [Field]</div>
+            <div class="record-where">[University Name]</div>
+          </div>
+          <div class="record-when">2024 — present</div>
+        </div>
+        <div class="record-notes">
+          <dl>
+            <dt>Advisor</dt><dd>[Professor Name]</dd>
+            <dt>Focus</dt><dd>[Your research area, in a short phrase]</dd>
+            <dt>Funding</dt><dd>[Fellowship or scholarship, if any]</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="record">
+        <div class="record-top">
+          <div>
+            <div class="record-degree">BSc in [Field]</div>
+            <div class="record-where">[University Name]</div>
+          </div>
+          <div class="record-when">2020 — 2024</div>
+        </div>
+        <div class="record-notes">
+          <dl>
+            <dt>Thesis</dt><dd>[Thesis title]</dd>
+            <dt>Standing</dt><dd>GPA [X.XX]/4.0 · [rank or honours, if you want it]</dd>
+            <dt>Honours</dt><dd>[Award name, year]</dd>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="rail">Selected coursework</div>
+    <div class="body-col">
+      <div class="record-notes" style="margin-top:0">
+        <dl>
+          <dt>Machine learning</dt><dd>[Course names]</dd>
+          <dt>Theory</dt><dd>[Course names]</dd>
+          <dt>Statistics</dt><dd>[Course names]</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <span>© 2026 Yipu Wang</span>
+    <a href="mailto:your@email.com">your@email.com</a>
+    <span>Last updated September 2026</span>
+  </footer>
+
 </div>
 </body>
 </html>

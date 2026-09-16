@@ -1,120 +1,249 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wangyipu Li</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #F7F6F3; --ink: #1A1A1A; --ink-muted: #6B6B6B;
-      --accent: #2D5BE3; --accent-light: #EEF2FD; --rule: #E0DDD8;
-      --serif: "Noto Serif SC", Georgia, serif;
-      --sans: "Noto Sans SC", system-ui, sans-serif;
-    }
-    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-weight: 300; line-height: 1.7; min-height: 100vh; }
-    .page { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(247,246,243,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
-    .nav-inner { max-width: 860px; margin: 0 auto; padding: 0 24px; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
-    .nav-inner::-webkit-scrollbar { display: none; }
-    .nav-inner a { display: block; padding: 14px 16px; font-size: .88rem; font-weight: 500; color: var(--ink-muted); text-decoration: none; white-space: nowrap; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
-    .nav-inner a:hover, .nav-inner a.active { color: var(--accent); border-bottom-color: var(--accent); }
-    .hero { padding: 64px 0 44px; border-bottom: 1px solid var(--rule); display: flex; gap: 36px; align-items: flex-start; }
-    .hero-text { flex: 1; min-width: 0; }
-    .hero-photo { width: 168px; height: 168px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid #fff; box-shadow: 0 2px 16px rgba(0,0,0,.08); }
-    .hero-tag { font-size: 12px; letter-spacing: .12em; color: var(--accent); font-weight: 500; margin-bottom: 16px; }
-    .hero h1 { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; line-height: 1.15; margin-bottom: 12px; }
-    .hero-sub { font-size: 1rem; color: var(--ink-muted); max-width: 520px; margin-bottom: 24px; }
-    .contact-row { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: .88rem; color: var(--ink-muted); }
-    .contact-row a { color: var(--accent); text-decoration: none; }
-    .contact-row a:hover { text-decoration: underline; }
-    .section { padding: 40px 0 0; }
-    .section-label { font-family: var(--serif); font-size: .78rem; letter-spacing: .14em; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 24px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
-    .about-text { font-size: .97rem; max-width: 600px; color: var(--ink); line-height: 1.8; }
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
-    .skill-group h4 { font-size: .78rem; letter-spacing: .1em; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 8px; font-weight: 500; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tag { background: var(--accent-light); color: var(--accent); font-size: .8rem; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
-    footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--rule); font-size: .82rem; color: var(--ink-muted); }
-    footer a { color: var(--accent); text-decoration: none; }
-    @media (max-width: 600px) {
-      .hero { flex-direction: column-reverse; gap: 24px; align-items: center; text-align: center; }
-      .hero-photo { width: 128px; height: 128px; }
-      .contact-row { justify-content: center; }
-      .hero-sub { margin-left: auto; margin-right: auto; }
-    }
-    @media (prefers-reduced-motion: no-preference) {
-      .section { animation: fadeUp .45s ease both; }
-      @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yipu Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Inter:wght@400;450;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root{
+    --paper:#FCFCFB;
+    --ink:#15181B;
+    --quiet:#6A7075;
+    --faint:#9AA0A4;
+    --rule:#E6E4DF;
+    --moss:#2C5A4E;
+    --moss-wash:#F0F4F2;
+    --display:"Newsreader",Georgia,serif;
+    --text:"Inter",system-ui,-apple-system,sans-serif;
+  }
+
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--text);font-size:15.5px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+
+  /* ── Masthead ───────────────────────── */
+  .masthead{
+    position:sticky;top:0;z-index:50;
+    background:rgba(252,252,251,.88);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--rule);
+  }
+  .masthead-in{
+    max-width:920px;margin:0 auto;padding:0 32px;
+    height:60px;display:flex;align-items:center;gap:28px;
+  }
+  .wordmark{
+    font-family:var(--display);font-size:1.08rem;font-weight:500;
+    letter-spacing:-.01em;text-decoration:none;white-space:nowrap;
+  }
+  .wordmark::after{
+    content:"";display:block;height:1px;background:var(--moss);
+    transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
+  }
+  .wordmark:hover::after{transform:scaleX(1)}
+
+  .menu{margin-left:auto;display:flex;gap:26px;overflow-x:auto;scrollbar-width:none}
+  .menu::-webkit-scrollbar{display:none}
+  .menu a{
+    font-size:.86rem;font-weight:450;color:var(--quiet);
+    text-decoration:none;white-space:nowrap;padding:3px 0;
+    position:relative;transition:color .2s ease;
+  }
+  .menu a::after{
+    content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;
+    background:var(--moss);transform:scaleX(0);transform-origin:center;
+    transition:transform .25s cubic-bezier(.4,0,.2,1);
+  }
+  .menu a:hover{color:var(--ink)}
+  .menu a:hover::after,.menu a[aria-current="page"]::after{transform:scaleX(1)}
+  .menu a[aria-current="page"]{color:var(--ink);font-weight:500}
+
+  /* ── Shell ──────────────────────────── */
+  .shell{max-width:920px;margin:0 auto;padding:0 32px 96px}
+
+  /* ── Hero ───────────────────────────── */
+  .hero{
+    padding:88px 0 56px;
+    display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center;
+  }
+  .hero h1{
+    font-family:var(--display);
+    font-size:clamp(2.9rem,6.5vw,4.15rem);
+    font-weight:300;line-height:1.02;letter-spacing:-.025em;
+    margin-bottom:20px;
+  }
+  .standfirst{
+    font-family:var(--display);font-size:1.16rem;font-weight:300;
+    line-height:1.55;color:var(--quiet);max-width:34em;margin-bottom:28px;
+  }
+  .portrait{
+    width:158px;height:198px;object-fit:cover;
+    border-radius:2px;filter:grayscale(.15);
+    box-shadow:0 1px 2px rgba(20,24,28,.06),0 12px 32px -12px rgba(20,24,28,.22);
+  }
+
+  /* ── Contact line ───────────────────── */
+  .contact{
+    display:flex;flex-wrap:wrap;align-items:baseline;
+    gap:6px 22px;font-size:.87rem;color:var(--quiet);
+  }
+  .contact a{
+    color:var(--moss);text-decoration:none;
+    border-bottom:1px solid rgba(44,90,78,.26);
+    padding-bottom:1px;transition:border-color .2s ease;
+  }
+  .contact a:hover{border-bottom-color:var(--moss)}
+
+  /* ── Section: two-column editorial rail ── */
+  .band{
+    padding:46px 0;border-top:1px solid var(--rule);
+    display:grid;grid-template-columns:168px 1fr;gap:40px;
+  }
+  .rail{
+    font-family:var(--display);font-size:.96rem;font-style:italic;
+    font-weight:300;color:var(--faint);padding-top:2px;
+  }
+  .body-col{min-width:0;max-width:40em}
+
+  .prose{font-size:1rem;line-height:1.78;color:#2C3237}
+  .prose p+p{margin-top:1.05em}
+  .prose em{font-family:var(--display);font-style:italic;font-size:1.05em}
+
+  /* ── Skills ─────────────────────────── */
+  .cluster+.cluster{margin-top:26px}
+  .cluster h3{
+    font-size:.79rem;font-weight:500;color:var(--faint);
+    letter-spacing:.03em;margin-bottom:10px;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{
+    font-size:.83rem;font-weight:450;color:var(--moss);
+    background:var(--moss-wash);padding:4px 11px;border-radius:3px;
+  }
+
+  /* ── Footer ─────────────────────────── */
+  .colophon{
+    margin-top:24px;padding-top:26px;border-top:1px solid var(--rule);
+    display:flex;flex-wrap:wrap;gap:8px 20px;
+    font-size:.81rem;color:var(--faint);
+  }
+  .colophon a{color:var(--quiet);text-decoration:none}
+  .colophon a:hover{color:var(--moss)}
+
+  /* ── Focus ──────────────────────────── */
+  a:focus-visible{outline:2px solid var(--moss);outline-offset:3px;border-radius:2px}
+
+  /* ── Responsive ─────────────────────── */
+  @media(max-width:760px){
+    .band{grid-template-columns:1fr;gap:16px}
+    .rail{font-size:.9rem}
+  }
+  @media(max-width:600px){
+    .masthead-in,.shell{padding-left:22px;padding-right:22px}
+    .hero{grid-template-columns:1fr;gap:28px;padding:56px 0 40px}
+    .portrait{width:120px;height:150px;order:-1}
+  }
+
+  /* ── Motion: one orchestrated entrance ── */
+  @media(prefers-reduced-motion:no-preference){
+    .hero>*{animation:rise .6s cubic-bezier(.2,.7,.3,1) both}
+    .hero>*:nth-child(2){animation-delay:.09s}
+    @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  }
+
+  @media print{
+    .masthead{display:none}
+    body{font-size:11pt}
+    .band{page-break-inside:avoid}
+  }
+</style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a href="index.html" class="active">关于我</a>
-    <a href="education.html">教育经历</a>
-    <a href="publications.html">出版物</a>
-    <a href="activities.html">学术活动</a>
+<header class="masthead">
+  <div class="masthead-in">
+    <a class="wordmark" href="index.html">Yipu Wang</a>
+    <nav class="menu">
+      <a href="index.html" aria-current="page">About</a>
+      <a href="education.html">Education</a>
+      <a href="publications.html">Publications</a>
+      <a href="activities.html">Activities</a>
+    </nav>
   </div>
-</nav>
+</header>
 
-<div class="page">
-  <header class="hero">
-    <div class="hero-text">
-      <p class="hero-tag">个人主页</p>
-      <h1>Wangyipu Li</h1>
-      <p class="hero-sub">【一句话介绍自己，例如：计算机科学研究生，研究方向为自然语言处理与大语言模型】</p>
-      <div class="contact-row">
-        <span>📍 城市，省份</span>
-        <span>📞 138-0000-0000</span>
+<div class="shell">
+
+  <section class="hero">
+    <div>
+      <h1>Yipu Wang</h1>
+      <p class="standfirst">[One sentence about your work — e.g. PhD student in Computer Science studying how language models represent meaning.]</p>
+      <div class="contact">
+        <span>[City, Country]</span>
         <a href="mailto:your@email.com">your@email.com</a>
-        <a href="https://github.com/wangyipuli" target="_blank">github.com/wangyipuli</a>
+        <a href="https://github.com/wangyipuli" target="_blank" rel="noopener">GitHub</a>
+        <a href="#" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="#">CV</a>
       </div>
     </div>
-    <!-- ↓ 把 /images/photo.jpg 改成你上传的图片路径 -->
-    <img class="hero-photo" src="image/IMG_8639.JPG" alt="Wangyipu Li">
-  </header>
-
-  <section class="section">
-    <p class="section-label">关于我</p>
-    <p class="about-text">
-      【在这里写2-3句个人简介。例如：我是XXX大学计算机科学专业的研究生，师从XXX教授，研究方向为XXX。在此之前，我在XXX取得了本科学位。我热爱XXX，希望在XXX领域持续深耕。】
-    </p>
+    <!-- Replace with your photo. Upload to images/photo.jpg in your repo. -->
+    <img class="portrait" src="images/photo.jpg" alt="Portrait of Yipu Wang">
   </section>
 
-  <section class="section">
-    <p class="section-label">技能</p>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <h4>编程语言</h4>
-        <div class="skill-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Java</span>
-          <span class="tag">JavaScript</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>框架 / 工具</h4>
-        <div class="skill-tags">
-          <span class="tag">PyTorch</span>
-          <span class="tag">Git</span>
-          <span class="tag">Docker</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>语言</h4>
-        <div class="skill-tags">
-          <span class="tag">中文（母语）</span>
-          <span class="tag">英语（CET-6）</span>
-        </div>
-      </div>
+  <section class="band">
+    <div class="rail">About</div>
+    <div class="body-col prose">
+      <p>[Open with who you are and where you are — e.g. I am a second-year PhD student at <em>[University]</em>, advised by [Advisor]. Before that I completed my BSc at [University].]</p>
+      <p>[Then say what you actually work on, in plain language. What question are you trying to answer, and why does it matter? Two or three sentences is plenty.]</p>
+      <p>[Close with something human — what you read, build, or do away from the desk. It makes the page easier to remember.]</p>
     </div>
   </section>
 
-  <footer>© 2026 Wangyipu Li &nbsp;·&nbsp; <a href="index.html">wangyipuli.github.io</a></footer>
+  <section class="band">
+    <div class="rail">Research interests</div>
+    <div class="body-col">
+      <div class="cluster">
+        <h3>Areas</h3>
+        <div class="chips">
+          <span class="chip">[Interpretability]</span>
+          <span class="chip">[Natural language processing]</span>
+          <span class="chip">[Human–AI interaction]</span>
+        </div>
+      </div>
+      <div class="cluster">
+        <h3>Methods and tools</h3>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">PyTorch</span>
+          <span class="chip">R</span>
+          <span class="chip">Git</span>
+        </div>
+      </div>
+      <div class="cluster">
+        <h3>Languages</h3>
+        <div class="chips">
+          <span class="chip">Mandarin — native</span>
+          <span class="chip">English — fluent</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <span>© 2026 Yipu Wang</span>
+    <a href="mailto:your@email.com">your@email.com</a>
+    <span>Last updated September 2026</span>
+  </footer>
+
 </div>
 </body>
 </html>
