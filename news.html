@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Publications — Wangyipu Li</title>
+<title>News — Wangyipu Li</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
@@ -145,19 +145,15 @@
     .pagehead{animation:rise .55s cubic-bezier(.2,.7,.3,1) both}
   }
 </style><style>
-  .paper{display:grid;grid-template-columns:46px 1fr;gap:20px;padding-bottom:26px}
-  .paper+.paper{border-top:1px solid var(--rule);padding-top:26px}
-  .paper-year{font-family:var(--display);font-size:.95rem;color:var(--faint);padding-top:3px;font-variant-numeric:tabular-nums}
-  .paper-title{font-family:var(--display);font-size:1.16rem;font-weight:500;line-height:1.35;letter-spacing:-.012em;margin-bottom:5px}
-  .paper-venue{font-size:.92rem;color:var(--moss-bright);font-weight:450}
-  .paper-authors{font-size:.9rem;color:var(--quiet);margin-top:4px}
-  .paper-authors b{color:var(--ink);font-weight:500}
-  .paper-note{font-size:.88rem;color:var(--faint);margin-top:6px;font-style:italic;font-family:var(--display)}
-  .paper-links{display:flex;flex-wrap:wrap;gap:14px;margin-top:11px}
-  .paper-links a{font-size:.83rem;color:var(--moss);text-decoration:none;font-weight:450;border-bottom:1px solid rgba(31,82,69,.25);padding-bottom:1px;transition:border-color .2s ease}
-  .paper-links a:hover{border-bottom-color:var(--moss)}
-  .empty{font-family:var(--display);font-style:italic;font-weight:300;color:var(--faint);font-size:1rem}
-  @media(max-width:600px){.paper{grid-template-columns:1fr;gap:4px}.paper-year{padding-top:0}}
+  .feed{max-width:42em}
+  .post{display:grid;grid-template-columns:104px 1fr;gap:22px;padding-bottom:20px}
+  .post+.post{border-top:1px solid var(--rule);padding-top:20px}
+  .post-date{font-family:var(--display);font-size:.92rem;color:var(--faint);padding-top:2px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .post-body{font-size:.97rem;color:var(--body);line-height:1.72}
+  .post-body a{color:var(--moss);text-decoration:none;border-bottom:1px solid rgba(31,82,69,.25);padding-bottom:1px;transition:border-color .2s ease}
+  .post-body a:hover{border-bottom-color:var(--moss)}
+  .post-body strong{font-weight:500;color:var(--ink)}
+  @media(max-width:600px){.post{grid-template-columns:1fr;gap:3px}.post-date{padding-top:0}}
 </style>
 </head>
 <body>
@@ -167,10 +163,10 @@
     <nav class="menu">
       <a href="index.html">About</a>
       <a href="research.html">Research</a>
-      <a href="publications.html" aria-current="page">Publications</a>
+      <a href="publications.html">Publications</a>
       <a href="tools.html">Tools</a>
       <a href="activities.html">Activities</a>
-      <a href="news.html">News</a>
+      <a href="news.html" aria-current="page">News</a>
     </nav>
   </div>
 </header>
@@ -178,54 +174,38 @@
 <div class="shell">
 
   <section class="pagehead">
-    <h1>Publications</h1>
-    <p>Peer-reviewed work and preprints. Full texts are linked where available.</p>
+    <h1>News</h1>
+    <p>Recent updates, newest first.</p>
   </section>
 
   <section class="band">
-    <div class="band-head"><h2>Conference Papers</h2></div>
+    <div class="band-head">
+      <h2>News</h2>
+      <span class="note">newest first</span>
+    </div>
 
-    <article class="paper">
-      <div class="paper-year">2025</div>
-      <div>
-        <h3 class="paper-title">[Full title of the paper, sentence case]</h3>
-        <div class="paper-venue">[Venue, e.g. ACL 2025 &mdash; Long Papers]</div>
-        <div class="paper-authors"><b>Wangyipu Li</b>, [Co-author], [Co-author]</div>
-        <div class="paper-note">[Optional: Oral presentation &middot; Best paper nominee]</div>
-        <div class="paper-links">
-          <a href="#">PDF</a><a href="#">arXiv</a><a href="#">Code</a><a href="#">Slides</a>
-        </div>
-      </div>
-    </article>
+    <div class="feed">
+      <!-- Copy a .post block and put it at the top to add an update -->
+      <article class="post">
+        <div class="post-date">Sep 2026</div>
+        <div class="post-body">[Something that happened &mdash; a paper accepted, a talk given, a new position. One or two sentences. Link out with <a href="#">an inline link</a> where it helps.]</div>
+      </article>
 
-    <article class="paper">
-      <div class="paper-year">2024</div>
-      <div>
-        <h3 class="paper-title">[Full title of the paper]</h3>
-        <div class="paper-venue">[Venue and year]</div>
-        <div class="paper-authors"><b>Wangyipu Li</b>, [Co-author]</div>
-        <div class="paper-links"><a href="#">PDF</a><a href="#">Code</a></div>
-      </div>
-    </article>
-  </section>
+      <article class="post">
+        <div class="post-date">Jul 2026</div>
+        <div class="post-body">[An earlier update.]</div>
+      </article>
 
-  <section class="band">
-    <div class="band-head"><h2>Journal Articles</h2></div>
+      <article class="post">
+        <div class="post-date">Mar 2026</div>
+        <div class="post-body">[An earlier update.]</div>
+      </article>
 
-    <article class="paper">
-      <div class="paper-year">2025</div>
-      <div>
-        <h3 class="paper-title">[Full title of the article]</h3>
-        <div class="paper-venue">[Journal name, volume(issue), pages]</div>
-        <div class="paper-authors"><b>Wangyipu Li</b>, [Co-author]</div>
-        <div class="paper-links"><a href="#">PDF</a><a href="#">DOI</a></div>
-      </div>
-    </article>
-  </section>
-
-  <section class="band">
-    <div class="band-head"><h2>Preprints and Work in Progress</h2></div>
-    <p class="empty">[List working papers here, or delete this section until you have one.]</p>
+      <article class="post">
+        <div class="post-date">Nov 2025</div>
+        <div class="post-body">[An earlier update.]</div>
+      </article>
+    </div>
   </section>
 
   <footer class="colophon">

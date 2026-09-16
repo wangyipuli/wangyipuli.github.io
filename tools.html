@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Publications — Wangyipu Li</title>
+<title>Tools — Wangyipu Li</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
@@ -145,19 +145,19 @@
     .pagehead{animation:rise .55s cubic-bezier(.2,.7,.3,1) both}
   }
 </style><style>
-  .paper{display:grid;grid-template-columns:46px 1fr;gap:20px;padding-bottom:26px}
-  .paper+.paper{border-top:1px solid var(--rule);padding-top:26px}
-  .paper-year{font-family:var(--display);font-size:.95rem;color:var(--faint);padding-top:3px;font-variant-numeric:tabular-nums}
-  .paper-title{font-family:var(--display);font-size:1.16rem;font-weight:500;line-height:1.35;letter-spacing:-.012em;margin-bottom:5px}
-  .paper-venue{font-size:.92rem;color:var(--moss-bright);font-weight:450}
-  .paper-authors{font-size:.9rem;color:var(--quiet);margin-top:4px}
-  .paper-authors b{color:var(--ink);font-weight:500}
-  .paper-note{font-size:.88rem;color:var(--faint);margin-top:6px;font-style:italic;font-family:var(--display)}
-  .paper-links{display:flex;flex-wrap:wrap;gap:14px;margin-top:11px}
-  .paper-links a{font-size:.83rem;color:var(--moss);text-decoration:none;font-weight:450;border-bottom:1px solid rgba(31,82,69,.25);padding-bottom:1px;transition:border-color .2s ease}
-  .paper-links a:hover{border-bottom-color:var(--moss)}
-  .empty{font-family:var(--display);font-style:italic;font-weight:300;color:var(--faint);font-size:1rem}
-  @media(max-width:600px){.paper{grid-template-columns:1fr;gap:4px}.paper-year{padding-top:0}}
+  .kit{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px 30px;max-width:44em}
+  .kit h3{font-size:.8rem;font-weight:500;color:var(--faint);letter-spacing:.02em;margin-bottom:9px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{font-size:.85rem;font-weight:450;color:var(--moss);background:var(--moss-wash);padding:4px 11px;border-radius:3px}
+  .release{max-width:44em;padding-bottom:24px}
+  .release+.release{border-top:1px solid var(--rule);padding-top:24px}
+  .release-top{display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap}
+  .release-name{font-family:var(--display);font-size:1.14rem;font-weight:500;letter-spacing:-.01em}
+  .release-meta{font-size:.82rem;color:var(--faint);white-space:nowrap}
+  .release-desc{font-size:.94rem;color:var(--body);line-height:1.7;margin-top:7px}
+  .release-links{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px}
+  .release-links a{font-size:.83rem;color:var(--moss);text-decoration:none;font-weight:450;border-bottom:1px solid rgba(31,82,69,.25);padding-bottom:1px;transition:border-color .2s ease}
+  .release-links a:hover{border-bottom-color:var(--moss)}
 </style>
 </head>
 <body>
@@ -167,8 +167,8 @@
     <nav class="menu">
       <a href="index.html">About</a>
       <a href="research.html">Research</a>
-      <a href="publications.html" aria-current="page">Publications</a>
-      <a href="tools.html">Tools</a>
+      <a href="publications.html">Publications</a>
+      <a href="tools.html" aria-current="page">Tools</a>
       <a href="activities.html">Activities</a>
       <a href="news.html">News</a>
     </nav>
@@ -178,54 +178,68 @@
 <div class="shell">
 
   <section class="pagehead">
-    <h1>Publications</h1>
-    <p>Peer-reviewed work and preprints. Full texts are linked where available.</p>
+    <h1>Tools</h1>
+    <p>Software I maintain, and the stack I reach for day to day.</p>
   </section>
 
   <section class="band">
-    <div class="band-head"><h2>Conference Papers</h2></div>
+    <div class="band-head"><h2>Software I Have Released</h2></div>
 
-    <article class="paper">
-      <div class="paper-year">2025</div>
+    <article class="release">
+      <div class="release-top">
+        <div class="release-name">[Package or repository name]</div>
+        <div class="release-meta">[Language] &middot; [licence]</div>
+      </div>
+      <p class="release-desc">[One or two sentences: what it does and who it is for. If it accompanies a paper, say which.]</p>
+      <div class="release-links">
+        <a href="#">GitHub</a><a href="#">Docs</a><a href="#">Paper</a>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-top">
+        <div class="release-name">[Package or repository name]</div>
+        <div class="release-meta">[Language] &middot; [licence]</div>
+      </div>
+      <p class="release-desc">[What it does.]</p>
+      <div class="release-links"><a href="#">GitHub</a></div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><h2>Toolkit</h2></div>
+    <div class="kit">
       <div>
-        <h3 class="paper-title">[Full title of the paper, sentence case]</h3>
-        <div class="paper-venue">[Venue, e.g. ACL 2025 &mdash; Long Papers]</div>
-        <div class="paper-authors"><b>Wangyipu Li</b>, [Co-author], [Co-author]</div>
-        <div class="paper-note">[Optional: Oral presentation &middot; Best paper nominee]</div>
-        <div class="paper-links">
-          <a href="#">PDF</a><a href="#">arXiv</a><a href="#">Code</a><a href="#">Slides</a>
+        <h3>Languages</h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">R</span><span class="chip">C++</span><span class="chip">SQL</span>
         </div>
       </div>
-    </article>
-
-    <article class="paper">
-      <div class="paper-year">2024</div>
       <div>
-        <h3 class="paper-title">[Full title of the paper]</h3>
-        <div class="paper-venue">[Venue and year]</div>
-        <div class="paper-authors"><b>Wangyipu Li</b>, [Co-author]</div>
-        <div class="paper-links"><a href="#">PDF</a><a href="#">Code</a></div>
+        <h3>Machine learning</h3>
+        <div class="chips">
+          <span class="chip">PyTorch</span><span class="chip">JAX</span><span class="chip">scikit-learn</span>
+        </div>
       </div>
-    </article>
-  </section>
-
-  <section class="band">
-    <div class="band-head"><h2>Journal Articles</h2></div>
-
-    <article class="paper">
-      <div class="paper-year">2025</div>
       <div>
-        <h3 class="paper-title">[Full title of the article]</h3>
-        <div class="paper-venue">[Journal name, volume(issue), pages]</div>
-        <div class="paper-authors"><b>Wangyipu Li</b>, [Co-author]</div>
-        <div class="paper-links"><a href="#">PDF</a><a href="#">DOI</a></div>
+        <h3>Data and analysis</h3>
+        <div class="chips">
+          <span class="chip">pandas</span><span class="chip">NumPy</span><span class="chip">Polars</span>
+        </div>
       </div>
-    </article>
-  </section>
-
-  <section class="band">
-    <div class="band-head"><h2>Preprints and Work in Progress</h2></div>
-    <p class="empty">[List working papers here, or delete this section until you have one.]</p>
+      <div>
+        <h3>Workflow</h3>
+        <div class="chips">
+          <span class="chip">Git</span><span class="chip">Docker</span><span class="chip">Slurm</span><span class="chip">LaTeX</span>
+        </div>
+      </div>
+      <div>
+        <h3>Languages spoken</h3>
+        <div class="chips">
+          <span class="chip">Mandarin &mdash; native</span><span class="chip">English &mdash; fluent</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <footer class="colophon">

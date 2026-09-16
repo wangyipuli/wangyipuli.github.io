@@ -6,165 +6,136 @@
 <title>Wangyipu Li</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Inter:wght@400;450;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
   :root{
     --paper:#FCFCFB;
     --ink:#15181B;
+    --body:#2C3237;
     --quiet:#6A7075;
     --faint:#9AA0A4;
     --rule:#E6E4DF;
-    --moss:#2C5A4E;
-    --moss-wash:#F0F4F2;
+    --moss:#1F5245;
+    --moss-bright:#2C7A63;
+    --moss-wash:#EFF4F2;
     --display:"Newsreader",Georgia,serif;
     --text:"Inter",system-ui,-apple-system,sans-serif;
   }
 
   html{scroll-behavior:smooth}
-  body{
-    background:var(--paper);color:var(--ink);
-    font-family:var(--text);font-size:15.5px;line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
+  body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
   a{color:inherit}
 
-  /* ── Masthead ───────────────────────── */
-  .masthead{
-    position:sticky;top:0;z-index:50;
-    background:rgba(252,252,251,.88);
-    backdrop-filter:saturate(140%) blur(10px);
-    border-bottom:1px solid var(--rule);
-  }
-  .masthead-in{
-    max-width:920px;margin:0 auto;padding:0 32px;
-    height:60px;display:flex;align-items:center;gap:28px;
-  }
-  .wordmark{
-    font-family:var(--display);font-size:1.08rem;font-weight:500;
-    letter-spacing:-.01em;text-decoration:none;white-space:nowrap;
-  }
-  .wordmark::after{
-    content:"";display:block;height:1px;background:var(--moss);
-    transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
-  }
+  /* ── Masthead ── */
+  .masthead{position:sticky;top:0;z-index:50;background:rgba(252,252,251,.9);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--rule)}
+  .masthead-in{max-width:940px;margin:0 auto;padding:0 32px;height:62px;display:flex;align-items:center;gap:24px}
+  .wordmark{font-family:var(--display);font-size:1.1rem;font-weight:500;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+  .wordmark::after{content:"";display:block;height:1px;background:var(--moss);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
   .wordmark:hover::after{transform:scaleX(1)}
-
-  .menu{margin-left:auto;display:flex;gap:26px;overflow-x:auto;scrollbar-width:none}
+  .menu{margin-left:auto;display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
   .menu::-webkit-scrollbar{display:none}
-  .menu a{
-    font-size:.86rem;font-weight:450;color:var(--quiet);
-    text-decoration:none;white-space:nowrap;padding:3px 0;
-    position:relative;transition:color .2s ease;
-  }
-  .menu a::after{
-    content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;
-    background:var(--moss);transform:scaleX(0);transform-origin:center;
-    transition:transform .25s cubic-bezier(.4,0,.2,1);
-  }
+  .menu a{font-size:.85rem;font-weight:450;color:var(--quiet);text-decoration:none;white-space:nowrap;padding:3px 0;position:relative;transition:color .2s ease}
+  .menu a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:var(--moss-bright);transform:scaleX(0);transition:transform .25s cubic-bezier(.4,0,.2,1)}
   .menu a:hover{color:var(--ink)}
   .menu a:hover::after,.menu a[aria-current="page"]::after{transform:scaleX(1)}
   .menu a[aria-current="page"]{color:var(--ink);font-weight:500}
 
-  /* ── Shell ──────────────────────────── */
-  .shell{max-width:920px;margin:0 auto;padding:0 32px 96px}
+  .shell{max-width:940px;margin:0 auto;padding:0 32px 96px}
 
-  /* ── Hero ───────────────────────────── */
-  .hero{
-    padding:88px 0 56px;
-    display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center;
-  }
-  .hero h1{
-    font-family:var(--display);
-    font-size:clamp(2.9rem,6.5vw,4.15rem);
-    font-weight:300;line-height:1.02;letter-spacing:-.025em;
-    margin-bottom:20px;
-  }
-  .standfirst{
-    font-family:var(--display);font-size:1.16rem;font-weight:300;
-    line-height:1.55;color:var(--quiet);max-width:34em;margin-bottom:28px;
-  }
-  .portrait{
-    width:158px;height:198px;object-fit:cover;
-    border-radius:2px;filter:grayscale(.15);
-    box-shadow:0 1px 2px rgba(20,24,28,.06),0 12px 32px -12px rgba(20,24,28,.22);
-  }
+  /* ── Hero ── */
+  .hero{padding:80px 0 52px;display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center}
+  .hero h1{font-family:var(--display);font-size:clamp(2.8rem,6vw,4rem);font-weight:300;line-height:1.03;letter-spacing:-.025em;margin-bottom:18px}
+  .standfirst{font-family:var(--display);font-size:1.16rem;font-weight:300;line-height:1.55;color:var(--quiet);max-width:34em;margin-bottom:26px}
+  .portrait{width:158px;height:198px;object-fit:cover;border-radius:2px;filter:grayscale(.12);box-shadow:0 1px 2px rgba(20,24,28,.06),0 12px 32px -12px rgba(20,24,28,.22)}
 
-  /* ── Contact line ───────────────────── */
-  .contact{
-    display:flex;flex-wrap:wrap;align-items:baseline;
-    gap:6px 22px;font-size:.87rem;color:var(--quiet);
-  }
-  .contact a{
-    color:var(--moss);text-decoration:none;
-    border-bottom:1px solid rgba(44,90,78,.26);
-    padding-bottom:1px;transition:border-color .2s ease;
-  }
+  .contact{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 22px;font-size:.87rem;color:var(--quiet)}
+  .contact a{color:var(--moss);text-decoration:none;border-bottom:1px solid rgba(31,82,69,.26);padding-bottom:1px;transition:border-color .2s ease}
   .contact a:hover{border-bottom-color:var(--moss)}
 
-  /* ── Section: two-column editorial rail ── */
-  .band{
-    padding:46px 0;border-top:1px solid var(--rule);
-    display:grid;grid-template-columns:168px 1fr;gap:40px;
+  /* ── Section heading — sits ABOVE content ── */
+  .band{padding:52px 0 0}
+  .band-head{
+    display:flex;align-items:baseline;gap:14px;
+    padding-bottom:12px;margin-bottom:26px;
+    border-bottom:2px solid var(--moss);
   }
-  .rail{
-    font-family:var(--display);font-size:.96rem;font-style:italic;
-    font-weight:300;color:var(--faint);padding-top:2px;
+  .band-head h2{
+    font-family:var(--display);
+    font-size:1.72rem;font-weight:600;
+    color:var(--moss);letter-spacing:-.018em;line-height:1.1;
   }
-  .body-col{min-width:0;max-width:40em}
+  .band-head .note{
+    font-family:var(--display);font-style:italic;font-weight:300;
+    font-size:.95rem;color:var(--faint);margin-left:auto;
+  }
 
-  .prose{font-size:1rem;line-height:1.78;color:#2C3237}
+  .sub-head{
+    font-family:var(--display);font-size:1.05rem;font-weight:500;
+    color:var(--moss-bright);margin:30px 0 14px;
+  }
+  .sub-head:first-child{margin-top:0}
+
+  /* ── Prose ── */
+  .prose{font-size:1rem;line-height:1.78;color:var(--body);max-width:40em}
   .prose p+p{margin-top:1.05em}
   .prose em{font-family:var(--display);font-style:italic;font-size:1.05em}
 
-  /* ── Skills ─────────────────────────── */
-  .cluster+.cluster{margin-top:26px}
-  .cluster h3{
-    font-size:.79rem;font-weight:500;color:var(--faint);
-    letter-spacing:.03em;margin-bottom:10px;
-  }
-  .chips{display:flex;flex-wrap:wrap;gap:7px}
-  .chip{
-    font-size:.83rem;font-weight:450;color:var(--moss);
-    background:var(--moss-wash);padding:4px 11px;border-radius:3px;
-  }
+  /* ── Record (education) ── */
+  .record{padding-bottom:24px}
+  .record+.record{border-top:1px solid var(--rule);padding-top:24px}
+  .record-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
+  .record-degree{font-family:var(--display);font-size:1.18rem;font-weight:500;letter-spacing:-.012em;line-height:1.3}
+  .record-when{font-size:.83rem;color:var(--faint);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .record-where{font-size:.95rem;color:var(--moss-bright);font-weight:450;margin-top:3px}
+  .record-notes{margin-top:11px;font-size:.92rem;color:var(--quiet);line-height:1.7;max-width:42em}
+  .record-notes dl{display:grid;grid-template-columns:auto 1fr;gap:5px 16px}
+  .record-notes dt{color:var(--faint);font-size:.86rem}
+  .record-notes dd{color:var(--body)}
 
-  /* ── Footer ─────────────────────────── */
-  .colophon{
-    margin-top:24px;padding-top:26px;border-top:1px solid var(--rule);
-    display:flex;flex-wrap:wrap;gap:8px 20px;
-    font-size:.81rem;color:var(--faint);
-  }
+  /* ── Awards list ── */
+  .awards{max-width:44em}
+  .award{display:grid;grid-template-columns:78px 1fr;gap:18px;padding:11px 0}
+  .award+.award{border-top:1px solid var(--rule)}
+  .award-when{font-family:var(--display);font-size:.9rem;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:2px}
+  .award-what{font-size:.97rem;color:var(--ink);font-weight:450}
+  .award-by{font-size:.87rem;color:var(--quiet);margin-top:2px}
+
+  /* ── Project ── */
+  .project{padding-bottom:26px;max-width:44em}
+  .project+.project{border-top:1px solid var(--rule);padding-top:26px}
+  .project-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
+  .project-title{font-family:var(--display);font-size:1.14rem;font-weight:500;line-height:1.35;letter-spacing:-.01em}
+  .project-when{font-size:.83rem;color:var(--faint);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .project-role{font-size:.92rem;color:var(--moss-bright);font-weight:450;margin-top:3px}
+  .project-desc{margin-top:9px;font-size:.94rem;color:var(--body);line-height:1.7}
+  .project-desc ul{padding-left:1.15em;margin-top:4px}
+  .project-desc li{margin-bottom:5px}
+
+  /* ── Footer ── */
+  .colophon{margin-top:64px;padding-top:26px;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.81rem;color:var(--faint)}
   .colophon a{color:var(--quiet);text-decoration:none}
   .colophon a:hover{color:var(--moss)}
 
-  /* ── Focus ──────────────────────────── */
   a:focus-visible{outline:2px solid var(--moss);outline-offset:3px;border-radius:2px}
 
-  /* ── Responsive ─────────────────────── */
-  @media(max-width:760px){
-    .band{grid-template-columns:1fr;gap:16px}
-    .rail{font-size:.9rem}
-  }
   @media(max-width:600px){
     .masthead-in,.shell{padding-left:22px;padding-right:22px}
-    .hero{grid-template-columns:1fr;gap:28px;padding:56px 0 40px}
+    .hero{grid-template-columns:1fr;gap:28px;padding:52px 0 40px}
     .portrait{width:120px;height:150px;order:-1}
+    .band-head h2{font-size:1.45rem}
+    .band-head .note{display:none}
+    .record-notes dl{grid-template-columns:1fr;gap:2px}
+    .record-notes dt{margin-top:8px}
+    .award{grid-template-columns:1fr;gap:2px}
   }
-
-  /* ── Motion: one orchestrated entrance ── */
   @media(prefers-reduced-motion:no-preference){
     .hero>*{animation:rise .6s cubic-bezier(.2,.7,.3,1) both}
-    .hero>*:nth-child(2){animation-delay:.09s}
+    .hero>*:nth-child(2){animation-delay:.08s}
     @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   }
-
-  @media print{
-    .masthead{display:none}
-    body{font-size:11pt}
-    .band{page-break-inside:avoid}
-  }
+  @media print{.masthead{display:none}body{font-size:11pt}.record,.project,.award{page-break-inside:avoid}}
 </style>
 </head>
 <body>
@@ -174,9 +145,11 @@
     <a class="wordmark" href="index.html">Wangyipu Li</a>
     <nav class="menu">
       <a href="index.html" aria-current="page">About</a>
-      <a href="education.html">Education</a>
+      <a href="research.html">Research</a>
       <a href="publications.html">Publications</a>
+      <a href="tools.html">Tools</a>
       <a href="activities.html">Activities</a>
+      <a href="news.html">News</a>
     </nav>
   </div>
 </header>
@@ -195,47 +168,138 @@
         <a href="#">CV</a>
       </div>
     </div>
-    <!-- Replace with your photo. Upload to images/photo.jpg in your repo. -->
+    <!-- Upload your photo to images/photo.jpg in the repo -->
     <img class="portrait" src="images/photo.jpg" alt="Portrait of Wangyipu Li">
   </section>
 
+  <!-- ══ Biography ══ -->
   <section class="band">
-    <div class="rail">About</div>
-    <div class="body-col prose">
+    <div class="band-head">
+      <h2>Biography</h2>
+    </div>
+    <div class="prose">
       <p>[Open with who you are and where you are — e.g. I am a second-year PhD student at <em>[University]</em>, advised by [Advisor]. Before that I completed my BSc at [University].]</p>
       <p>[Then say what you actually work on, in plain language. What question are you trying to answer, and why does it matter? Two or three sentences is plenty.]</p>
       <p>[Close with something human — what you read, build, or do away from the desk. It makes the page easier to remember.]</p>
     </div>
   </section>
 
+  <!-- ══ Education ══ -->
   <section class="band">
-    <div class="rail">Research interests</div>
-    <div class="body-col">
-      <div class="cluster">
-        <h3>Areas</h3>
-        <div class="chips">
-          <span class="chip">[Interpretability]</span>
-          <span class="chip">[Natural language processing]</span>
-          <span class="chip">[Human–AI interaction]</span>
+    <div class="band-head">
+      <h2>Education</h2>
+    </div>
+
+    <!-- Copy a .record block to add another degree -->
+    <article class="record">
+      <div class="record-top">
+        <div>
+          <div class="record-degree">PhD in [Field]</div>
+          <div class="record-where">[University Name]</div>
+        </div>
+        <div class="record-when">2024 — present</div>
+      </div>
+      <div class="record-notes">
+        <dl>
+          <dt>Advisor</dt><dd>[Professor Name]</dd>
+          <dt>Focus</dt><dd>[Your research area, in a short phrase]</dd>
+          <dt>Funding</dt><dd>[Fellowship or scholarship, if any]</dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="record">
+      <div class="record-top">
+        <div>
+          <div class="record-degree">BSc in [Field]</div>
+          <div class="record-where">[University Name]</div>
+        </div>
+        <div class="record-when">2020 — 2024</div>
+      </div>
+      <div class="record-notes">
+        <dl>
+          <dt>Thesis</dt><dd>[Thesis title]</dd>
+          <dt>Standing</dt><dd>GPA [X.XX]/4.0 · [rank or honours]</dd>
+          <dt>Coursework</dt><dd>[Selected course names]</dd>
+        </dl>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ══ Honors and Awards ══ -->
+  <section class="band">
+    <div class="band-head">
+      <h2>Honors and Awards</h2>
+    </div>
+
+    <div class="awards">
+      <!-- Copy an .award block to add another -->
+      <div class="award">
+        <div class="award-when">2025</div>
+        <div>
+          <div class="award-what">[Award name]</div>
+          <div class="award-by">[Awarding body] · [Optional: selectivity, e.g. top 1% of cohort]</div>
         </div>
       </div>
-      <div class="cluster">
-        <h3>Methods and tools</h3>
-        <div class="chips">
-          <span class="chip">Python</span>
-          <span class="chip">PyTorch</span>
-          <span class="chip">R</span>
-          <span class="chip">Git</span>
+
+      <div class="award">
+        <div class="award-when">2024</div>
+        <div>
+          <div class="award-what">[Award name]</div>
+          <div class="award-by">[Awarding body]</div>
         </div>
       </div>
-      <div class="cluster">
-        <h3>Languages</h3>
-        <div class="chips">
-          <span class="chip">Mandarin — native</span>
-          <span class="chip">English — fluent</span>
+
+      <div class="award">
+        <div class="award-when">2023</div>
+        <div>
+          <div class="award-what">[Award name]</div>
+          <div class="award-by">[Awarding body]</div>
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- ══ Projects and Research Experiences ══ -->
+  <section class="band">
+    <div class="band-head">
+      <h2>Projects and Research Experiences</h2>
+    </div>
+
+    <!-- Copy a .project block to add another -->
+    <article class="project">
+      <div class="project-top">
+        <div>
+          <div class="project-title">[Project or lab name]</div>
+          <div class="project-role">[Your role] · [Supervisor or group]</div>
+        </div>
+        <div class="project-when">Jun 2025 — present</div>
+      </div>
+      <div class="project-desc">
+        <ul>
+          <li>[What you built or investigated, and the method you used.]</li>
+          <li>[A concrete result — a number, a benchmark, an accepted paper, a released tool.]</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-top">
+        <div>
+          <div class="project-title">[Project name]</div>
+          <div class="project-role">[Your role] · [Institution]</div>
+        </div>
+        <div class="project-when">2024 — 2025</div>
+      </div>
+      <div class="project-desc">
+        <ul>
+          <li>[What the project set out to do.]</li>
+          <li>[What came of it.]</li>
+        </ul>
+      </div>
+    </article>
+
   </section>
 
   <footer class="colophon">
