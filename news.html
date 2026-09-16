@@ -6,7 +6,7 @@
 <title>News — Wangyipu Li</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
@@ -14,8 +14,8 @@
     --paper:#FCFCFB;
     --ink:#15181B;
     --body:#2C3237;
-    --quiet:#6A7075;
-    --faint:#9AA0A4;
+    --quiet:#4E555A;
+    --faint:#6A7075;
     --rule:#E6E4DF;
     --moss:#1F5245;
     --moss-bright:#2C7A63;
@@ -25,7 +25,7 @@
   }
 
   html{scroll-behavior:smooth}
-  body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:15.5px;font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased}
   a{color:inherit}
 
   /* ── Masthead ── */
@@ -36,7 +36,7 @@
   .wordmark:hover::after{transform:scaleX(1)}
   .menu{margin-left:auto;display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
   .menu::-webkit-scrollbar{display:none}
-  .menu a{font-size:.85rem;font-weight:450;color:var(--quiet);text-decoration:none;white-space:nowrap;padding:3px 0;position:relative;transition:color .2s ease}
+  .menu a{font-size:.85rem;font-weight:500;color:var(--quiet);text-decoration:none;white-space:nowrap;padding:3px 0;position:relative;transition:color .2s ease}
   .menu a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:var(--moss-bright);transform:scaleX(0);transition:transform .25s cubic-bezier(.4,0,.2,1)}
   .menu a:hover{color:var(--ink)}
   .menu a:hover::after,.menu a[aria-current="page"]::after{transform:scaleX(1)}
@@ -46,8 +46,8 @@
 
   /* ── Hero ── */
   .hero{padding:80px 0 52px;display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center}
-  .hero h1{font-family:var(--display);font-size:clamp(2.8rem,6vw,4rem);font-weight:300;line-height:1.03;letter-spacing:-.025em;margin-bottom:18px}
-  .standfirst{font-family:var(--display);font-size:1.16rem;font-weight:300;line-height:1.55;color:var(--quiet);max-width:34em;margin-bottom:26px}
+  .hero h1{font-family:var(--display);font-size:clamp(2.8rem,6vw,4rem);font-weight:400;line-height:1.03;letter-spacing:-.025em;margin-bottom:18px}
+  .standfirst{font-family:var(--display);font-size:1.16rem;font-weight:400;line-height:1.55;color:var(--quiet);max-width:34em;margin-bottom:26px}
   .portrait{width:158px;height:198px;object-fit:cover;border-radius:2px;filter:grayscale(.12);box-shadow:0 1px 2px rgba(20,24,28,.06),0 12px 32px -12px rgba(20,24,28,.22)}
 
   .contact{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 22px;font-size:.87rem;color:var(--quiet)}
@@ -67,7 +67,7 @@
     color:var(--moss);letter-spacing:-.018em;line-height:1.1;
   }
   .band-head .note{
-    font-family:var(--display);font-style:italic;font-weight:300;
+    font-family:var(--display);font-style:italic;font-weight:400;
     font-size:.95rem;color:var(--faint);margin-left:auto;
   }
 
@@ -88,7 +88,7 @@
   .record-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
   .record-degree{font-family:var(--display);font-size:1.18rem;font-weight:500;letter-spacing:-.012em;line-height:1.3}
   .record-when{font-size:.83rem;color:var(--faint);white-space:nowrap;font-variant-numeric:tabular-nums}
-  .record-where{font-size:.95rem;color:var(--moss-bright);font-weight:450;margin-top:3px}
+  .record-where{font-size:.95rem;color:var(--moss-bright);font-weight:500;margin-top:3px}
   .record-notes{margin-top:11px;font-size:.92rem;color:var(--quiet);line-height:1.7;max-width:42em}
   .record-notes dl{display:grid;grid-template-columns:auto 1fr;gap:5px 16px}
   .record-notes dt{color:var(--faint);font-size:.86rem}
@@ -99,7 +99,7 @@
   .award{display:grid;grid-template-columns:78px 1fr;gap:18px;padding:11px 0}
   .award+.award{border-top:1px solid var(--rule)}
   .award-when{font-family:var(--display);font-size:.9rem;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:2px}
-  .award-what{font-size:.97rem;color:var(--ink);font-weight:450}
+  .award-what{font-size:.97rem;color:var(--ink);font-weight:500}
   .award-by{font-size:.87rem;color:var(--quiet);margin-top:2px}
 
   /* ── Project ── */
@@ -108,7 +108,7 @@
   .project-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
   .project-title{font-family:var(--display);font-size:1.14rem;font-weight:500;line-height:1.35;letter-spacing:-.01em}
   .project-when{font-size:.83rem;color:var(--faint);white-space:nowrap;font-variant-numeric:tabular-nums}
-  .project-role{font-size:.92rem;color:var(--moss-bright);font-weight:450;margin-top:3px}
+  .project-role{font-size:.92rem;color:var(--moss-bright);font-weight:500;margin-top:3px}
   .project-desc{margin-top:9px;font-size:.94rem;color:var(--body);line-height:1.7}
   .project-desc ul{padding-left:1.15em;margin-top:4px}
   .project-desc li{margin-bottom:5px}
@@ -138,8 +138,8 @@
   @media print{.masthead{display:none}body{font-size:11pt}.record,.project,.award{page-break-inside:avoid}}
 </style><style>
   .pagehead{padding:74px 0 8px}
-  .pagehead h1{font-family:var(--display);font-size:clamp(2.2rem,5vw,3rem);font-weight:300;letter-spacing:-.022em;line-height:1.05;margin-bottom:12px}
-  .pagehead p{font-family:var(--display);font-size:1.05rem;font-weight:300;color:var(--quiet);max-width:34em}
+  .pagehead h1{font-family:var(--display);font-size:clamp(2.2rem,5vw,3rem);font-weight:400;letter-spacing:-.022em;line-height:1.05;margin-bottom:12px}
+  .pagehead p{font-family:var(--display);font-size:1.05rem;font-weight:400;color:var(--quiet);max-width:34em}
   @media(max-width:600px){.pagehead{padding:46px 0 4px}}
   @media(prefers-reduced-motion:no-preference){
     .pagehead{animation:rise .55s cubic-bezier(.2,.7,.3,1) both}
