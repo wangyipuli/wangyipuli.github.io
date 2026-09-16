@@ -95,21 +95,21 @@
   .record-notes dd{color:var(--body)}
 
   /* ── Awards list ── */
-  .awards{max-width:44em}
-  .award{display:grid;grid-template-columns:78px 1fr;gap:18px;padding:11px 0}
+  .awards{max-width:none}
+  .award{display:grid;grid-template-columns:78px minmax(0,1fr);gap:18px;padding:11px 0}
   .award+.award{border-top:1px solid var(--rule)}
   .award-when{font-family:var(--display);font-size:.9rem;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:2px}
   .award-what{font-size:.97rem;color:var(--ink);font-weight:450}
   .award-by{font-size:.87rem;color:var(--quiet);margin-top:2px}
 
   /* ── Project ── */
-  .project{padding-bottom:26px;max-width:44em}
+  .project{padding-bottom:26px}
   .project+.project{border-top:1px solid var(--rule);padding-top:26px}
   .project-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
   .project-title{font-family:var(--display);font-size:1.14rem;font-weight:500;line-height:1.35;letter-spacing:-.01em}
   .project-when{font-size:.83rem;color:var(--faint);white-space:nowrap;font-variant-numeric:tabular-nums}
   .project-role{font-size:.92rem;color:var(--moss-bright);font-weight:450;margin-top:3px}
-  .project-desc{margin-top:9px;font-size:.94rem;color:var(--body);line-height:1.7}
+  .project-desc{max-width:44em;margin-top:9px;font-size:.94rem;color:var(--body);line-height:1.7}
   .project-desc ul{padding-left:1.15em;margin-top:4px}
   .project-desc li{margin-bottom:5px}
 
@@ -162,7 +162,7 @@
       <p class="standfirst">PhD student in Forestry at the University of Wisconsin&ndash;Madison. I work on evapotranspiration &mdash; how water and energy move between the land surface and the atmosphere, and how far observations, physics and machine learning can be pushed to measure it.</p>
       <div class="contact">
         <span>Madison, Wisconsin, USA</span>
-        <a href="mailto:lwyplwyp@163.com">lwyplwyp@163.com</a>
+        <a href="mailto:wangyipu.li@wisc.edu">wangyipu.li@wisc.edu</a>
         <a href="https://github.com/wangyipuli" target="_blank" rel="noopener">GitHub</a>
         <a href="https://scholar.google.com/citations?user=nMaoGwwAAAAJ&amp;hl=zh-CN" target="_blank" rel="noopener">Google Scholar</a>
         <a href="#">CV</a>
@@ -177,7 +177,7 @@
       <h2>Biography</h2>
     </div>
     <div class="prose">
-      <p>I am a PhD student in Forestry at the <em>University of Wisconsin&ndash;Madison</em>. Before moving to Madison I completed an M.Eng. in Photogrammetry and Remote Sensing at <em>Peking University</em>, advised by Prof. Yang Hong and co-advised by Dr. Yaokui Cui, and a B.S. in Applied Meteorology at <em>China Agricultural University</em> under Prof. Jing Wang.</p>
+      <p>I am a PhD student in Forestry at the <em>University of Wisconsin&ndash;Madison</em>. Before moving to Madison I completed an M.Eng. in Photogrammetry and Remote Sensing at <em>Peking University</em>, advised by Prof. Yang Hong, and a B.S. in Applied Meteorology at <em>China Agricultural University</em> under Prof. Jing Wang.</p>
       <p>My research centres on evapotranspiration &mdash; the return of water from land to atmosphere, and the single largest term in the terrestrial water budget after precipitation. Much of my work has gone into the unglamorous but load-bearing part of the problem: the observations themselves. Eddy-covariance records are chronically incomplete, so I built a framework that reconstructs continuous in-situ ET series without relying on other ground measurements, and used it to release the first benchmark dataset for global ET estimation from FLUXNET2015. More recently I have been training attention-based deep learning models &mdash; pre-trained on 560 million samples, fine-tuned across 400+ flux sites &mdash; to estimate ET at hourly resolution.</p>
       <p>A good deal of my education has happened outdoors rather than at a desk: installing eddy-covariance systems, taking radiation measurements, and growing the crops the instruments end up sitting over. It is a useful corrective &mdash; it is harder to take a gap-filled time series for granted once you have stood in the field where the gap came from.</p>
     </div>
@@ -199,8 +199,7 @@
       </div>
       <div class="record-notes">
         <dl>
-          <dt>Advisor</dt><dd>[Advisor name]</dd>
-          <dt>Focus</dt><dd>[Your PhD research direction, in a short phrase]</dd>
+          <dt>Advisor</dt><dd>Prof. Min Chen</dd>
         </dl>
       </div>
     </article>
@@ -215,7 +214,7 @@
       </div>
       <div class="record-notes">
         <dl>
-          <dt>Advisor</dt><dd>Prof. Yang Hong, co-advised by Dr. Yaokui Cui</dd>
+          <dt>Advisor</dt><dd>Prof. Yang Hong</dd>
           <dt>Thesis</dt><dd>Application of AI to hourly evapotranspiration estimation</dd>
           <dt>Standing</dt><dd>GPA 3.72/4.0</dd>
         </dl>
@@ -375,7 +374,7 @@
 
   <footer class="colophon">
     <span>&copy; 2026 Wangyipu Li</span>
-    <a href="mailto:lwyplwyp@163.com">lwyplwyp@163.com</a>
+    <a href="mailto:wangyipu.li@wisc.edu">wangyipu.li@wisc.edu</a>
     <span>Last updated September 2026</span>
   </footer>
 
