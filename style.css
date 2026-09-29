@@ -14,7 +14,7 @@
   --sidebar:324px;
   --page:1340px;
   --bar:56px;
-  --font:Arial,Helvetica,"Helvetica Neue",sans-serif;
+  --font:Arial,Helvetica,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
 }
 
 html{scroll-behavior:smooth}
@@ -68,13 +68,17 @@ img,video{max-width:100%}
 .sidebar::-webkit-scrollbar-thumb{background:var(--rule);border-radius:3px}
 
 .portrait{
-  width:168px;height:168px;object-fit:cover;border-radius:50%;
+  width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;
   border:1px solid var(--rule);
   margin-bottom:22px;
 }
 .sb-name{
   font-size:1.62rem;font-weight:700;letter-spacing:-.012em;line-height:1.2;
   color:var(--ink);text-decoration:none;display:block;margin-bottom:8px;
+}
+.sb-cn{
+  font-size:1.05rem;font-weight:400;color:var(--quiet);
+  letter-spacing:.06em;margin-bottom:10px;
 }
 .sb-role{font-size:.94rem;line-height:1.6;color:var(--quiet);margin-bottom:22px}
 .sb-role strong{color:var(--moss);font-weight:700}
@@ -181,7 +185,7 @@ img,video{max-width:100%}
     flex-direction:row;flex-wrap:wrap;align-items:center;
     gap:0 20px;padding:22px;overflow:visible;
   }
-  .portrait{width:92px;height:92px;margin-bottom:0}
+  .portrait{width:92px;flex:0 0 92px;margin-bottom:0}
   .sb-name{margin-bottom:2px}
   .sb-role{margin-bottom:0;flex:1 1 100%}
   .icons{margin:14px 0 0;flex:1 1 100%}
