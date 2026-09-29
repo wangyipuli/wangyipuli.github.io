@@ -4,41 +4,54 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Publications — Wangyipu Li</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"><style>
-  .paper{display:grid;grid-template-columns:46px 1fr;gap:20px;padding-bottom:26px}
-  .paper+.paper{border-top:1px solid var(--rule);padding-top:26px}
-  .paper-year{font-family:var(--display);font-size:.95rem;color:var(--faint);padding-top:3px;font-variant-numeric:tabular-nums}
-  .paper-title{font-family:var(--display);font-size:1.16rem;font-weight:500;line-height:1.35;letter-spacing:-.012em;margin-bottom:5px}
-  .paper-venue{font-size:.92rem;color:var(--moss-bright);font-weight:500}
-  .paper-authors{font-size:.9rem;color:var(--quiet);margin-top:4px}
-  .paper-authors b{color:var(--ink);font-weight:500}
-  .paper-note{font-size:.88rem;color:var(--faint);margin-top:6px;font-style:italic;font-family:var(--display)}
-  .paper-links{display:flex;flex-wrap:wrap;gap:14px;margin-top:11px}
-  .paper-links a{font-size:.83rem;color:var(--moss);text-decoration:none;font-weight:500;border-bottom:1px solid rgba(31,82,69,.25);padding-bottom:1px;transition:border-color .2s ease}
-  .paper-links a:hover{border-bottom-color:var(--moss)}
-  .empty{font-family:var(--display);font-style:italic;font-weight:400;color:var(--faint);font-size:1rem}
-  @media(max-width:600px){.paper{grid-template-columns:1fr;gap:4px}.paper-year{padding-top:0}}
+<link rel="stylesheet" href="style.css">
+<style>
+  .cites{list-style:none;counter-reset:cite}
+  .cite{position:relative;padding:14px 0 14px 32px;font-size:.95rem;line-height:1.75;color:var(--body)}
+  .cite+.cite{border-top:1px solid var(--rule)}
+  .cite::before{counter-increment:cite;content:counter(cite) ".";position:absolute;left:0;top:14px;width:24px;font-size:.88rem;color:var(--faint)}
+  .cite .me{font-weight:700;color:var(--ink)}
+  .cite .jrnl{font-weight:700;font-style:italic}
+  .cite .yr{font-weight:400}
+  .cite a{color:var(--moss);text-decoration:none;border-bottom:1px solid rgba(31,82,69,.3);font-size:.86rem;white-space:nowrap}
+  .cite a:hover{border-bottom-color:var(--moss)}
+  .cite .flag{font-size:.82rem;font-style:italic;color:var(--faint)}
+  @media(max-width:600px){.cite{padding-left:24px}}
 </style>
 </head>
 <body>
-<header class="masthead">
-  <div class="masthead-in">
-    <a class="wordmark" href="index.html">Wangyipu Li</a>
-    <nav class="menu">
-      <a href="index.html">About</a>
-      <a href="research.html">Research</a>
-      <a href="publications.html" aria-current="page">Publications</a>
-      <a href="tools.html">Tools</a>
-      <a href="activities.html">Activities</a>
-      <a href="news.html">News</a>
-    </nav>
-  </div>
+
+<header class="topbar">
+  <nav class="nav">
+    <a href="index.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="publications.html" aria-current="page">Publications</a>
+    <a href="tools.html">Tools</a>
+    <a href="activities.html">Activities</a>
+    <a href="news.html">News</a>
+  </nav>
 </header>
 
-<div class="shell">
+<aside class="sidebar">
+  <img class="portrait" src="image/IMG_8639.JPG" alt="Portrait of Wangyipu Li">
+  <a class="sb-name" href="index.html">Wangyipu Li</a>
+  <div class="sb-role">PhD student in Forestry<br><strong>University of Wisconsin&ndash;Madison</strong></div>
+
+  <div class="icons">
+    <a href="mailto:wangyipu.li@wisc.edu" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4.24l-8 4.8-8-4.8V6l8 4.8L20 6v2.24z"/></svg></a>
+    <a href="https://github.com/wangyipuli" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0012 .3"/></svg></a>
+    <a href="https://scholar.google.com/citations?user=nMaoGwwAAAAJ&amp;hl=zh-CN" aria-label="Google Scholar" title="Google Scholar" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></a>
+    <a href="https://www.linkedin.com/in/wangyipu-li-4624a5430/" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 18.34v-8.4H5.56v8.4h2.78zM6.95 8.8a1.61 1.61 0 100-3.22 1.61 1.61 0 000 3.22zm11.39 9.54v-4.6c0-2.46-1.31-3.6-3.06-3.6-1.41 0-2.04.78-2.39 1.32v-1.13h-2.78c.04.79 0 8.4 0 8.4h2.78v-4.69c0-.25.02-.5.09-.68.2-.5.65-1.02 1.42-1.02 1 0 1.4.76 1.4 1.88v4.51h2.54z"/></svg></a>
+    <a href="https://www.researchgate.net/profile/Wangyipu-Li?ev=hdr_xprf" aria-label="ResearchGate" title="ResearchGate" target="_blank" rel="noopener"><span class="lbl">RG</span></a>
+    <a href="#" aria-label="Curriculum vitae" title="Curriculum vitae"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm0 2l4.5 4.5H14V4zM8 10h4v1.6H8V10zm0 3.2h8v1.6H8v-1.6zm0 3.2h8V18H8v-1.6z"/></svg></a>
+  </div>
+
+  <div class="sb-foot">
+    &copy; 2026 Wangyipu Li<br>Last updated September 2026
+  </div>
+</aside>
+
+<main class="shell">
 
   <section class="pagehead">
     <h1>Publications</h1>
@@ -52,126 +65,48 @@
     </div>
 
     <h3 class="sub-head">As first author</h3>
-
-    <article class="paper">
-      <div class="paper-year">2025</div>
-      <div>
-        <h3 class="paper-title">A benchmark dataset for global evapotranspiration estimation based on FLUXNET2015 from 2000 to 2022</h3>
-        <div class="paper-venue"><strong>Earth System Science Data</strong>, 17(8), 3835&ndash;3855</div>
-        <div class="paper-authors"><b>Li, W.</b>, Yao, Z., Qu, Y., et al.</div>
-        <div class="paper-note">IF 11.6 &middot; JCR Q1</div>
-        <div class="paper-links"><a href="#">DOI</a><a href="#">Data</a></div>
-      </div>
-    </article>
-
-    <article class="paper">
-      <div class="paper-year">2024</div>
-      <div>
-        <h3 class="paper-title">A ground-independent method for obtaining complete time series of in situ evapotranspiration observations</h3>
-        <div class="paper-venue"><strong>Journal of Hydrology</strong>, 130888</div>
-        <div class="paper-authors"><b>Li, W.</b>, Yao, Z., Pan, X., et al.</div>
-        <div class="paper-note">IF 6.3 &middot; JCR Q1</div>
-        <div class="paper-links"><a href="#">DOI</a></div>
-      </div>
-    </article>
-
-    <article class="paper">
-      <div class="paper-year">2022</div>
-      <div>
-        <h3 class="paper-title">Impacts of canopy temperature and precipitation on vegetation productivity across agro-pastoral ecotones</h3>
-        <div class="paper-venue"><strong>Acta Agrestia Sinica</strong>, 30(6), 1319</div>
-        <div class="paper-authors"><b>Li, W.</b>, Song, Y., &amp; Wang, J.</div>
-        <div class="paper-note">Published in Chinese</div>
-        <div class="paper-links"><a href="#">DOI</a></div>
-      </div>
-    </article>
+    <ol class="cites">
+      <li class="cite">
+        <span class="me">Li, W.</span>, Yao, Z., Qu, Y., et al. (2025). A benchmark dataset for global evapotranspiration estimation based on FLUXNET2015 from 2000 to 2022. <span class="jrnl">Earth System Science Data</span>, 17(8), 3835&ndash;3855. <a href="#">DOI</a>
+      </li>
+      <li class="cite">
+        <span class="me">Li, W.</span>, Yao, Z., Pan, X., et al. (2024). A ground-independent method for obtaining complete time series of in situ evapotranspiration observations. <span class="jrnl">Journal of Hydrology</span>, 130888. <a href="#">DOI</a>
+      </li>
+      <li class="cite">
+        <span class="me">Li, W.</span>, Song, Y., &amp; Wang, J. (2022). Impacts of canopy temperature and precipitation on vegetation productivity across agro-pastoral ecotones. <span class="jrnl">Acta Agrestia Sinica</span>, 30(6), 1319. <a href="#">DOI</a>
+       <span class="flag">Published in Chinese</span>
+      </li>
+    </ol>
 
     <h3 class="sub-head">As co-author</h3>
-
-    <article class="paper">
-      <div class="paper-year">2026</div>
-      <div>
-        <h3 class="paper-title">China's spring and summer maize growth exhibit differential sensitivities to recent climate change: evidence from satellite observations and machine learning</h3>
-        <div class="paper-venue"><strong>European Journal of Agronomy</strong>, 177, 128106</div>
-        <div class="paper-authors">Song, Y., <b>Li, W.</b>, Yu, X., et al.</div>
-        <div class="paper-links"><a href="#">DOI</a></div>
-      </div>
-    </article>
-
-    <article class="paper">
-      <div class="paper-year">2024</div>
-      <div>
-        <h3 class="paper-title">A_OPTRAM-ET: An automatic optical trapezoid model for evapotranspiration estimation and its global-scale assessments</h3>
-        <div class="paper-venue"><strong>ISPRS Journal of Photogrammetry and Remote Sensing</strong>, 218, 181&ndash;197</div>
-        <div class="paper-authors">Yao, Z., <b>Li, W.</b>, &amp; Cui, Y.</div>
-        <div class="paper-links"><a href="#">DOI</a></div>
-      </div>
-    </article>
-
-    <article class="paper">
-      <div class="paper-year">2024</div>
-      <div>
-        <h3 class="paper-title">Elevated CO<sub>2</sub> concentrations contribute to a closer relationship between vegetation growth and water availability in the Northern Hemisphere mid-latitudes</h3>
-        <div class="paper-venue"><strong>Environmental Research Letters</strong>, 19(8), 084013</div>
-        <div class="paper-authors">Song, Y., Guo, Y., Li, S., <b>Li, W.</b>, &amp; Jin, X.</div>
-        <div class="paper-links"><a href="#">DOI</a></div>
-      </div>
-    </article>
-
+    <ol class="cites">
+      <li class="cite">
+        Song, Y., <span class="me">Li, W.</span>, Yu, X., et al. (2026). China's spring and summer maize growth exhibit differential sensitivities to recent climate change: evidence from satellite observations and machine learning. <span class="jrnl">European Journal of Agronomy</span>, 177, 128106. <a href="#">DOI</a>
+      </li>
+      <li class="cite">
+        Yao, Z., <span class="me">Li, W.</span>, &amp; Cui, Y. (2024). A_OPTRAM-ET: An automatic optical trapezoid model for evapotranspiration estimation and its global-scale assessments. <span class="jrnl">ISPRS Journal of Photogrammetry and Remote Sensing</span>, 218, 181&ndash;197. <a href="#">DOI</a>
+      </li>
+      <li class="cite">
+        Song, Y., Guo, Y., Li, S., <span class="me">Li, W.</span>, &amp; Jin, X. (2024). Elevated CO<sub>2</sub> concentrations contribute to a closer relationship between vegetation growth and water availability in the Northern Hemisphere mid-latitudes. <span class="jrnl">Environmental Research Letters</span>, 19(8), 084013. <a href="#">DOI</a>
+      </li>
+    </ol>
   </section>
 
   <section class="band">
     <div class="band-head"><h2>Conference Papers</h2></div>
     <p class="empty">No conference papers yet &mdash; conference talks and posters are listed under <a href="activities.html">Activities</a>.</p>
-
-    <!-- Template: uncomment and fill in when you have one.
-    <article class="paper">
-      <div class="paper-year">2026</div>
-      <div>
-        <h3 class="paper-title">[Full title of the paper, sentence case]</h3>
-        <div class="paper-venue">[Venue and year]</div>
-        <div class="paper-authors"><b>Li, W.</b>, [Co-author]</div>
-        <div class="paper-note">[Optional: oral presentation]</div>
-        <div class="paper-links"><a href="#">PDF</a><a href="#">DOI</a><a href="#">Code</a></div>
-      </div>
-    </article>
-    -->
   </section>
 
   <section class="band">
     <div class="band-head"><h2>Preprints and Work in Progress</h2></div>
     <p class="empty">Nothing under review at the moment.</p>
-
-    <!-- Template: uncomment and fill in when you have one.
-    <article class="paper">
-      <div class="paper-year">2026</div>
-      <div>
-        <h3 class="paper-title">[Working title]</h3>
-        <div class="paper-venue">[Preprint server, or "under review at Journal"]</div>
-        <div class="paper-authors"><b>Li, W.</b>, [Co-author]</div>
-        <div class="paper-links"><a href="#">Preprint</a></div>
-      </div>
-    </article>
-    -->
   </section>
 
   <section class="band">
     <div class="band-head"><h2>Intellectual Property</h2></div>
-    <article class="paper">
-      <div class="paper-year">&mdash;</div>
-      <div>
-        <h3 class="paper-title">Two patents (pending) and one software copyright (granted)</h3>
-        <div class="paper-venue">China National Intellectual Property Administration</div>
-      </div>
-    </article>
+    <p class="prose">Two patents (pending) and one software copyright (granted), China National Intellectual Property Administration.</p>
   </section>
 
-  <footer class="colophon">
-    <span>&copy; 2026 Wangyipu Li</span>
-    <a href="mailto:wangyipu.li@wisc.edu">wangyipu.li@wisc.edu</a>
-    <span>Last updated September 2026</span>
-  </footer>
-
-</div>
+</main>
 </body>
 </html>
