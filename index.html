@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wangyipu Li</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  .deflist{list-style:none}
+  .deflist li{position:relative;padding:0 0 8px 18px;font-size:.95rem;line-height:1.7;color:var(--body)}
+  .deflist li:last-child{padding-bottom:0}
+  .deflist li::before{content:"";position:absolute;left:2px;top:.68em;width:5px;height:5px;border-radius:50%;background:var(--moss-bright)}
+  .deflist strong{font-weight:700;color:var(--ink)}
+  .deflist em{font-style:italic}
+</style>
 </head>
 <body>
 
@@ -65,7 +73,7 @@
       <div class="record-notes">
         <dl>
           <dt>Advisor</dt><dd>Prof. Min Chen</dd>
-          <dt>Focus</dt><dd>[Your PhD research direction, in a short phrase]</dd>
+          <dt>Focus</dt><dd>Vegetation monitoring and energy balance in high-latitude regions</dd>
         </dl>
       </div>
     </article>
@@ -184,79 +192,28 @@
     </div>
   </section>
 
-  <!-- ══ Projects and Research Experiences ══ -->
+  <!-- ══ Service ══ -->
   <section class="band">
     <div class="band-head">
-      <h2>Projects and Research Experiences</h2>
-      <span class="note">an asterisk marks a project I originated</span>
+      <h2>Service</h2>
     </div>
+    <ul class="deflist">
+      <li><strong>Reviewer for scientific journals:</strong> <em>Geophysical Research Letters</em></li>
+    </ul>
+  </section>
 
-    <article class="project">
-      <div class="project-top">
-        <div>
-          <div class="project-title">Hourly Evapotranspiration Estimation</div>
-          <div class="project-role">Master's thesis &middot; <strong>Peking University</strong></div>
-        </div>
-        <div class="project-when">Jun 2025 &mdash; present</div>
-      </div>
-      <div class="project-desc">
-        <ul>
-          <li>Architected and implemented an attention-based deep learning model for hourly ET estimation.</li>
-          <li>Assembled multi-source datasets for pre-training (560M samples) and fine-tuning (400+ flux sites).</li>
-          <li>Trained the model on HPC under a pre-train/fine-tune strategy and validated the results.</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-top">
-        <div>
-          <div class="project-title">Patterns of Surface Energy Allocation (LE/R<sub>n</sub>)*</div>
-          <div class="project-role">Graduate research &middot; <strong>Peking University</strong></div>
-        </div>
-        <div class="project-when">Oct 2024 &mdash; Jun 2025</div>
-      </div>
-      <div class="project-desc">
-        <ul>
-          <li>Collected global surface flux data across models and ran trend and attribution analyses.</li>
-          <li>Characterised spatiotemporal patterns of energy partitioning and identified the dominant controls across ecosystems.</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-top">
-        <div>
-          <div class="project-title">Post-processing of Surface Water Flux Observations*</div>
-          <div class="project-role">Master's thesis &middot; <strong>Peking University</strong></div>
-        </div>
-        <div class="project-when">Nov 2022 &mdash; Oct 2024</div>
-      </div>
-      <div class="project-desc">
-        <ul>
-          <li>Designed a framework that fills gaps in and extends ET ground-observation records without depending on other in-situ measurements.</li>
-          <li>Validated the framework and produced the first benchmark dataset for global ET estimation, published in <em><strong>Earth System Science Data</strong></em>.</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-top">
-        <div>
-          <div class="project-title">GPP Dynamics and Drivers</div>
-          <div class="project-role">Undergraduate research &middot; <strong>China Agricultural University</strong></div>
-        </div>
-        <div class="project-when">Dec 2021 &mdash; Dec 2022</div>
-      </div>
-      <div class="project-desc">
-        <ul>
-          <li>Funded by the Beijing Undergraduate Research Program (&yen;8,000); rated <em>Excellent</em> &mdash; 2 of 15 projects.</li>
-          <li>Quantified the spatiotemporal dynamics of GPP and its drivers across agro-pastoral ecotones through trend, correlation and sensitivity analyses.</li>
-          <li>Showed that the facilitative effect of precipitation on vegetation growth can be offset by high-temperature stress.</li>
-        </ul>
-      </div>
-    </article>
-
+  <!-- ══ Skills ══ -->
+  <section class="band">
+    <div class="band-head">
+      <h2>Skills</h2>
+    </div>
+    <ul class="deflist">
+      <li><strong>Programming:</strong> Python</li>
+      <li><strong>Models:</strong> CLM4</li>
+      <li><strong>Software:</strong> Google Earth Engine (GEE), High Performance Computing (HPC)</li>
+      <li><strong>Field work:</strong> EC system installation, radiation measurement, crop cultivation</li>
+      <li><strong>Languages:</strong> Mandarin (native), English (IELTS: 7.0)</li>
+    </ul>
   </section>
 
 </main>

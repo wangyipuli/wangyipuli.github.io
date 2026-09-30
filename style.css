@@ -138,14 +138,14 @@ img,video{max-width:100%}
 .prose em{font-style:italic}
 
 /* ── Education records ── */
-.record{padding-bottom:22px}
-.record+.record{border-top:1px solid var(--rule);padding-top:22px}
+.record{padding-bottom:18px}
+.record+.record{border-top:1px solid var(--rule);padding-top:18px}
 .record-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
-.record-degree{font-size:1.06rem;font-weight:700;letter-spacing:-.008em;line-height:1.35}
+.record-degree{font-size:1.06rem;font-weight:700;letter-spacing:-.008em;line-height:1.5}
 .record-when{font-size:.82rem;color:var(--faint);white-space:nowrap}
-.record-where{font-size:.92rem;color:var(--moss-bright);font-weight:400;margin-top:3px}
-.record-notes{margin-top:10px;font-size:.9rem;color:var(--quiet);line-height:1.7;max-width:46em}
-.record-notes dl{display:grid;grid-template-columns:auto 1fr;gap:5px 16px}
+.record-where{font-size:.92rem;color:var(--moss-bright);font-weight:400;line-height:1.5;margin-top:4px}
+.record-notes{margin-top:4px;font-size:.9rem;color:var(--quiet);line-height:1.5;max-width:46em}
+.record-notes dl{display:grid;grid-template-columns:auto 1fr;gap:4px 16px}
 .record-notes dt{color:var(--faint);font-size:.84rem}
 .record-notes dd{color:var(--body)}
 
@@ -155,17 +155,6 @@ img,video{max-width:100%}
 .award-when{font-size:.86rem;color:var(--faint);padding-top:2px}
 .award-what{font-size:.95rem;color:var(--ink);font-weight:700}
 .award-by{font-size:.86rem;color:var(--quiet);margin-top:2px}
-
-/* ── Projects ── */
-.project{padding-bottom:24px}
-.project+.project{border-top:1px solid var(--rule);padding-top:24px}
-.project-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
-.project-title{font-size:1.04rem;font-weight:700;line-height:1.38;letter-spacing:-.006em}
-.project-when{font-size:.82rem;color:var(--faint);white-space:nowrap}
-.project-role{font-size:.9rem;color:var(--moss-bright);margin-top:3px}
-.project-desc{max-width:46em;margin-top:9px;font-size:.93rem;color:var(--body);line-height:1.7}
-.project-desc ul{padding-left:1.15em;margin-top:4px}
-.project-desc li{margin-bottom:5px}
 
 /* ── Footer ── */
 .colophon{
@@ -210,5 +199,5 @@ img,video{max-width:100%}
   .page{display:block;padding-top:0}
   .shell{padding:0}
   body{font-size:11pt}
-  .record,.project,.award{page-break-inside:avoid}
+  .record,.award{page-break-inside:avoid}
 }
