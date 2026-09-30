@@ -19,12 +19,11 @@
 
 /* 始终为滚动条预留位置，否则短页面（无滚动条）会比长页面宽 15px，
    居中布局在页面间切换时会横向跳动 */
-html{scroll-behavior:smooth;overflow-y:scroll;overscroll-behavior-y:none}
+html{scroll-behavior:smooth;overflow-y:scroll}
 @supports (scrollbar-gutter:stable){
   html{overflow-y:auto;scrollbar-gutter:stable}
 }
 body{
-  overscroll-behavior-y:none;
   background:var(--paper);color:var(--ink);
   font-family:var(--font);font-size:15px;font-weight:400;line-height:1.65;
   -webkit-font-smoothing:antialiased;
