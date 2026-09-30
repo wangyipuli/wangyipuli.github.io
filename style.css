@@ -123,10 +123,10 @@ img,video{max-width:100%}
 .band{padding:44px 0 0}
 .band-head{
   display:flex;align-items:baseline;gap:14px;
-  padding-bottom:10px;margin-bottom:22px;
+  padding-bottom:4px;margin-bottom:20px;
   border-bottom:2px solid var(--moss);
 }
-.band-head h2{font-size:1.16rem;font-weight:700;color:var(--moss);text-transform:uppercase;letter-spacing:.07em;line-height:1.2}
+.band-head h2{font-size:1.16rem;font-weight:700;color:var(--moss);text-transform:uppercase;letter-spacing:.07em;line-height:1.2;-webkit-text-stroke:.45px currentColor;paint-order:stroke fill}
 .band-head .note{font-style:italic;font-size:.86rem;color:var(--faint);margin-left:auto}
 
 .sub-head{font-size:1rem;font-weight:700;color:var(--moss-bright);margin:26px 0 12px}
