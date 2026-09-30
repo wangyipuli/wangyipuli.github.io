@@ -126,7 +126,7 @@ img,video{max-width:100%}
   padding-bottom:10px;margin-bottom:22px;
   border-bottom:2px solid var(--moss);
 }
-.band-head h2{font-size:1.32rem;font-weight:700;color:var(--moss);letter-spacing:-.012em;line-height:1.15}
+.band-head h2{font-size:1.16rem;font-weight:700;color:var(--moss);text-transform:uppercase;letter-spacing:.07em;line-height:1.2}
 .band-head .note{font-style:italic;font-size:.86rem;color:var(--faint);margin-left:auto}
 
 .sub-head{font-size:1rem;font-weight:700;color:var(--moss-bright);margin:26px 0 12px}
