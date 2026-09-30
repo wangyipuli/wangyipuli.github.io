@@ -19,11 +19,12 @@
 
 /* 始终为滚动条预留位置，否则短页面（无滚动条）会比长页面宽 15px，
    居中布局在页面间切换时会横向跳动 */
-html{scroll-behavior:smooth;overflow-y:scroll}
+html{scroll-behavior:smooth;overflow-y:scroll;overscroll-behavior-y:none}
 @supports (scrollbar-gutter:stable){
   html{overflow-y:auto;scrollbar-gutter:stable}
 }
 body{
+  overscroll-behavior-y:none;
   background:var(--paper);color:var(--ink);
   font-family:var(--font);font-size:15px;font-weight:400;line-height:1.65;
   -webkit-font-smoothing:antialiased;
@@ -62,8 +63,9 @@ img,video{max-width:100%}
 
 /* ══ Sidebar ══ */
 .sidebar{
-  position:sticky;top:var(--bar);align-self:start;
-  height:calc(100vh - var(--bar));
+  position:fixed;top:var(--bar);
+  left:max(0px, calc(50% - var(--page) / 2));
+  width:var(--sidebar);height:calc(100vh - var(--bar));
   background:var(--paper);border-right:1px solid var(--rule);
   display:flex;flex-direction:column;
   padding:40px 32px 26px;
@@ -110,7 +112,7 @@ img,video{max-width:100%}
 
 /* ══ Main column ══ */
 .shell{
-  min-width:0;
+  grid-column:2;min-width:0;
   padding:46px 58px 88px;
 }
 
@@ -175,7 +177,7 @@ img,video{max-width:100%}
   .topbar .nav{padding:0 14px}
   .nav a{padding:7px 11px;font-size:.86rem}
   .sidebar{
-    position:static;width:100%;height:auto;border-right:none;
+    position:static;left:auto;width:100%;height:auto;border-right:none;
     border-bottom:1px solid var(--rule);
     flex-direction:row;flex-wrap:wrap;align-items:center;
     gap:0 20px;padding:22px;overflow:visible;
@@ -185,7 +187,7 @@ img,video{max-width:100%}
   .sb-role{margin-bottom:0;flex:1 1 100%}
   .icons{margin:14px 0 0;flex:1 1 100%}
   .sb-foot{display:none}
-  .shell{padding:26px 22px 64px}
+  .shell{grid-column:auto;padding:26px 22px 64px}
 }
 @media(max-width:600px){
   .record-notes dl{grid-template-columns:1fr;gap:2px}
@@ -197,7 +199,7 @@ img,video{max-width:100%}
 @media print{
   .topbar,.sidebar{display:none}
   .page{display:block;padding-top:0}
-  .shell{padding:0}
+  .shell{grid-column:auto;padding:0}
   body{font-size:11pt}
   .record,.award{page-break-inside:avoid}
 }
