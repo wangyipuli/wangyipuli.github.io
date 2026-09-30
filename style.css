@@ -117,7 +117,7 @@ img,video{max-width:100%}
 /* ── Page heading ── */
 .pagehead{padding:0 0 10px}
 .pagehead h1{font-size:2.15rem;font-weight:700;letter-spacing:-.02em;line-height:1.12;margin-bottom:10px}
-.pagehead p{font-size:1rem;color:var(--quiet);max-width:42em}
+.pagehead p{font-size:1rem;color:var(--quiet)}
 
 /* ── Section band ── */
 .band{padding:44px 0 0}
