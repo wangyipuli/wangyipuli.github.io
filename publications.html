@@ -17,6 +17,19 @@
   .cite a:hover{border-bottom-color:var(--moss)}
   .cite .flag{font-size:.82rem;font-style:italic;color:var(--faint)}
   @media(max-width:600px){.cite{padding-left:24px}}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px}
+  .stat{background:var(--moss-wash);border:1px solid var(--rule);border-radius:6px;padding:18px 14px;text-align:center}
+  .stat b{display:block;font-size:1.95rem;font-weight:700;color:var(--moss);line-height:1.05}
+  .stat span{display:block;margin-top:7px;font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--quiet);line-height:1.35}
+  .stats-note{margin-top:10px;font-size:.84rem;color:var(--faint)}
+  .stats-note a{color:var(--moss)}
+  .item{display:grid;grid-template-columns:104px minmax(0,1fr);gap:20px;padding:15px 0}
+  .item+.item{border-top:1px solid var(--rule)}
+  .item-when{font-size:.85rem;color:var(--faint);padding-top:2px}
+  .item-what{font-size:1rem;font-weight:700;line-height:1.4}
+  .item-role{font-size:.88rem;color:var(--moss-bright);margin-top:3px}
+  .item-detail{font-size:.9rem;color:var(--quiet);margin-top:3px;line-height:1.65}
+  @media(max-width:600px){.item{grid-template-columns:1fr;gap:4px}}
 </style>
 </head>
 <body>
@@ -27,7 +40,6 @@
     <a href="research.html">Research</a>
     <a href="publications.html" aria-current="page">Publications</a>
     <a href="tools.html">Tools</a>
-    <a href="activities.html">Activities</a>
     <a href="news.html">News</a>
   </nav>
 </header>
@@ -58,8 +70,15 @@
 
   <section class="pagehead">
     <h1>Publications</h1>
-    <p>Peer-reviewed work. 27 citations, h-index 4 &mdash; see <a href="https://scholar.google.com/citations?user=nMaoGwwAAAAJ&amp;hl=zh-CN" target="_blank" rel="noopener">Google Scholar</a> for current figures.</p>
   </section>
+
+  <div class="stats">
+    <div class="stat"><b>6</b><span>Peer-reviewed articles</span></div>
+    <div class="stat"><b>3</b><span>First author</span></div>
+    <div class="stat"><b>27</b><span>Citations</span></div>
+    <div class="stat"><b>4</b><span>h-index</span></div>
+  </div>
+  <p class="stats-note">Citation figures from <a href="https://scholar.google.com/citations?user=nMaoGwwAAAAJ&amp;hl=zh-CN" target="_blank" rel="noopener">Google Scholar</a>.</p>
 
   <section class="band">
     <div class="band-head">
@@ -97,12 +116,45 @@
 
   <section class="band">
     <div class="band-head"><h2>Conference Papers</h2></div>
-    <p class="empty">No conference papers yet &mdash; conference talks and posters are listed under <a href="activities.html">Activities</a>.</p>
+    <p class="empty">No conference papers yet &mdash; conference talks and posters are listed below.</p>
   </section>
 
   <section class="band">
     <div class="band-head"><h2>Preprints and Work in Progress</h2></div>
     <p class="empty">Nothing under review at the moment.</p>
+  </section>
+
+  <section class="band">
+    <div class="band-head"><h2>Conference Presentations</h2></div>
+
+    <article class="item">
+      <div class="item-when">Apr 2025</div>
+      <div>
+        <h3 class="item-what">Third China Land Surface Evapotranspiration Conference</h3>
+        <div class="item-role">Oral presentation</div>
+        <div class="item-detail">A benchmark dataset for global evapotranspiration estimation &middot; Nanjing, China</div>
+        <div class="item-detail"><em>Best Student Report Award &mdash; 11 selected from 36</em></div>
+      </div>
+    </article>
+
+    <article class="item">
+      <div class="item-when">Oct 2024</div>
+      <div>
+        <h3 class="item-what">International Graduate Workshop on Geo-Information (IGWG)</h3>
+        <div class="item-role">Oral presentation</div>
+        <div class="item-detail">A benchmark dataset for global evapotranspiration estimation &middot; Beijing, China</div>
+      </div>
+    </article>
+
+    <article class="item">
+      <div class="item-when">Apr 2024</div>
+      <div>
+        <h3 class="item-what">First Forum on Changes and Regulation of Hydrological Processes</h3>
+        <div class="item-role">Poster</div>
+        <div class="item-detail">Obtaining complete time series of ET from ground observations &middot; Shenzhen, China</div>
+        <div class="item-detail"><em>Outstanding Poster Award &mdash; 5 selected from 45</em></div>
+      </div>
+    </article>
   </section>
 
   <section class="band">
