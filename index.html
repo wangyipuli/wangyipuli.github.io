@@ -11,23 +11,27 @@
 <link rel="stylesheet" href="style.css">
 <style>
   .pagehead--hero{
-    position:relative;overflow:hidden;border-radius:14px;
-    padding:46px 50px 50px;margin-bottom:6px;
-    color:#fff;background-color:#0c241f;
-    background:
-      linear-gradient(100deg,rgba(8,26,22,.94) 0%,rgba(8,26,22,.90) 42%,rgba(8,26,22,.66) 74%,rgba(8,26,22,.08) 100%),
-      linear-gradient(180deg,rgba(8,26,22,.38) 0%,rgba(8,26,22,0) 45%),
-      url(image/hero.webp) center 0%/cover no-repeat #0c241f;
+    container-type:inline-size;
+    display:grid;grid-template-columns:minmax(0,1fr) 54%;align-items:center;
+    padding:0;margin-bottom:6px;border-radius:14px;overflow:hidden;color:#fff;
+    background:linear-gradient(115deg,#091d18 0%,#0f2d27 52%,#17413a 100%);
   }
-  .pagehead--hero h1{color:#fff;font-size:2.7rem;letter-spacing:-.025em;margin-bottom:16px}
-  .pagehead--hero p{color:rgba(255,255,255,.94);max-width:32em;font-size:1.02rem;line-height:1.75;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+  /* Sizes are given twice: a fixed fallback, then one in container units (cqw) so the text
+     scales with the card and stays the same height relative to the 4:3 image beside it. */
+  .hero-copy{padding:28px 30px 28px 40px;padding:3.1cqw 3.3cqw 3.1cqw 4.4cqw}
+  .pagehead--hero h1{color:#fff;font-size:2.1rem;font-size:clamp(1.55rem,3.7cqw,2.3rem);letter-spacing:-.025em;margin-bottom:10px;margin-bottom:1.1cqw}
+  .pagehead--hero p{color:rgba(255,255,255,.93);max-width:none;font-size:.88rem;font-size:clamp(.74rem,1.72cqw,.92rem);line-height:1.62}
   .pagehead--hero p strong{color:#fff}
-  @media(max-width:760px){
-    .pagehead--hero{padding:30px 22px 32px;background:
-      linear-gradient(180deg,rgba(8,26,22,.80),rgba(8,26,22,.88)),
-      url(image/hero.webp) center/cover no-repeat #0c241f}
-    .pagehead--hero h1{font-size:2.1rem}
-    .pagehead--hero p{max-width:none}
+  .hero-media{margin:0;align-self:stretch;display:flex}
+  .hero-media img{display:block;width:100%;height:auto;align-self:center}
+  /* Stack on phones, and in the 981-1146px band where the fixed sidebar squeezes the card below
+     about 690px: the text can no longer shrink with it and would outgrow the image. */
+  @media(max-width:760px),(min-width:981px) and (max-width:1146px){
+    .pagehead--hero{grid-template-columns:1fr}
+    .hero-media{order:-1}
+    .hero-copy{padding:24px 22px 28px}
+    .pagehead--hero h1{font-size:2rem;margin-bottom:12px}
+    .pagehead--hero p{font-size:.95rem;line-height:1.7}
   }
   .deflist{list-style:none}
   .deflist li{position:relative;padding:0 0 8px 18px;font-size:.95rem;line-height:1.7;color:var(--body)}
@@ -86,8 +90,13 @@
 <main class="shell">
 
   <section class="pagehead pagehead--hero" id="overview">
-    <h1>About Me</h1>
-    <p>Wangyipu Li is a PhD student in the Department of Forest and Wildlife Ecology at the <strong>University of Wisconsin&ndash;Madison</strong>. His research interests cover vegetation dynamic monitoring, estimation of water-carbon fluxes, and issues related to Earth system science. He earned a M.Eng. in Photogrammetry and Remote Sensing at <strong>Peking University</strong>, and a B.S. in Applied Meteorology at <strong>China Agricultural University</strong>.</p>
+    <div class="hero-copy">
+      <h1>About Me</h1>
+      <p>Wangyipu Li is a PhD student in the Department of Forest and Wildlife Ecology at the <strong>University of Wisconsin&ndash;Madison</strong>. His research interests cover vegetation dynamic monitoring, estimation of water-carbon fluxes, and issues related to Earth system science. He earned a M.Eng. in Photogrammetry and Remote Sensing at <strong>Peking University</strong>, and a B.S. in Applied Meteorology at <strong>China Agricultural University</strong>.</p>
+    </div>
+    <figure class="hero-media">
+      <img src="image/hero.webp" alt="The Arctic seen from orbit, with a remote-sensing satellite above the horizon" width="1448" height="1086">
+    </figure>
   </section>
 
   <!-- ══ Education ══ -->
