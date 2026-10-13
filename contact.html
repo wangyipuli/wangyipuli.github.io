@@ -9,7 +9,8 @@
   .ct-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:16px}
   .ct-card{border:1px solid var(--rule);border-radius:10px;background:#FBFCFC;padding:20px 24px}
   .ct-label{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
-  .ct-email{font-size:1.1rem;font-weight:700;color:var(--moss);text-decoration:none;border-bottom:1px solid rgba(31,82,69,.3);word-break:break-all}
+  .ct-email{display:block;width:fit-content;font-size:1.1rem;font-weight:700;color:var(--moss);text-decoration:none;border-bottom:1px solid rgba(31,82,69,.3);word-break:break-all}
+  .ct-email + .ct-email{margin-top:10px}
   .ct-email:hover{border-bottom-color:var(--moss)}
   .ct-addr{font-style:normal;font-size:1rem;line-height:1.6;color:var(--body)}
   .ct-addr strong{color:var(--ink)}
@@ -122,12 +123,13 @@
       <div class="ct-card">
         <div class="ct-label">Email</div>
         <a class="ct-email" href="mailto:wangyipu.li@wisc.edu">wangyipu.li@wisc.edu</a>
+        <a class="ct-email" href="mailto:richardleepupu@gmail.com">richardleepupu@gmail.com</a>
       </div>
       <div class="ct-card">
         <div class="ct-label">Office</div>
         <address class="ct-addr">
           <strong>Russell Laboratories</strong><br>
-          1630 Linden Dr, Room 240<br>
+          1630 Linden Dr<br>
           Madison, WI 53706
         </address>
       </div>
@@ -135,7 +137,7 @@
 
     <div class="ct-media" id="ct-media">
       <figure class="ct-photo" id="ct-photo">
-        <img src="image/russell-labs.jpg" alt="Exterior of Russell Laboratories, University of Wisconsin&ndash;Madison" loading="lazy"
+        <img src="image/russell-labs.jpg" alt="Exterior of Russell Laboratories, University of Wisconsin&ndash;Madison" loading="lazy" decoding="async"
              onerror="var f=document.getElementById('ct-photo');if(f)f.remove();document.getElementById('ct-media').classList.add('ct-solo')">
         <span class="ct-pill">Russell Laboratories</span>
       </figure>
