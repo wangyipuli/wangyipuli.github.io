@@ -14,9 +14,10 @@
     position:relative;container-type:inline-size;
     padding:0;margin-bottom:6px;border-radius:14px;overflow:hidden;color:#fff;background:#091d18;
   }
-  /* The card is the picture itself, at its natural 4:3: the image sets the height and the
-     text is laid over a corner of it, so the picture never has to fit around the words. */
-  .hero-img{display:block;width:100%;height:auto}
+  /* The card is the picture, framed at 16:9 (a quarter shorter than its natural 4:3). The crop
+     comes off the bottom, which is where the text sits, and the top stays in view. */
+  .hero-frame{position:relative;aspect-ratio:16/9}
+  .hero-img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 4%}
   .hero-shade{
     position:absolute;inset:0;pointer-events:none;
     background:
@@ -27,12 +28,14 @@
     mask-image:linear-gradient(to right,#000 0%,#000 56%,transparent 94%);
   }
   /* Sizes are given twice: a fixed fallback, then container units so they scale with the card. */
-  .hero-copy{position:absolute;left:40px;bottom:38px;width:420px;left:4.4cqw;bottom:4.2cqw;width:55cqw}
-  .pagehead--hero h1{color:#fff;font-size:2.3rem;font-size:clamp(1.5rem,4.1cqw,2.5rem);letter-spacing:-.025em;margin-bottom:10px;margin-bottom:1.2cqw}
-  .pagehead--hero p{color:rgba(255,255,255,.94);max-width:none;font-size:.96rem;font-size:clamp(.74rem,1.78cqw,.98rem);line-height:1.62;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+  .hero-copy{position:absolute;left:40px;bottom:38px;width:420px;left:4.4cqw;bottom:4.4cqw;width:52cqw}
+  .pagehead--hero h1{color:#fff;font-size:2.3rem;font-size:clamp(1.45rem,3.7cqw,2.3rem);letter-spacing:-.025em;margin-bottom:10px;margin-bottom:1.1cqw}
+  .pagehead--hero p{color:rgba(255,255,255,.94);max-width:none;font-size:.96rem;font-size:clamp(.72rem,1.64cqw,.94rem);line-height:1.58;text-shadow:0 1px 8px rgba(0,0,0,.4)}
   .pagehead--hero p strong{color:#fff}
   /* On a narrow card the text would outgrow the picture, so it drops below it on a dark panel. */
   @container (max-width:700px){
+    .hero-frame{aspect-ratio:auto}
+    .hero-img{height:auto}
     .hero-shade{display:none}
     .hero-copy{position:static;width:auto;padding:24px 22px 28px;background:linear-gradient(115deg,#091d18 0%,#0f2d27 52%,#17413a 100%)}
     .pagehead--hero h1{font-size:2rem;margin-bottom:12px}
@@ -95,11 +98,13 @@
 <main class="shell">
 
   <section class="pagehead pagehead--hero" id="overview">
-    <img class="hero-img" src="image/hero.webp" alt="The Arctic seen from orbit, with a remote-sensing satellite above the horizon" width="1448" height="1086">
-    <div class="hero-shade" aria-hidden="true"></div>
-    <div class="hero-copy">
-      <h1>About Me</h1>
-      <p>Wangyipu Li is a PhD student in the Department of Forest and Wildlife Ecology at the <strong>University of Wisconsin&ndash;Madison</strong>. His research interests cover vegetation dynamic monitoring, estimation of water-carbon fluxes, and issues related to Earth system science. He earned a M.Eng. in Photogrammetry and Remote Sensing at <strong>Peking University</strong>, and a B.S. in Applied Meteorology at <strong>China Agricultural University</strong>.</p>
+    <div class="hero-frame">
+      <img class="hero-img" src="image/hero.webp" alt="The Arctic seen from orbit, with a remote-sensing satellite above the horizon" width="1448" height="1086">
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <h1>About Me</h1>
+        <p>Wangyipu Li is a PhD student in the Department of Forest and Wildlife Ecology at the <strong>University of Wisconsin&ndash;Madison</strong>. His research interests cover vegetation dynamic monitoring, estimation of water-carbon fluxes, and issues related to Earth system science. He earned a M.Eng. in Photogrammetry and Remote Sensing at <strong>Peking University</strong>, and a B.S. in Applied Meteorology at <strong>China Agricultural University</strong>.</p>
+      </div>
     </div>
   </section>
 
