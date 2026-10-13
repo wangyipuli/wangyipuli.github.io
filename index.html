@@ -42,6 +42,16 @@
     .pagehead--hero h1{font-size:2rem;margin-bottom:12px}
     .pagehead--hero p{font-size:.95rem;line-height:1.7;text-shadow:none}
   }
+  .more-row{margin-top:14px}
+  .more-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:8px 18px;border:1.5px solid var(--moss);border-radius:8px;
+    font-size:.88rem;font-weight:700;color:var(--moss);text-decoration:none;
+    transition:background .15s ease,color .15s ease;
+  }
+  .more-btn:hover{background:var(--moss);color:#fff}
+  .more-btn span{transition:transform .15s ease}
+  .more-btn:hover span{transform:translateX(3px)}
   .deflist{list-style:none}
   .deflist li{position:relative;padding:0 0 8px 18px;font-size:.95rem;line-height:1.7;color:var(--body)}
   .deflist li:last-child{padding-bottom:0}
@@ -84,6 +94,7 @@
   <nav class="toc" aria-label="On this page">
     <div class="toc-label">On this page</div>
     <a href="#overview">Overview</a>
+    <a href="#latest-news">Latest news</a>
     <a href="#education">Education</a>
     <a href="#appointments">Appointments</a>
     <a href="#honors">Honors and awards</a>
@@ -107,6 +118,28 @@
         <p>Wangyipu Li is a PhD student in the Department of Forest and Wildlife Ecology at the <strong>University of Wisconsin&ndash;Madison</strong>. His research interests cover vegetation dynamic monitoring, estimation of water-carbon fluxes, and issues related to Earth system science. He earned a M.Eng. in Photogrammetry and Remote Sensing at <strong>Peking University</strong>, and a B.S. in Applied Meteorology at <strong>China Agricultural University</strong>.</p>
       </div>
     </div>
+  </section>
+
+  <!-- ══ Latest news ══ -->
+  <section class="band" id="latest-news">
+    <div class="band-head">
+      <h2>Latest News</h2>
+    </div>
+    <div class="feed" id="latest-feed">
+        <article class="post">
+          <div class="post-date">Sep 2026</div>
+          <div class="post-body">Started my PhD in Forestry at the <strong>University of Wisconsin&ndash;Madison</strong>.</div>
+        </article>
+        <article class="post">
+          <div class="post-date">Jun 2026</div>
+          <div class="post-body">Completed my M.Eng. in Photogrammetry and Remote Sensing at <strong>Peking University</strong>.</div>
+        </article>
+        <article class="post">
+          <div class="post-date">2026</div>
+          <div class="post-body">Co-authored paper on the differential climate sensitivity of China's spring and summer maize published in <em><strong>European Journal of Agronomy</strong></em>.</div>
+        </article>
+    </div>
+    <p class="more-row"><a class="more-btn" href="news.html">More <span aria-hidden="true">&rarr;</span></a></p>
   </section>
 
   <!-- ══ Education ══ -->
@@ -280,6 +313,29 @@
       <li><strong>Languages:</strong> Mandarin (native), English (IELTS: 7.0)</li>
     </ul>
   </section>
+
+  <script>
+  /* The three posts above are a snapshot so the page reads without JavaScript. When it is
+     available, refresh them from news.html so a new post there shows up here too. If anything
+     goes wrong the snapshot simply stays. */
+  (function () {
+    var feed = document.getElementById('latest-feed');
+    if (!feed || !window.fetch || !window.DOMParser) return;
+    fetch('news.html', { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function (html) {
+        var posts = new DOMParser().parseFromString(html, 'text/html').querySelectorAll('.feed .post');
+        var out = [];
+        for (var i = 0; i < posts.length && out.length < 3; i++) {
+          var d = posts[i].querySelector('.post-date'), b = posts[i].querySelector('.post-body');
+          if (!d || !b) return;
+          out.push('<article class="post"><div class="post-date">' + d.innerHTML + '</div><div class="post-body">' + b.innerHTML + '</div></article>');
+        }
+        if (out.length) feed.innerHTML = out.join('');
+      })
+      .catch(function () {});
+  })();
+  </script>
 
 </main>
 

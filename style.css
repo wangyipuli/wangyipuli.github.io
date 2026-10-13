@@ -161,6 +161,15 @@ img,video{max-width:100%}
 .award-what{font-size:.95rem;color:var(--ink);font-weight:700}
 .award-by{font-size:.86rem;color:var(--quiet);margin-top:2px}
 
+/* ── News feed (News page and the About page's latest news) ── */
+.post{display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;padding:14px 0}
+.post+.post{border-top:1px solid var(--rule)}
+.post-date{font-size:.85rem;font-weight:700;color:var(--faint);padding-top:1px}
+.post-body{font-size:.95rem;color:var(--body);line-height:1.72}
+.post-body a{color:var(--moss);text-decoration:none;border-bottom:1px solid rgba(31,82,69,.3)}
+.post-body a:hover{border-bottom-color:var(--moss)}
+@media(max-width:600px){.post{grid-template-columns:1fr;gap:3px}}
+
 /* ── In-page contents (About) ── */
 .toc{display:flex;flex-direction:column;margin:0 0 22px}
 .toc-label{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
@@ -188,13 +197,13 @@ img,video{max-width:100%}
 
 /* Short windows: the portrait gives up height, and below 780px the spacing tightens, so the
    contents list and the footer stay on screen. The constants are measured, not guessed: the
-   sidebar minus the portrait is about 618px tall (with the 56px top bar on top of that). */
+   sidebar minus the portrait is about 650px tall (with the seven-item contents list on About) (with the 56px top bar on top of that). */
 @media(min-width:981px){
-  .portrait{width:clamp(56px,calc(100vh - 682px),276px)}
+  .portrait{width:clamp(56px,calc(100vh - 712px),276px)}
 }
 @media(min-width:981px) and (max-height:780px){
   .sidebar{padding:22px 32px 14px}
-  .portrait{margin-bottom:12px;width:clamp(56px,calc(100vh - 560px),276px)}
+  .portrait{margin-bottom:12px;width:clamp(56px,calc(100vh - 580px),276px)}
   .sb-name{font-size:1.35rem;margin-bottom:4px}
   .sb-cn{font-size:.95rem;margin-bottom:6px}
   .sb-role{margin-bottom:12px;font-size:.88rem}
