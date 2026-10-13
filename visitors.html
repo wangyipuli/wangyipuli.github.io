@@ -10,6 +10,14 @@
   .vmap{max-width:720px;margin:0 auto}
   .vmap-note{max-width:720px;margin:18px auto 0;font-size:.84rem;line-height:1.6;color:var(--faint)}
   .vmap-note a{color:var(--moss)}
+  /* 挂件底图里画着一对假的 +/- 缩放按钮（不是元素，点了没反应），
+     用一块与底图同色的补丁盖掉。位置按底图像素量得，用百分比以便随宽度缩放。 */
+  .vmap .mapmyvisitors-map{position:relative}
+  .vmap .mapmyvisitors-map::after{
+    content:"";position:absolute;z-index:5;
+    left:0;top:76%;width:7%;height:25%;
+    background:#ffffff;
+  }
 </style>
 </head>
 <body>
@@ -60,6 +68,30 @@
     </div>
     <div class="vmap">
       <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?cl=d6d6d6&amp;w=a&amp;t=tt&amp;d=XaK6bKBfGUlOzEpWms74UFBo3K-7hmJC0p-xQMvgeHM&amp;co=ffffff&amp;ct=878181"></script>
+    <script>
+    /* 挂件底图是按 CSS 像素宽度生成的位图（bg-w_568…），在 Retina 屏上等于半分辨率，
+       所以看着糊。这里把它换成两倍宽的同款底图再拉回原尺寸显示。
+       先预加载确认存在，取不到就保持原样，不会让挂件出错。 */
+    (function () {
+      var tries = 0;
+      (function upgrade() {
+        var el = document.querySelector('.vmap .mapmyvisitors-map');
+        var bg = el && getComputedStyle(el).backgroundImage;
+        var m = bg && bg.match(/url\(["']?([^"')]+bg-w_(\d+)[^"')]+)["']?\)/);
+        if (m) {
+          var hi = m[1].replace('bg-w_' + m[2], 'bg-w_' + (m[2] * 2));
+          var probe = new Image();
+          probe.onload = function () {
+            el.style.backgroundImage = 'url("' + hi + '")';
+            el.style.backgroundSize = '100% 100%';
+          };
+          probe.src = hi;
+          return;
+        }
+        if (++tries < 300) setTimeout(upgrade, 50);
+      })();
+    })();
+    </script>
     </div>
     <p class="vmap-note">Locations are approximate and aggregated by city; no precise visitor location is shown. Figures are collected by <a href="https://mapmyvisitors.com" target="_blank" rel="noopener">MapMyVisitors</a>.</p>
   </section>
