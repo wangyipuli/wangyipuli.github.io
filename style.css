@@ -71,7 +71,7 @@ img,video{max-width:100%}
   overflow-y:auto;overscroll-behavior:contain;
 }
 .sidebar::-webkit-scrollbar{width:6px}
-.sidebar::-webkit-scrollbar-thumb{background:var(--rule);border-radius:3px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(0,0,0,.22);border-radius:3px}
 
 .portrait{
   width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;
@@ -186,15 +186,23 @@ img,video{max-width:100%}
 .empty{font-style:italic;color:var(--faint);font-size:.95rem}
 .empty a{color:var(--moss)}
 
-/* Short windows: the portrait gives up height so the contents list always fits.
-   The rest of the sidebar measures about 618px (554px with the footer hidden), plus
-   the 56px top bar; the constants below leave a few pixels of slack. */
+/* Short windows: the portrait gives up height, and below 780px the spacing tightens, so the
+   contents list and the footer stay on screen. The constants are measured, not guessed: the
+   sidebar minus the portrait is about 618px tall (with the 56px top bar on top of that). */
 @media(min-width:981px){
-  .portrait{width:clamp(90px,calc(100vh - 682px),276px)}
+  .portrait{width:clamp(56px,calc(100vh - 682px),276px)}
 }
-@media(min-width:981px) and (max-height:770px){
-  .sb-foot{display:none}
-  .portrait{width:clamp(90px,calc(100vh - 618px),276px)}
+@media(min-width:981px) and (max-height:780px){
+  .sidebar{padding:22px 32px 14px}
+  .portrait{margin-bottom:12px;width:clamp(56px,calc(100vh - 560px),276px)}
+  .sb-name{font-size:1.35rem;margin-bottom:4px}
+  .sb-cn{font-size:.95rem;margin-bottom:6px}
+  .sb-role{margin-bottom:12px;font-size:.88rem}
+  .icons{margin-bottom:12px}
+  .toc{margin-bottom:10px}
+  .toc-label{margin-bottom:5px}
+  .toc a{padding:4px 0 4px 13px}
+  .sb-foot{padding-top:10px}
 }
 
 /* ══ Responsive ══ */
