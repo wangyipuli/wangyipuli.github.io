@@ -10,6 +10,25 @@
 <meta name="theme-color" content="#1F5245">
 <link rel="stylesheet" href="style.css">
 <style>
+  .pagehead--hero{
+    position:relative;overflow:hidden;border-radius:14px;
+    padding:46px 50px 50px;margin-bottom:6px;
+    color:#fff;background-color:#0c241f;
+    background:
+      linear-gradient(100deg,rgba(8,26,22,.94) 0%,rgba(8,26,22,.86) 34%,rgba(8,26,22,.50) 66%,rgba(8,26,22,.08) 100%),
+      linear-gradient(180deg,rgba(8,26,22,.38) 0%,rgba(8,26,22,0) 45%),
+      url(image/hero.jpg) center 9%/cover no-repeat #0c241f;
+  }
+  .pagehead--hero h1{color:#fff;font-size:2.7rem;letter-spacing:-.025em;margin-bottom:16px}
+  .pagehead--hero p{color:rgba(255,255,255,.94);max-width:34em;font-size:1.02rem;line-height:1.75;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+  .pagehead--hero p strong{color:#fff}
+  @media(max-width:760px){
+    .pagehead--hero{padding:30px 22px 32px;background:
+      linear-gradient(180deg,rgba(8,26,22,.80),rgba(8,26,22,.88)),
+      url(image/hero.jpg) center/cover no-repeat #0c241f}
+    .pagehead--hero h1{font-size:2.1rem}
+    .pagehead--hero p{max-width:none}
+  }
   .deflist{list-style:none}
   .deflist li{position:relative;padding:0 0 8px 18px;font-size:.95rem;line-height:1.7;color:var(--body)}
   .deflist li:last-child{padding-bottom:0}
@@ -56,7 +75,7 @@
 
 <main class="shell">
 
-  <section class="pagehead">
+  <section class="pagehead pagehead--hero">
     <h1>About Me</h1>
     <p>Wangyipu Li is a PhD student in the Department of Forest and Wildlife Ecology at the <strong>University of Wisconsin&ndash;Madison</strong>. His research interests cover vegetation dynamic monitoring, estimation of water-carbon fluxes, and issues related to Earth system science. He earned a M.Eng. in Photogrammetry and Remote Sensing at <strong>Peking University</strong>, and a B.S. in Applied Meteorology at <strong>China Agricultural University</strong>.</p>
   </section>
