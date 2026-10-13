@@ -68,6 +68,16 @@
     <a href="#" aria-label="Curriculum vitae" title="Curriculum vitae"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm0 2l4.5 4.5H14V4zM8 10h4v1.6H8V10zm0 3.2h8v1.6H8v-1.6zm0 3.2h8V18H8v-1.6z"/></svg></a>
   </div>
 
+  <nav class="toc" aria-label="On this page">
+    <div class="toc-label">On this page</div>
+    <a href="#overview">Overview</a>
+    <a href="#education">Education</a>
+    <a href="#appointments">Appointments</a>
+    <a href="#honors">Honors and awards</a>
+    <a href="#service">Service</a>
+    <a href="#skills">Skills</a>
+  </nav>
+
   <div class="sb-foot">
     &copy; 2026 Wangyipu Li<br>Last updated September 2026
   </div>
@@ -75,13 +85,13 @@
 
 <main class="shell">
 
-  <section class="pagehead pagehead--hero">
+  <section class="pagehead pagehead--hero" id="overview">
     <h1>About Me</h1>
     <p>Wangyipu Li is a PhD student in the Department of Forest and Wildlife Ecology at the <strong>University of Wisconsin&ndash;Madison</strong>. His research interests cover vegetation dynamic monitoring, estimation of water-carbon fluxes, and issues related to Earth system science. He earned a M.Eng. in Photogrammetry and Remote Sensing at <strong>Peking University</strong>, and a B.S. in Applied Meteorology at <strong>China Agricultural University</strong>.</p>
   </section>
 
   <!-- ══ Education ══ -->
-  <section class="band">
+  <section class="band" id="education">
     <div class="band-head">
       <h2>Education</h2>
     </div>
@@ -146,7 +156,7 @@
   </section>
 
   <!-- ══ Academic Appointments ══ -->
-  <section class="band">
+  <section class="band" id="appointments">
     <div class="band-head">
       <h2>Academic Appointments</h2>
     </div>
@@ -172,7 +182,7 @@
   </section>
 
   <!-- ══ Honors and Awards ══ -->
-  <section class="band">
+  <section class="band" id="honors">
     <div class="band-head">
       <h2>Honors and Awards</h2>
     </div>
@@ -229,7 +239,7 @@
   </section>
 
   <!-- ══ Service ══ -->
-  <section class="band">
+  <section class="band" id="service">
     <div class="band-head">
       <h2>Service</h2>
     </div>
@@ -239,7 +249,7 @@
   </section>
 
   <!-- ══ Skills ══ -->
-  <section class="band">
+  <section class="band" id="skills">
     <div class="band-head">
       <h2>Skills</h2>
     </div>
@@ -251,6 +261,32 @@
       <li><strong>Languages:</strong> Mandarin (native), English (IELTS: 7.0)</li>
     </ul>
   </section>
+
+  <script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+    var targets = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var cur = 0;
+      targets.forEach(function (t, i) {
+        if (t && t.getBoundingClientRect().top <= 120) cur = i;
+      });
+      var doc = document.documentElement;
+      if (window.innerHeight + window.pageYOffset >= doc.scrollHeight - 4) cur = links.length - 1;
+      links.forEach(function (a, i) {
+        a.classList.toggle('is-active', i === cur);
+        if (i === cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+      });
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+  </script>
 
 </main>
 
