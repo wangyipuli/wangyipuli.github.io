@@ -5,18 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visitors — Wangyipu Li</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.6.0/dist/jsvectormap.min.css">
 <style>
-  /* 挂件按容器宽度自适应；不要覆盖它内部元素的高度，否则会被压扁 */
-  .vmap{max-width:720px;margin:0 auto}
-  .vmap-note{max-width:720px;margin:18px auto 0;font-size:.84rem;line-height:1.6;color:var(--faint)}
-  .vmap-note a{color:var(--moss)}
-  /* 挂件底图里画着一对假的 +/- 缩放按钮（不是元素，点了没反应），
-     用一块与底图同色的补丁盖掉。位置按底图像素量得，用百分比以便随宽度缩放。 */
-  .vmap .mapmyvisitors-map{position:relative}
-  .vmap .mapmyvisitors-map::after{
-    content:"";position:absolute;z-index:5;
-    left:0;top:76%;width:7%;height:25%;
-    background:#ffffff;
+  .hm-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:16px}
+  .hm-lead{font-size:.92rem;color:var(--quiet);max-width:46em}
+  .hm-figure{text-align:right;line-height:1.15;white-space:nowrap}
+  .hm-figure b{display:block;font-size:2.2rem;font-weight:700;color:var(--moss)}
+  .hm-figure span{font-size:.78rem;color:var(--faint)}
+
+  .hm-card{position:relative;border:1px solid var(--rule);border-radius:10px;background:#FBFCFC;padding:10px}
+  #heatmap{width:100%;height:440px}
+  .jvm-zoom-btn{display:none}
+
+  .hm-legend{
+    position:absolute;right:18px;bottom:18px;
+    background:#fff;border:1px solid var(--rule);border-radius:8px;
+    padding:10px 12px;box-shadow:0 2px 10px -6px rgba(20,24,28,.3);
+  }
+  .hm-legend-t{font-size:.66rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--quiet);margin-bottom:6px}
+  .hm-legend-row{display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--faint)}
+  .hm-legend-bar{width:120px;height:8px;border-radius:4px;background:linear-gradient(90deg,#DCEAE5,#1F5245)}
+
+  .hm-note{margin-top:14px;font-size:.82rem;line-height:1.6;color:var(--faint)}
+  .hm-note a{color:var(--moss)}
+  .hm-empty{padding:40px 0;text-align:center;font-style:italic;color:var(--faint)}
+
+  @media(max-width:700px){
+    #heatmap{height:300px}
+    .hm-figure{text-align:left}
+    .hm-legend{position:static;margin-top:12px;display:inline-block}
   }
 </style>
 </head>
@@ -59,42 +76,100 @@
 
   <section class="pagehead">
     <h1>Visitors</h1>
-    <p>Where readers of this site are coming from. Counting started in October 2026.</p>
+    <p>Where readers of this site are coming from.</p>
   </section>
 
   <section class="band">
     <div class="band-head">
-      <h2>Visitor Map</h2>
+      <h2>Visitor Geography</h2>
     </div>
-    <div class="vmap">
+
+    <div class="hm-head">
+      <p class="hm-lead">Countries are shaded by page views &mdash; darker means more visitors.</p>
+      <div class="hm-figure">
+        <b id="hm-total">&mdash;</b>
+        <span id="hm-period">page views</span>
+      </div>
+    </div>
+
+    <div class="hm-card">
+      <div id="heatmap"></div>
+      <div class="hm-legend" id="hm-legend" hidden>
+        <div class="hm-legend-t">Page views</div>
+        <div class="hm-legend-row"><span id="hm-min">1</span><span class="hm-legend-bar"></span><span id="hm-max">1</span></div>
+      </div>
+    </div>
+
+    <p class="hm-note">Location is approximate and aggregated at country level; no precise visitor location is displayed. Last updated <span id="hm-updated">&mdash;</span>.</p>
+
+    <!-- 统计采集：挂件本体隐藏，只用它记录访问 -->
+    <div style="display:none">
       <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?cl=d6d6d6&amp;w=a&amp;t=tt&amp;d=XaK6bKBfGUlOzEpWms74UFBo3K-7hmJC0p-xQMvgeHM&amp;co=ffffff&amp;ct=878181"></script>
-    <script>
-    /* 挂件底图是按 CSS 像素宽度生成的位图（bg-w_568…），在 Retina 屏上等于半分辨率，
-       所以看着糊。这里把它换成两倍宽的同款底图再拉回原尺寸显示。
-       先预加载确认存在，取不到就保持原样，不会让挂件出错。 */
-    (function () {
-      var tries = 0;
-      (function upgrade() {
-        var el = document.querySelector('.vmap .mapmyvisitors-map');
-        var bg = el && getComputedStyle(el).backgroundImage;
-        var m = bg && bg.match(/url\(["']?([^"')]+bg-w_(\d+)[^"')]+)["']?\)/);
-        if (m) {
-          var hi = m[1].replace('bg-w_' + m[2], 'bg-w_' + (m[2] * 2));
-          var probe = new Image();
-          probe.onload = function () {
-            el.style.backgroundImage = 'url("' + hi + '")';
-            el.style.backgroundSize = '100% 100%';
-          };
-          probe.src = hi;
-          return;
-        }
-        if (++tries < 300) setTimeout(upgrade, 50);
-      })();
-    })();
-    </script>
     </div>
-    <p class="vmap-note">Locations are approximate and aggregated by city; no precise visitor location is shown. Figures are collected by <a href="https://mapmyvisitors.com" target="_blank" rel="noopener">MapMyVisitors</a>.</p>
   </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.6.0/dist/jsvectormap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.6.0/dist/maps/world.js"></script>
+  <script>
+  (function () {
+    var box = document.getElementById('heatmap');
+
+    fetch('data/visitors.json', { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(render)
+      .catch(function () {
+        box.innerHTML = '<p class="hm-empty">Visitor data is not available right now.</p>';
+      });
+
+    function render(d) {
+      var counts = d.countries || {};
+      var codes = Object.keys(counts);
+      var max = codes.reduce(function (m, c) { return Math.max(m, counts[c]); }, 0);
+
+      document.getElementById('hm-total').textContent = (d.total || 0).toLocaleString();
+      document.getElementById('hm-period').textContent = 'page views \u00b7 ' + (d.period || 'all time');
+      document.getElementById('hm-updated').textContent = d.updated || 'unknown';
+
+      if (!codes.length) {
+        box.innerHTML = '<p class="hm-empty">No visits recorded yet.</p>';
+        return;
+      }
+
+      document.getElementById('hm-max').textContent = max;
+      document.getElementById('hm-legend').hidden = false;
+
+      var map = new jsVectorMap({
+        selector: '#heatmap',
+        map: 'world',
+        zoomButtons: false,
+        zoomOnScroll: false,
+        backgroundColor: 'transparent',
+        regionStyle: {
+          initial: { fill: '#E7EAEC', stroke: '#FBFCFC', strokeWidth: 0.5 },
+          hover: { fillOpacity: 1, stroke: '#1F5245', strokeWidth: 0.9 }
+        },
+        onRegionTooltipShow: function (event, tooltip, code) {
+          var n = counts[code] || 0;
+          tooltip.text(tooltip.text() + ' \u2014 ' + (n ? n + ' page view' + (n > 1 ? 's' : '') : 'no visits'), true);
+        }
+      });
+
+      /* 这个版本的 jsVectorMap 没有色阶实现（那是 jVectorMap 2.x 的 API），
+         所以渲染完直接按数值给每个国家上色，颜色自己算，行为可控。 */
+      var LO = [220, 234, 229], HI = [31, 82, 69];
+      function shade(v) {
+        var t = max > 0 ? Math.pow(v / max, 0.6) : 1;   // 轻微 gamma，让小数值也看得见
+        return 'rgb(' + LO.map(function (c, i) {
+          return Math.round(c + (HI[i] - c) * t);
+        }).join(',') + ')';
+      }
+      codes.forEach(function (c) {
+        var el = box.querySelector('[data-code="' + c + '"]');
+        if (el) el.setAttribute('fill', shade(counts[c]));
+      });
+    }
+  })();
+  </script>
 
 </main>
 
