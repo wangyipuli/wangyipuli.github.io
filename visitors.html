@@ -6,11 +6,10 @@
 <title>Visitors — Wangyipu Li</title>
 <link rel="stylesheet" href="style.css">
 <style>
-  /* 挂件按容器宽度自适应；不要覆盖它内部元素的高度，否则地球会被压扁 */
-  .globe{max-width:460px;margin:0 auto}
-  .globe #mmvst_a{display:block}
-  .globe-note{margin-top:18px;font-size:.84rem;line-height:1.6;color:var(--faint)}
-  .globe-note a{color:var(--moss)}
+  /* 挂件按容器宽度自适应；不要覆盖它内部元素的高度，否则会被压扁 */
+  .vmap{max-width:720px}
+  .vmap-note{margin-top:18px;font-size:.84rem;line-height:1.6;color:var(--faint)}
+  .vmap-note a{color:var(--moss)}
 </style>
 </head>
 <body>
@@ -59,40 +58,10 @@
     <div class="band-head">
       <h2>Visitor Map</h2>
     </div>
-    <div class="globe">
-      <script type="text/javascript" id="mmvst_globe" src="https://mapmyvisitors.com/globe.js?d=o-SeT1zcqlFZATB2bFMoSy4fasZOoh3LItgElU5J4Xc"></script>
-    <script>
-    /* 地球转速（一圈 12 秒）写死在 mapmyvisitors 的脚本里，既无 URL 参数也无外部配置。
-       它的自转靠 complete 回调逐圈重新调用 Velocity，所以这里包一层 velocity，
-       把时长较长的那次动画（自转，12000ms）按倍数放慢；800ms 的入场动画不受影响。
-       倍数越大转得越慢。脚本若改版，这段最多失效，不会让挂件出错。 */
-    (function () {
-      var SLOWDOWN = 3;                 // 3 倍 → 一圈约 36 秒
-      var tries = 0;
-      (function hook() {
-        var jq = window.globe_jq;
-        if (jq && jq.fn && jq.fn.velocity) {
-          var orig = jq.fn.velocity;
-          jq.fn.velocity = function () {
-            for (var i = 0; i < arguments.length; i++) {
-              var o = arguments[i];
-              if (o && typeof o === 'object' && typeof o.duration === 'number' && o.duration >= 5000) {
-                o.duration *= SLOWDOWN;
-              }
-            }
-            return orig.apply(this, arguments);
-          };
-          for (var k in orig) {
-            if (Object.prototype.hasOwnProperty.call(orig, k)) jq.fn.velocity[k] = orig[k];
-          }
-          return;
-        }
-        if (++tries < 400) setTimeout(hook, 25);
-      })();
-    })();
-    </script>
+    <div class="vmap">
+      <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?d=o-SeT1zcqlFZATB2bFMoSy4fasZOoh3LItgElU5J4Xc&amp;cl=ffffff&amp;w=a"></script>
     </div>
-    <p class="globe-note">Locations are approximate and aggregated by city; no precise visitor location is shown. Figures are collected by <a href="https://mapmyvisitors.com" target="_blank" rel="noopener">MapMyVisitors</a>.</p>
+    <p class="vmap-note">Locations are approximate and aggregated by city; no precise visitor location is shown. Figures are collected by <a href="https://mapmyvisitors.com" target="_blank" rel="noopener">MapMyVisitors</a>.</p>
   </section>
 
 </main>
