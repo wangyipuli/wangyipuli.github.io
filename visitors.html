@@ -43,6 +43,7 @@
     .hm-legend{position:static;margin-top:12px;display:inline-block}
   }
 </style>
+<script data-goatcounter="https://wangyipuli.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -92,27 +93,22 @@
     </div>
 
     <div class="hm-head">
-      <p class="hm-lead">Countries are shaded by page views &mdash; darker means more visitors.</p>
+      <p class="hm-lead">Countries are shaded by number of visitors &mdash; darker means more.</p>
       <div class="hm-figure">
         <b id="hm-total">&mdash;</b>
-        <span id="hm-period">page views</span>
+        <span id="hm-period">visitors</span>
       </div>
     </div>
 
     <div class="hm-card">
       <div id="heatmap"></div>
       <div class="hm-legend" id="hm-legend" hidden>
-        <div class="hm-legend-t">Page views</div>
+        <div class="hm-legend-t">Visitors</div>
         <div class="hm-legend-row"><span id="hm-min">1</span><span class="hm-legend-bar"></span><span id="hm-max">1</span></div>
       </div>
     </div>
 
     <p class="hm-note">Location is approximate and aggregated at country level; no precise visitor location is displayed. Last updated <span id="hm-updated">&mdash;</span>.</p>
-
-    <!-- 统计采集：挂件本体隐藏，只用它记录访问 -->
-    <div style="display:none">
-      <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?cl=d6d6d6&amp;w=a&amp;t=tt&amp;d=XaK6bKBfGUlOzEpWms74UFBo3K-7hmJC0p-xQMvgeHM&amp;co=ffffff&amp;ct=878181"></script>
-    </div>
   </section>
 
   <div class="hm-tip" id="hm-tip"></div>
@@ -141,7 +137,7 @@
       var max = codes.reduce(function (m, c) { return Math.max(m, counts[c]); }, 0);
 
       document.getElementById('hm-total').textContent = (data.total || 0).toLocaleString();
-      document.getElementById('hm-period').textContent = 'page views \u00b7 ' + (data.period || 'all time');
+      document.getElementById('hm-period').textContent = 'visitors \u00b7 ' + (data.period || 'all time');
       document.getElementById('hm-updated').textContent = data.updated || 'unknown';
       if (codes.length) {
         document.getElementById('hm-max').textContent = max;
@@ -158,7 +154,7 @@
         return 'rgb(' + LO.map(function (c, i) { return Math.round(c + (HI[i] - c) * t); }).join(',') + ')';
       }
 
-      var svg = ['<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="World map shaded by page views per country">'];
+      var svg = ['<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="World map shaded by visitors per country">'];
       svg.push('<path class="hm-sphere" d="' + path({ type: 'Sphere' }) + '"/>');
       svg.push('<path class="hm-grat" d="' + path(d3.geoGraticule10()) + '"/>');
 
@@ -178,7 +174,7 @@
         var t = e.target.closest('.hm-country');
         if (!t) { tip.style.opacity = 0; return; }
         var n = +t.dataset.n;
-        tip.textContent = t.dataset.name + ' \u2014 ' + (n ? n + ' page view' + (n > 1 ? 's' : '') : 'no visits');
+        tip.textContent = t.dataset.name + ' \u2014 ' + (n ? n + ' visitor' + (n > 1 ? 's' : '') : 'no visitors');
         tip.style.left = (e.clientX + 12) + 'px';
         tip.style.top = (e.clientY - 30) + 'px';
         tip.style.opacity = 1;

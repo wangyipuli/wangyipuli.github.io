@@ -1,0 +1,41 @@
+name: Update visitor data
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"       # every six hours
+  workflow_dispatch:             # and on demand from the Actions tab
+
+concurrency:
+  group: update-visitors
+  cancel-in-progress: false
+
+permissions:
+  contents: write                # commit data/visitors.json
+  pages: write                   # ask Pages to rebuild afterwards
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch country counts from GoatCounter
+        env:
+          GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
+        run: python3 scripts/update_visitors.py
+
+      - name: Commit if the data changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet -- data/visitors.json; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/visitors.json
+          git commit -m "Update visitor data"
+          git push
+          # A push made with GITHUB_TOKEN does not always start a Pages build; ask for one.
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
