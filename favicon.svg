@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="LW monogram">
+  <title>Li, Wangyipu</title>
+  <rect width="64" height="64" rx="14" fill="#1F5245"/>
+  <g transform="translate(1 0)" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 17V47H22"/>
+    <path d="M26 17L32.5 47L39 25L45.5 47L52 17"/>
+  </g>
+</svg>
