@@ -103,13 +103,8 @@ img,video{max-width:100%}
 .icons svg{width:17px;height:17px;fill:currentColor;display:block}
 .icons .lbl{font-size:.72rem;font-weight:700;letter-spacing:.02em}
 
-.visitors{margin-top:auto;padding-top:20px;overflow:hidden}
-/* 挂件会自己读取容器宽度来定尺寸，只需把它的外层链接变成块级，
-   不要去覆盖它内部元素的高度，否则地球会被压扁 */
-.visitors #mmvst_a{display:block}
-
 .sb-foot{
-  margin-top:18px;padding-top:18px;border-top:1px solid var(--rule);
+  margin-top:auto;padding-top:18px;border-top:1px solid var(--rule);
   font-size:.8rem;line-height:1.6;color:var(--faint);
 }
 .sb-foot a{color:var(--moss)}
