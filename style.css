@@ -143,6 +143,9 @@ img,video{max-width:100%}
 .record+.record{border-top:1px solid var(--rule);padding-top:18px}
 .record-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
 .record-degree{font-size:1.06rem;font-weight:700;letter-spacing:-.008em;line-height:1.5}
+.record-school{font-size:1.3rem;font-weight:700;letter-spacing:-.012em;line-height:1.35;color:var(--ink)}
+.record-sub{font-size:.95rem;color:var(--quiet);line-height:1.5;margin-top:3px}
+.record-sub strong{font-weight:700;color:var(--moss)}
 .record-when{font-size:.82rem;color:var(--faint);white-space:nowrap}
 .record-where{font-size:.92rem;color:var(--moss-bright);font-weight:400;line-height:1.5;margin-top:4px}
 .record-notes{margin-top:4px;font-size:.9rem;color:var(--quiet);line-height:1.5;max-width:46em}
