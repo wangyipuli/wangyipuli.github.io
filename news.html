@@ -9,6 +9,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#1F5245">
 <link rel="stylesheet" href="style.css">
+<script src="toc.js" defer></script>
 <style>
   .post{display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;padding:14px 0}
   .post+.post{border-top:1px solid var(--rule)}
@@ -50,6 +51,14 @@
     <a href="#" aria-label="Curriculum vitae" title="Curriculum vitae"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm0 2l4.5 4.5H14V4zM8 10h4v1.6H8V10zm0 3.2h8v1.6H8v-1.6zm0 3.2h8V18H8v-1.6z"/></svg></a>
   </div>
 
+  <nav class="toc" aria-label="On this page">
+    <div class="toc-label">On this page</div>
+    <a href="#overview">Overview</a>
+    <a href="#y2026">2026</a>
+    <a href="#y2025">2025</a>
+    <a href="#y2024">2024</a>
+  </nav>
+
   <div class="sb-foot">
     &copy; 2026 Wangyipu Li<br>Last updated September 2026
   </div>
@@ -57,7 +66,7 @@
 
 <main class="shell">
 
-  <section class="pagehead">
+  <section class="pagehead" id="overview">
     <h1>News</h1>
     <p>Recent updates, newest first.</p>
   </section>
@@ -69,7 +78,7 @@
     </div>
 
     <div class="feed">
-      <article class="post">
+      <article class="post" id="y2026">
         <div class="post-date">Sep 2026</div>
         <div class="post-body">Started my PhD in Forestry at the <strong>University of Wisconsin&ndash;Madison</strong>.</div>
       </article>
@@ -84,7 +93,7 @@
         <div class="post-body">Co-authored paper on the differential climate sensitivity of China's spring and summer maize published in <em><strong>European Journal of Agronomy</strong></em>.</div>
       </article>
 
-      <article class="post">
+      <article class="post" id="y2025">
         <div class="post-date">Aug 2025</div>
         <div class="post-body">Our global evapotranspiration <a href="publications.html">benchmark dataset</a> built from FLUXNET2015 is out in <em><strong>Earth System Science Data</strong></em>.</div>
       </article>
@@ -94,7 +103,7 @@
         <div class="post-body">Gave an oral presentation at the Third China Land Surface Evapotranspiration Conference in Nanjing, and received a Best Student Report Award.</div>
       </article>
 
-      <article class="post">
+      <article class="post" id="y2024">
         <div class="post-date">Dec 2024</div>
         <div class="post-body">Co-authored paper on an automatic optical trapezoid model for evapotranspiration estimation published in <em><strong>ISPRS Journal of Photogrammetry and Remote Sensing</strong></em>.</div>
       </article>

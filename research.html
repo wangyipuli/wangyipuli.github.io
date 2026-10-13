@@ -9,6 +9,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#1F5245">
 <link rel="stylesheet" href="style.css">
+<script src="toc.js" defer></script>
 <style>
   .topic{padding-bottom:26px}
   .topic+.topic{border-top:1px solid var(--rule);padding-top:26px}
@@ -53,6 +54,13 @@
     <a href="#" aria-label="Curriculum vitae" title="Curriculum vitae"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm0 2l4.5 4.5H14V4zM8 10h4v1.6H8V10zm0 3.2h8v1.6H8v-1.6zm0 3.2h8V18H8v-1.6z"/></svg></a>
   </div>
 
+  <nav class="toc" aria-label="On this page">
+    <div class="toc-label">On this page</div>
+    <a href="#overview">Overview</a>
+    <a href="#et-hourly">Hourly ET estimation</a>
+    <a href="#ec-post">EC data post-processing</a>
+  </nav>
+
   <div class="sb-foot">
     &copy; 2026 Wangyipu Li<br>Last updated September 2026
   </div>
@@ -60,7 +68,7 @@
 
 <main class="shell">
 
-  <section class="pagehead">
+  <section class="pagehead" id="overview">
     <h1>Research Interest</h1>
     <p>The themes I work on.</p>
   </section>
@@ -68,7 +76,7 @@
   <section class="band">
     <div class="band-head"><h2>Themes</h2></div>
 
-    <article class="topic">
+    <article class="topic" id="et-hourly">
       <h3>Global Hourly ET Estimation</h3>
       <p>I build deep learning models trained under a pre-training and fine-tuning strategy, and apply them to very large volumes of multi-source data to produce global evapotranspiration mapping at 0.05&deg; and hourly resolution.</p>
       <div class="keys">
@@ -83,7 +91,7 @@
       </figure>
     </article>
 
-    <article class="topic">
+    <article class="topic" id="ec-post">
       <h3>EC Data Post-processing</h3>
       <p>I built a framework centred on machine learning algorithms that gap-fills and prolongs ground-based observation records, and used it to produce a benchmark dataset of evapotranspiration observations covering 2000&ndash;2020 (Li et al., JoH, 2024; Li et al., ESSD, 2025).</p>
       <div class="keys">

@@ -9,6 +9,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#1F5245">
 <link rel="stylesheet" href="style.css">
+<script src="toc.js" defer></script>
 <style>
   .ct-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:16px}
   .ct-card{border:1px solid var(--rule);border-radius:10px;background:#FBFCFC;padding:20px 24px}
@@ -106,6 +107,13 @@
     <a href="#" aria-label="Curriculum vitae" title="Curriculum vitae"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm0 2l4.5 4.5H14V4zM8 10h4v1.6H8V10zm0 3.2h8v1.6H8v-1.6zm0 3.2h8V18H8v-1.6z"/></svg></a>
   </div>
 
+  <nav class="toc" aria-label="On this page">
+    <div class="toc-label">On this page</div>
+    <a href="#overview">Overview</a>
+    <a href="#get-in-touch">Get in touch</a>
+    <a href="#visitors">Visitor geography</a>
+  </nav>
+
   <div class="sb-foot">
     &copy; 2026 Wangyipu Li<br>Last updated September 2026
   </div>
@@ -113,12 +121,12 @@
 
 <main class="shell">
 
-  <section class="pagehead">
+  <section class="pagehead" id="overview">
     <h1>Contact</h1>
     <p>How to reach me, where to find my office, and where readers of this site are coming from.</p>
   </section>
 
-  <section class="band">
+  <section class="band" id="get-in-touch">
     <div class="band-head">
       <h2>Get in Touch</h2>
     </div>
@@ -154,7 +162,7 @@
     <p class="ct-open"><a href="https://www.google.com/maps/search/?api=1&amp;query=Russell+Laboratories%2C+1630+Linden+Dr%2C+Madison%2C+WI+53706" target="_blank" rel="noopener">Open in Google Maps &nearr;</a></p>
   </section>
 
-  <section class="band">
+  <section class="band" id="visitors">
     <div class="band-head">
       <h2>Visitor Geography</h2>
     </div>

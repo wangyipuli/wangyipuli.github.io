@@ -9,6 +9,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#1F5245">
 <link rel="stylesheet" href="style.css">
+<script src="toc.js" defer></script>
 <style>
   .release{padding-bottom:22px}
   .release+.release{border-top:1px solid var(--rule);padding-top:22px}
@@ -52,6 +53,12 @@
     <a href="#" aria-label="Curriculum vitae" title="Curriculum vitae"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm0 2l4.5 4.5H14V4zM8 10h4v1.6H8V10zm0 3.2h8v1.6H8v-1.6zm0 3.2h8V18H8v-1.6z"/></svg></a>
   </div>
 
+  <nav class="toc" aria-label="On this page">
+    <div class="toc-label">On this page</div>
+    <a href="#overview">Overview</a>
+    <a href="#software">Data and software</a>
+  </nav>
+
   <div class="sb-foot">
     &copy; 2026 Wangyipu Li<br>Last updated September 2026
   </div>
@@ -59,12 +66,12 @@
 
 <main class="shell">
 
-  <section class="pagehead">
+  <section class="pagehead" id="overview">
     <h1>Data &amp; Tools</h1>
     <p>Data and software I have released, and the stack I reach for day to day.</p>
   </section>
 
-  <section class="band">
+  <section class="band" id="software">
     <div class="band-head"><h2>Data and Software I Have Released</h2></div>
 
     <article class="release">
