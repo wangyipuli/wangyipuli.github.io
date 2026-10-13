@@ -3,9 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visitors — Wangyipu Li</title>
+<title>Contact — Wangyipu Li</title>
 <link rel="stylesheet" href="style.css">
 <style>
+  .ct-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:16px}
+  .ct-card{border:1px solid var(--rule);border-radius:10px;background:#FBFCFC;padding:20px 24px}
+  .ct-label{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
+  .ct-email{font-size:1.1rem;font-weight:700;color:var(--moss);text-decoration:none;border-bottom:1px solid rgba(31,82,69,.3);word-break:break-all}
+  .ct-email:hover{border-bottom-color:var(--moss)}
+  .ct-addr{font-style:normal;font-size:1rem;line-height:1.6;color:var(--body)}
+  .ct-addr strong{color:var(--ink)}
+
+  .ct-media{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .ct-media.ct-solo{grid-template-columns:1fr}
+  .ct-photo,.ct-map{position:relative;margin:0;height:340px;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--moss-wash)}
+  .ct-photo img{display:block;width:100%;height:100%;object-fit:cover}
+  .ct-pill{
+    position:absolute;left:14px;top:14px;
+    background:rgba(31,82,69,.9);color:#fff;
+    font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+    padding:6px 13px;border-radius:999px;
+  }
+  .ct-map iframe{display:block;width:100%;height:100%;border:0}
+  .ct-open{margin-top:10px;font-size:.88rem}
+  .ct-open a{color:var(--moss);text-decoration:none;border-bottom:1px solid rgba(31,82,69,.3)}
+  .ct-open a:hover{border-bottom-color:var(--moss)}
+  @media(max-width:760px){
+    .ct-media{grid-template-columns:1fr}
+    .ct-photo,.ct-map{height:280px}
+  }
   .hm-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:16px}
   .hm-lead{font-size:.92rem;color:var(--quiet);max-width:46em}
   .hm-figure{text-align:right;line-height:1.15;white-space:nowrap}
@@ -54,7 +80,7 @@
     <a href="publications.html">Publications</a>
     <a href="tools.html">Data &amp; Tools</a>
     <a href="news.html">News</a>
-    <a href="visitors.html" aria-current="page">Visitors</a>
+    <a href="contact.html" aria-current="page">Contact</a>
   </nav>
 </header>
 
@@ -83,8 +109,43 @@
 <main class="shell">
 
   <section class="pagehead">
-    <h1>Visitors</h1>
-    <p>Where readers of this site are coming from.</p>
+    <h1>Contact</h1>
+    <p>How to reach me, where to find my office, and where readers of this site are coming from.</p>
+  </section>
+
+  <section class="band">
+    <div class="band-head">
+      <h2>Get in Touch</h2>
+    </div>
+
+    <div class="ct-info">
+      <div class="ct-card">
+        <div class="ct-label">Email</div>
+        <a class="ct-email" href="mailto:wangyipu.li@wisc.edu">wangyipu.li@wisc.edu</a>
+      </div>
+      <div class="ct-card">
+        <div class="ct-label">Office</div>
+        <address class="ct-addr">
+          <strong>Russell Laboratories</strong><br>
+          1630 Linden Dr, Room 240<br>
+          Madison, WI 53706
+        </address>
+      </div>
+    </div>
+
+    <div class="ct-media" id="ct-media">
+      <figure class="ct-photo" id="ct-photo">
+        <img src="image/russell-labs.jpg" alt="Exterior of Russell Laboratories, University of Wisconsin&ndash;Madison" loading="lazy"
+             onerror="var f=document.getElementById('ct-photo');if(f)f.remove();document.getElementById('ct-media').classList.add('ct-solo')">
+        <span class="ct-pill">Russell Laboratories</span>
+      </figure>
+      <div class="ct-map">
+        <iframe title="Map of Russell Laboratories, 1630 Linden Dr, Madison"
+                src="https://www.google.com/maps?q=Russell+Laboratories%2C+1630+Linden+Dr%2C+Madison%2C+WI+53706&amp;output=embed"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </div>
+    <p class="ct-open"><a href="https://www.google.com/maps/search/?api=1&amp;query=Russell+Laboratories%2C+1630+Linden+Dr%2C+Madison%2C+WI+53706" target="_blank" rel="noopener">Open in Google Maps &nearr;</a></p>
   </section>
 
   <section class="band">
