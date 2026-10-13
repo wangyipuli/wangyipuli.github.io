@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visitors — Wangyipu Li</title>
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.6.0/dist/jsvectormap.min.css">
 <style>
   .hm-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:16px}
   .hm-lead{font-size:.92rem;color:var(--quiet);max-width:46em}
@@ -14,8 +13,17 @@
   .hm-figure span{font-size:.78rem;color:var(--faint)}
 
   .hm-card{position:relative;border:1px solid var(--rule);border-radius:10px;background:#FBFCFC;padding:10px}
-  #heatmap{width:100%;height:440px}
-  .jvm-zoom-btn{display:none}
+  #heatmap{width:100%}
+  #heatmap svg{display:block;width:100%;height:auto}
+  .hm-sphere{fill:#F4F7F8}
+  .hm-grat{fill:none;stroke:#E2E8EA;stroke-width:.5}
+  .hm-country{stroke:#FBFCFC;stroke-width:.5;transition:fill .15s ease}
+  .hm-country:hover{stroke:#1F5245;stroke-width:1}
+  .hm-tip{
+    position:fixed;z-index:60;pointer-events:none;
+    background:var(--ink);color:#fff;font-size:.78rem;line-height:1.4;
+    padding:5px 9px;border-radius:4px;white-space:nowrap;opacity:0;transition:opacity .12s
+  }
 
   .hm-legend{
     position:absolute;right:18px;bottom:18px;
@@ -31,7 +39,6 @@
   .hm-empty{padding:40px 0;text-align:center;font-style:italic;color:var(--faint)}
 
   @media(max-width:700px){
-    #heatmap{height:300px}
     .hm-figure{text-align:left}
     .hm-legend{position:static;margin-top:12px;display:inline-block}
   }
@@ -108,65 +115,75 @@
     </div>
   </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.6.0/dist/jsvectormap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.6.0/dist/maps/world.js"></script>
+  <div class="hm-tip" id="hm-tip"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3-array@3/dist/d3-array.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-geo@3/dist/d3-geo.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
   <script>
   (function () {
     var box = document.getElementById('heatmap');
+    var tip = document.getElementById('hm-tip');
+    var W = 960, H = 500, PAD = 6;
 
-    fetch('data/visitors.json', { cache: 'no-cache' })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(render)
-      .catch(function () {
-        box.innerHTML = '<p class="hm-empty">Visitor data is not available right now.</p>';
-      });
+    Promise.all([
+      fetch('data/visitors.json', { cache: 'no-cache' }).then(r => r.json()),
+      fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(r => r.json()),
+      fetch('data/iso-numeric-to-alpha2.json').then(r => r.json())
+    ]).then(draw).catch(function () {
+      box.innerHTML = '<p class="hm-empty">Visitor data is not available right now.</p>';
+    });
 
-    function render(d) {
-      var counts = d.countries || {};
+    function draw(res) {
+      var data = res[0], atlas = res[1], toAlpha2 = res[2];
+      var counts = data.countries || {};
       var codes = Object.keys(counts);
       var max = codes.reduce(function (m, c) { return Math.max(m, counts[c]); }, 0);
 
-      document.getElementById('hm-total').textContent = (d.total || 0).toLocaleString();
-      document.getElementById('hm-period').textContent = 'page views \u00b7 ' + (d.period || 'all time');
-      document.getElementById('hm-updated').textContent = d.updated || 'unknown';
-
-      if (!codes.length) {
-        box.innerHTML = '<p class="hm-empty">No visits recorded yet.</p>';
-        return;
+      document.getElementById('hm-total').textContent = (data.total || 0).toLocaleString();
+      document.getElementById('hm-period').textContent = 'page views \u00b7 ' + (data.period || 'all time');
+      document.getElementById('hm-updated').textContent = data.updated || 'unknown';
+      if (codes.length) {
+        document.getElementById('hm-max').textContent = max;
+        document.getElementById('hm-legend').hidden = false;
       }
 
-      document.getElementById('hm-max').textContent = max;
-      document.getElementById('hm-legend').hidden = false;
+      /* Equal Earth：等面积投影，高纬度不会像 Miller/Mercator 那样被放大 */
+      var proj = d3.geoEqualEarth().fitExtent([[PAD, PAD], [W - PAD, H - PAD]], { type: 'Sphere' });
+      var path = d3.geoPath(proj);
 
-      var map = new jsVectorMap({
-        selector: '#heatmap',
-        map: 'world',
-        zoomButtons: false,
-        zoomOnScroll: false,
-        backgroundColor: 'transparent',
-        regionStyle: {
-          initial: { fill: '#E7EAEC', stroke: '#FBFCFC', strokeWidth: 0.5 },
-          hover: { fillOpacity: 1, stroke: '#1F5245', strokeWidth: 0.9 }
-        },
-        onRegionTooltipShow: function (event, tooltip, code) {
-          var n = counts[code] || 0;
-          tooltip.text(tooltip.text() + ' \u2014 ' + (n ? n + ' page view' + (n > 1 ? 's' : '') : 'no visits'), true);
-        }
-      });
-
-      /* 这个版本的 jsVectorMap 没有色阶实现（那是 jVectorMap 2.x 的 API），
-         所以渲染完直接按数值给每个国家上色，颜色自己算，行为可控。 */
-      var LO = [220, 234, 229], HI = [31, 82, 69];
+      var LO = [223, 235, 231], HI = [31, 82, 69];
       function shade(v) {
-        var t = max > 0 ? Math.pow(v / max, 0.6) : 1;   // 轻微 gamma，让小数值也看得见
-        return 'rgb(' + LO.map(function (c, i) {
-          return Math.round(c + (HI[i] - c) * t);
-        }).join(',') + ')';
+        var t = max > 0 ? Math.pow(v / max, 0.6) : 1;
+        return 'rgb(' + LO.map(function (c, i) { return Math.round(c + (HI[i] - c) * t); }).join(',') + ')';
       }
-      codes.forEach(function (c) {
-        var el = box.querySelector('[data-code="' + c + '"]');
-        if (el) el.setAttribute('fill', shade(counts[c]));
+
+      var svg = ['<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="World map shaded by page views per country">'];
+      svg.push('<path class="hm-sphere" d="' + path({ type: 'Sphere' }) + '"/>');
+      svg.push('<path class="hm-grat" d="' + path(d3.geoGraticule10()) + '"/>');
+
+      var feats = topojson.feature(atlas, atlas.objects.countries).features;
+      feats.forEach(function (f) {
+        var a2 = toAlpha2[f.id];
+        var n = (a2 && counts[a2]) || 0;
+        var d = path(f);
+        if (!d) return;
+        svg.push('<path class="hm-country" d="' + d + '" fill="' + (n ? shade(n) : '#E7EAEC') + '"' +
+                 ' data-name="' + (f.properties.name || '') + '" data-n="' + n + '"/>');
       });
+      svg.push('</svg>');
+      box.innerHTML = svg.join('');
+
+      box.addEventListener('mousemove', function (e) {
+        var t = e.target.closest('.hm-country');
+        if (!t) { tip.style.opacity = 0; return; }
+        var n = +t.dataset.n;
+        tip.textContent = t.dataset.name + ' \u2014 ' + (n ? n + ' page view' + (n > 1 ? 's' : '') : 'no visits');
+        tip.style.left = (e.clientX + 12) + 'px';
+        tip.style.top = (e.clientY - 30) + 'px';
+        tip.style.opacity = 1;
+      });
+      box.addEventListener('mouseleave', function () { tip.style.opacity = 0; });
     }
   })();
   </script>
