@@ -143,10 +143,11 @@ img,video{max-width:100%}
 .record+.record{border-top:1px solid var(--rule);padding-top:18px}
 .record-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
 .record-degree{font-size:1.06rem;font-weight:700;letter-spacing:-.008em;line-height:1.5}
-.record-school{font-size:1.3rem;font-weight:700;letter-spacing:-.012em;line-height:1.35;color:var(--ink)}
-.record-sub{font-size:.95rem;color:var(--quiet);line-height:1.5;margin-top:3px}
-.record-sub strong{font-weight:700;color:var(--moss)}
 .record-when{font-size:.82rem;color:var(--faint);white-space:nowrap}
+.record--logo{display:grid;grid-template-columns:72px minmax(0,1fr);gap:0 20px;align-items:start}
+.record-logo{width:72px;height:72px;border:1px solid var(--rule);border-radius:10px;background:#fff;padding:9px}
+.record-logo img{display:block;width:100%;height:100%;object-fit:contain}
+.record-main{min-width:0}
 .record-where{font-size:.92rem;color:var(--moss-bright);font-weight:400;line-height:1.5;margin-top:4px}
 .record-notes{margin-top:4px;font-size:.9rem;color:var(--quiet);line-height:1.5;max-width:46em}
 .record-notes dl{display:grid;grid-template-columns:auto 1fr;gap:4px 16px}
@@ -192,6 +193,8 @@ img,video{max-width:100%}
   .shell{grid-column:auto;padding:26px 22px 64px}
 }
 @media(max-width:600px){
+  .record--logo{grid-template-columns:52px minmax(0,1fr);gap:0 14px}
+  .record-logo{width:52px;height:52px;padding:6px;border-radius:8px}
   .record-notes dl{grid-template-columns:1fr;gap:2px}
   .record-notes dt{margin-top:8px}
   .award{grid-template-columns:1fr;gap:2px}
