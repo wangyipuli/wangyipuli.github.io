@@ -23,8 +23,10 @@
     if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4) cur = links.length - 1;
     mark(cur);
   }
+  /* A short timer rather than requestAnimationFrame: rAF is paused while a page is hidden, and a
+     lost callback would leave `ticking` true for good, so scrolling would stop updating the list. */
   function schedule() {
-    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    if (!ticking) { ticking = true; setTimeout(update, 40); }
   }
 
   /* Service and Skills are short, so the page cannot always scroll far enough to put
