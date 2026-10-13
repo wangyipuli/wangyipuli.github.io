@@ -11,6 +11,7 @@ import os
 import re
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -26,8 +27,13 @@ def get(path, **params):
     req = urllib.request.Request(
         url, headers={"Authorization": f"Bearer {TOKEN}", "Accept": "application/json"}
     )
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return json.load(resp)
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.load(resp)
+    except urllib.error.HTTPError as e:
+        # urllib's own message omits the URL and the server's explanation.
+        body = e.read().decode("utf8", "replace")[:500]
+        sys.exit(f"GoatCounter returned HTTP {e.code} for {url}\n{body}")
 
 
 def fetch_countries():
