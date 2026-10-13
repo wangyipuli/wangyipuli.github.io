@@ -19,8 +19,12 @@
     targets.forEach(function (t, i) {
       if (t && t.getBoundingClientRect().top <= 120) cur = i;
     });
-    /* At the very bottom, the last section wins. */
-    if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4) cur = links.length - 1;
+    /* At the very bottom, the last section wins -- but only on a page that actually scrolls and
+       has been scrolled. A short page fits on one screen, where "bottom" is also "top", and the
+       last item would light up as soon as it opened. */
+    var doc = document.documentElement;
+    if (doc.scrollHeight > window.innerHeight + 40 && window.pageYOffset > 0 &&
+        window.innerHeight + window.pageYOffset >= doc.scrollHeight - 4) cur = links.length - 1;
     mark(cur);
   }
   /* A short timer rather than requestAnimationFrame: rAF is paused while a page is hidden, and a
