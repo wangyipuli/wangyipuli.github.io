@@ -198,7 +198,7 @@
     var f = document.getElementById('ct-photo');
     if (!f || f.querySelectorAll('img').length < 2) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    setInterval(function () { f.classList.toggle('ct-alt'); }, 5000);
+    setInterval(function () { f.classList.toggle('ct-alt'); }, 3000);
   })();
   </script>
   <script src="https://cdn.jsdelivr.net/npm/d3-geo@3/dist/d3-geo.min.js"></script>
