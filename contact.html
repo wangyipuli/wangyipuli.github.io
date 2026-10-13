@@ -24,6 +24,8 @@
   .ct-media.ct-solo{grid-template-columns:1fr}
   .ct-photo,.ct-map{position:relative;margin:0;height:340px;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--moss-wash)}
   .ct-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:62% 58%}
+  .ct-photo img+img{position:absolute;inset:0;object-position:50% 40%;opacity:0;transition:opacity 1.2s ease}
+  .ct-photo.ct-alt img+img{opacity:1}
   .ct-pill{
     position:absolute;left:14px;top:14px;
     background:rgba(31,82,69,.9);color:#fff;
@@ -151,6 +153,8 @@
       <figure class="ct-photo" id="ct-photo">
         <img src="image/russell-labs.jpg" alt="Exterior of Russell Laboratories, University of Wisconsin&ndash;Madison" loading="lazy" decoding="async"
              onerror="var f=document.getElementById('ct-photo');if(f)f.remove();document.getElementById('ct-media').classList.add('ct-solo')">
+        <img src="image/russell-labs-2.jpg" alt="Russell Laboratories entrance and steps on a clear day" loading="lazy" decoding="async"
+             onerror="this.remove()">
         <span class="ct-pill">Russell Laboratories</span>
       </figure>
       <div class="ct-map">
@@ -189,6 +193,14 @@
   <div class="hm-tip" id="hm-tip"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/d3-array@3/dist/d3-array.min.js"></script>
+  <script>
+  (function () {
+    var f = document.getElementById('ct-photo');
+    if (!f || f.querySelectorAll('img').length < 2) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    setInterval(function () { f.classList.toggle('ct-alt'); }, 5000);
+  })();
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/d3-geo@3/dist/d3-geo.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
   <script>
