@@ -11,27 +11,32 @@
 <link rel="stylesheet" href="style.css">
 <style>
   .pagehead--hero{
-    container-type:inline-size;
-    display:grid;grid-template-columns:minmax(0,1fr) 54%;align-items:center;
-    padding:0;margin-bottom:6px;border-radius:14px;overflow:hidden;color:#fff;
-    background:linear-gradient(115deg,#091d18 0%,#0f2d27 52%,#17413a 100%);
+    position:relative;container-type:inline-size;
+    padding:0;margin-bottom:6px;border-radius:14px;overflow:hidden;color:#fff;background:#091d18;
   }
-  /* Sizes are given twice: a fixed fallback, then one in container units (cqw) so the text
-     scales with the card and stays the same height relative to the 4:3 image beside it. */
-  .hero-copy{padding:28px 30px 28px 40px;padding:3.1cqw 3.3cqw 3.1cqw 4.4cqw}
-  .pagehead--hero h1{color:#fff;font-size:2.1rem;font-size:clamp(1.55rem,3.7cqw,2.3rem);letter-spacing:-.025em;margin-bottom:10px;margin-bottom:1.1cqw}
-  .pagehead--hero p{color:rgba(255,255,255,.93);max-width:none;font-size:.88rem;font-size:clamp(.74rem,1.72cqw,.92rem);line-height:1.62}
+  /* The card is the picture itself, at its natural 4:3: the image sets the height and the
+     text is laid over a corner of it, so the picture never has to fit around the words. */
+  .hero-img{display:block;width:100%;height:auto}
+  .hero-shade{
+    position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(to top,rgba(8,26,22,.95) 0%,rgba(8,26,22,.90) 32%,rgba(8,26,22,.64) 50%,rgba(8,26,22,0) 76%),
+      linear-gradient(to right,rgba(8,26,22,.50) 0%,rgba(8,26,22,0) 58%);
+    /* fade the shading out toward the right so the lower-right of the picture stays untouched */
+    -webkit-mask-image:linear-gradient(to right,#000 0%,#000 56%,transparent 94%);
+    mask-image:linear-gradient(to right,#000 0%,#000 56%,transparent 94%);
+  }
+  /* Sizes are given twice: a fixed fallback, then container units so they scale with the card. */
+  .hero-copy{position:absolute;left:40px;bottom:38px;width:420px;left:4.4cqw;bottom:4.2cqw;width:55cqw}
+  .pagehead--hero h1{color:#fff;font-size:2.3rem;font-size:clamp(1.5rem,4.1cqw,2.5rem);letter-spacing:-.025em;margin-bottom:10px;margin-bottom:1.2cqw}
+  .pagehead--hero p{color:rgba(255,255,255,.94);max-width:none;font-size:.96rem;font-size:clamp(.74rem,1.78cqw,.98rem);line-height:1.62;text-shadow:0 1px 8px rgba(0,0,0,.4)}
   .pagehead--hero p strong{color:#fff}
-  .hero-media{margin:0;align-self:stretch;display:flex}
-  .hero-media img{display:block;width:100%;height:auto;align-self:center}
-  /* Stack on phones, and in the 981-1146px band where the fixed sidebar squeezes the card below
-     about 690px: the text can no longer shrink with it and would outgrow the image. */
-  @media(max-width:760px),(min-width:981px) and (max-width:1146px){
-    .pagehead--hero{grid-template-columns:1fr}
-    .hero-media{order:-1}
-    .hero-copy{padding:24px 22px 28px}
+  /* On a narrow card the text would outgrow the picture, so it drops below it on a dark panel. */
+  @container (max-width:700px){
+    .hero-shade{display:none}
+    .hero-copy{position:static;width:auto;padding:24px 22px 28px;background:linear-gradient(115deg,#091d18 0%,#0f2d27 52%,#17413a 100%)}
     .pagehead--hero h1{font-size:2rem;margin-bottom:12px}
-    .pagehead--hero p{font-size:.95rem;line-height:1.7}
+    .pagehead--hero p{font-size:.95rem;line-height:1.7;text-shadow:none}
   }
   .deflist{list-style:none}
   .deflist li{position:relative;padding:0 0 8px 18px;font-size:.95rem;line-height:1.7;color:var(--body)}
@@ -90,13 +95,12 @@
 <main class="shell">
 
   <section class="pagehead pagehead--hero" id="overview">
+    <img class="hero-img" src="image/hero.webp" alt="The Arctic seen from orbit, with a remote-sensing satellite above the horizon" width="1448" height="1086">
+    <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
       <h1>About Me</h1>
       <p>Wangyipu Li is a PhD student in the Department of Forest and Wildlife Ecology at the <strong>University of Wisconsin&ndash;Madison</strong>. His research interests cover vegetation dynamic monitoring, estimation of water-carbon fluxes, and issues related to Earth system science. He earned a M.Eng. in Photogrammetry and Remote Sensing at <strong>Peking University</strong>, and a B.S. in Applied Meteorology at <strong>China Agricultural University</strong>.</p>
     </div>
-    <figure class="hero-media">
-      <img src="image/hero.webp" alt="The Arctic seen from orbit, with a remote-sensing satellite above the horizon" width="1448" height="1086">
-    </figure>
   </section>
 
   <!-- ══ Education ══ -->
