@@ -19,6 +19,8 @@ SITE = os.environ.get("GOATCOUNTER_SITE", "wangyipuli")
 BASE = os.environ.get("GOATCOUNTER_BASE", f"https://{SITE}.goatcounter.com/api/v0")
 TOKEN = os.environ["GOATCOUNTER_TOKEN"]
 START = "2020-01-01T00:00:00Z"          # before the site existed: "all time"
+ATTEMPTS = 3
+RETRY_CODES = {404, 429, 500, 502, 503, 504}
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "visitors.json")
 
 
@@ -27,13 +29,24 @@ def get(path, **params):
     req = urllib.request.Request(
         url, headers={"Authorization": f"Bearer {TOKEN}", "Accept": "application/json"}
     )
-    try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            return json.load(resp)
-    except urllib.error.HTTPError as e:
-        # urllib's own message omits the URL and the server's explanation.
-        body = e.read().decode("utf8", "replace")[:500]
-        sys.exit(f"GoatCounter returned HTTP {e.code} for {url}\n{body}")
+    # GoatCounter now and then answers with a transient 404/429/5xx HTML page, so retry.
+    for attempt in range(1, ATTEMPTS + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                return json.load(resp)
+        except urllib.error.HTTPError as e:
+            # urllib's own message omits the URL and the server's explanation.
+            body = e.read().decode("utf8", "replace")[:500]
+            if e.code not in RETRY_CODES or attempt == ATTEMPTS:
+                sys.exit(f"GoatCounter returned HTTP {e.code} for {url}\n{body}")
+            problem = f"HTTP {e.code}"
+        except (urllib.error.URLError, TimeoutError) as e:
+            if attempt == ATTEMPTS:
+                sys.exit(f"Could not reach GoatCounter at {url}: {e}")
+            problem = str(e)
+        wait = 5 * attempt
+        print(f"{problem} for {path}; retrying in {wait}s ({attempt}/{ATTEMPTS})", file=sys.stderr)
+        time.sleep(wait)
 
 
 def fetch_countries():
