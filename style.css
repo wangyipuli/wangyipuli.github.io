@@ -209,14 +209,10 @@ img,video{max-width:100%}
 .empty{font-style:italic;color:var(--faint);font-size:.95rem}
 .empty a{color:var(--moss)}
 
-/* Short windows: the portrait keeps its 200px, and the rest gives way in order: first the
-   footer goes, then the spacing tightens, and below that the card scrolls. The breakpoints are
-   measured on About, whose seven-item contents list makes it the tallest sidebar. */
+/* Short windows: the portrait keeps its 200px and the footer stays. The spacing tightens
+   first, and below that the card scrolls. The breakpoint is measured on About, whose
+   seven-item contents list makes it the tallest sidebar. */
 @media(min-width:981px) and (max-height:965px){
-  .sb-foot{display:none}
-  .toc{margin-bottom:0}
-}
-@media(min-width:981px) and (max-height:878px){
   .sidebar{padding:18px 28px 14px}
   .portrait{margin-bottom:12px}
   .sb-name{font-size:1.45rem;margin-bottom:4px}
@@ -225,7 +221,9 @@ img,video{max-width:100%}
   .sb-role strong{font-size:.86rem}
   .icons{margin-bottom:12px}
   .toc-label{margin-bottom:5px}
+  .toc{margin-bottom:10px}
   .toc a{padding:3px 12px}
+  .sb-foot{padding-top:10px}
 }
 
 /* ══ Responsive ══ */
