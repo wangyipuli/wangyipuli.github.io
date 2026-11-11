@@ -7,45 +7,44 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#1F5245">
+<meta name="theme-color" content="#F3F5F4">
 <link rel="stylesheet" href="style.css">
 <script src="toc.js" defer></script>
 <style>
-  .pagehead--hero{
-    position:relative;container-type:inline-size;
-    padding:0;margin-bottom:6px;border-radius:14px;overflow:hidden;color:#fff;background:#091d18;
-  }
-  /* The card is the picture, framed at 16:9 (a quarter shorter than its natural 4:3). The crop
-     comes off the bottom, which is where the text sits, and the top stays in view. */
-  .hero-frame{position:relative;aspect-ratio:16/9}
-  .hero-img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 4%}
+  /* ── About: a cinematic picture carrying only the headline; the bio sits below it ── */
+  .hero{margin-bottom:18px;container-type:inline-size}
+  .hero-frame{position:relative;border-radius:var(--radius);overflow:hidden;background:#050d0c;box-shadow:0 2px 4px rgba(16,24,22,.08),0 22px 56px -18px rgba(9,29,24,.55)}
+  /* Anchored to the top of the picture so the satellite, which sits in its top-right corner,
+     is never cropped. The slow zoom grows away from that same corner for the same reason. */
+  .hero-img{display:block;width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;object-position:50% 0%;
+            transform-origin:100% 0%;animation:hero-drift 36s ease-in-out infinite alternate}
+  @keyframes hero-drift{from{transform:scale(1)}to{transform:scale(1.07)}}
   .hero-shade{
     position:absolute;inset:0;pointer-events:none;
     background:
-      linear-gradient(to top,rgba(8,26,22,.95) 0%,rgba(8,26,22,.90) 32%,rgba(8,26,22,.64) 50%,rgba(8,26,22,0) 76%),
-      linear-gradient(to right,rgba(8,26,22,.50) 0%,rgba(8,26,22,0) 58%);
-    /* fade the shading out toward the right so the lower-right of the picture stays untouched */
-    -webkit-mask-image:linear-gradient(to right,#000 0%,#000 56%,transparent 94%);
-    mask-image:linear-gradient(to right,#000 0%,#000 56%,transparent 94%);
+      linear-gradient(to top,rgba(4,14,12,.88) 0%,rgba(4,14,12,.52) 26%,rgba(4,14,12,0) 56%),
+      radial-gradient(120% 90% at 50% 40%,rgba(4,14,12,0) 55%,rgba(4,14,12,.45) 100%);
   }
-  /* Sizes are given twice: a fixed fallback, then container units so they scale with the card. */
-  .hero-copy{position:absolute;left:40px;bottom:38px;width:420px;left:4.4cqw;bottom:4.4cqw;width:52cqw}
-  .pagehead--hero h1{color:#fff;font-size:2.3rem;font-size:clamp(1.45rem,3.7cqw,2.3rem);letter-spacing:-.025em;margin-bottom:10px;margin-bottom:1.1cqw}
-  .pagehead--hero p{color:rgba(255,255,255,.94);max-width:none;font-size:.96rem;font-size:clamp(.72rem,1.64cqw,.94rem);line-height:1.58;text-shadow:0 1px 8px rgba(0,0,0,.4)}
-  .pagehead--hero p strong{color:#fff}
-  /* On a narrow card the text would outgrow the picture, so it drops below it on a dark panel. */
-  @container (max-width:700px){
-    .hero-frame{aspect-ratio:auto}
-    .hero-img{height:auto}
-    .hero-shade{display:none}
-    .hero-copy{position:static;width:auto;padding:24px 22px 28px;background:linear-gradient(115deg,#091d18 0%,#0f2d27 52%,#17413a 100%)}
-    .pagehead--hero h1{font-size:2rem;margin-bottom:12px}
-    .pagehead--hero p{font-size:.95rem;line-height:1.7;text-shadow:none}
+  .hero-over{position:absolute;left:38px;right:38px;bottom:32px;left:4cqw;right:4cqw;bottom:3.6cqw}
+  .hero-eyebrow{display:flex;align-items:center;gap:12px;font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#A8E6D2;margin-bottom:12px}
+  .hero-eyebrow::before{content:"";width:34px;height:1px;background:currentColor}
+  .hero h1{font-family:var(--serif);font-weight:400;color:#fff;letter-spacing:-.02em;line-height:1.08;
+           font-size:2.6rem;font-size:clamp(1.55rem,4.9cqw,3.2rem);text-shadow:0 2px 24px rgba(0,0,0,.45);max-width:16em}
+  .hero-lead{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 34px 30px;margin-top:18px}
+  .hero-lead p{font-family:var(--serif);font-size:1.16rem;line-height:1.7;color:var(--body)}
+  .hero-lead strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chips span{font-size:.82rem;color:var(--moss);background:var(--moss-wash);padding:6px 13px;border-radius:999px}
+  @container (max-width:560px){
+    .hero-img{aspect-ratio:4/3}
+    .hero-lead{padding:22px 20px}
+    .hero-lead p{font-size:1.05rem}
   }
+  @media (prefers-reduced-motion:reduce){.hero-img{animation:none}}
   .more-row{margin-top:14px}
   .more-btn{
     display:inline-flex;align-items:center;gap:8px;
-    padding:8px 18px;border:1.5px solid var(--moss);border-radius:8px;
+    padding:9px 20px;border:1.5px solid var(--moss);border-radius:999px;
     font-size:.88rem;font-weight:700;color:var(--moss);text-decoration:none;
     transition:background .15s ease,color .15s ease;
   }
@@ -109,14 +108,18 @@
 
 <main class="shell">
 
-  <section class="pagehead pagehead--hero" id="overview">
+  <section class="hero" id="overview">
     <div class="hero-frame">
       <img class="hero-img" src="image/hero.webp" alt="The Arctic seen from orbit, with a remote-sensing satellite above the horizon" width="1448" height="1086">
       <div class="hero-shade" aria-hidden="true"></div>
-      <div class="hero-copy">
-        <h1>About Me</h1>
-        <p>Wangyipu Li is a PhD student in the Department of Forest and Wildlife Ecology at the <strong>University of Wisconsin&ndash;Madison</strong>. His research interests cover vegetation dynamic monitoring, estimation of water-carbon fluxes, and issues related to Earth system science. He earned a M.Eng. in Photogrammetry and Remote Sensing at <strong>Peking University</strong>, and a B.S. in Applied Meteorology at <strong>China Agricultural University</strong>.</p>
+      <div class="hero-over">
+        <div class="hero-eyebrow">About me</div>
+        <h1>Vegetation, water and carbon, seen from orbit.</h1>
       </div>
+    </div>
+    <div class="hero-lead">
+      <p>Wangyipu Li is a PhD student in the Department of Forest and Wildlife Ecology at the <strong>University of Wisconsin&ndash;Madison</strong>. His research interests cover vegetation dynamic monitoring, estimation of water-carbon fluxes, and issues related to Earth system science. He earned a M.Eng. in Photogrammetry and Remote Sensing at <strong>Peking University</strong>, and a B.S. in Applied Meteorology at <strong>China Agricultural University</strong>.</p>
+      <div class="chips"><span>Vegetation dynamics</span><span>Water&ndash;carbon fluxes</span><span>Earth system science</span><span>Remote sensing</span></div>
     </div>
   </section>
 

@@ -7,7 +7,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#1F5245">
+<meta name="theme-color" content="#F3F5F4">
 <link rel="stylesheet" href="style.css">
 <script src="toc.js" defer></script>
 <style>
@@ -22,17 +22,17 @@
   .cite a:hover{border-bottom-color:var(--moss)}
   .cite .flag{font-size:.82rem;font-style:italic;color:var(--faint)}
   @media(max-width:600px){.cite{padding-left:24px}}
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px}
-  .stat{background:var(--moss-wash);border:1px solid var(--rule);border-radius:6px;padding:18px 14px;text-align:center}
-  .stat b{display:block;font-size:1.95rem;font-weight:700;color:var(--moss);line-height:1.05}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .stat{background:var(--paper);border-radius:16px;box-shadow:var(--shadow);padding:20px 14px;text-align:center}
+  .stat b{display:block;font-family:var(--serif);font-size:2.2rem;font-weight:400;color:var(--moss);line-height:1.05}
   .stat span{display:block;margin-top:7px;font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--quiet);line-height:1.35}
-  .stats-note{margin-top:10px;font-size:.84rem;color:var(--faint)}
+  .stats-note{margin:10px 8px 18px;font-size:.84rem;color:var(--faint)}
   .stats-note a{color:var(--moss)}
   .item{display:grid;grid-template-columns:104px minmax(0,1fr);gap:20px;padding:15px 0}
   .item+.item{border-top:1px solid var(--rule)}
   .sub-head+.item{border-top:none}
   .item-when{font-size:.85rem;color:var(--faint);padding-top:2px}
-  .item-what{font-size:1rem;font-weight:700;line-height:1.4}
+  .item-what{font-family:var(--serif);font-size:1.12rem;font-weight:400;line-height:1.4}
   .item-role{font-size:.88rem;color:var(--moss-bright);margin-top:3px}
   .item-detail{font-size:.9rem;color:var(--quiet);margin-top:3px;line-height:1.65}
   @media(max-width:600px){.item{grid-template-columns:1fr;gap:4px}}

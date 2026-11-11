@@ -7,12 +7,12 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#1F5245">
+<meta name="theme-color" content="#F3F5F4">
 <link rel="stylesheet" href="style.css">
 <script src="toc.js" defer></script>
 <style>
   .ct-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:16px}
-  .ct-card{border:1px solid var(--rule);border-radius:10px;background:#FBFCFC;padding:20px 24px}
+  .ct-card{border:1px solid var(--rule);border-radius:14px;background:var(--canvas);padding:20px 24px}
   .ct-label{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
   .ct-email{display:block;width:fit-content;font-size:1.1rem;font-weight:700;color:var(--moss);text-decoration:none;border-bottom:1px solid rgba(31,82,69,.3);word-break:break-all}
   .ct-email + .ct-email{margin-top:10px}
@@ -22,7 +22,7 @@
 
   .ct-media{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .ct-media.ct-solo{grid-template-columns:1fr}
-  .ct-photo,.ct-map{position:relative;margin:0;height:340px;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--moss-wash)}
+  .ct-photo,.ct-map{position:relative;margin:0;height:340px;border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:var(--moss-wash)}
   .ct-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:62% 58%}
   .ct-photo img+img{position:absolute;inset:0;object-position:50% 40%;opacity:0;transition:opacity 1.2s ease}
   .ct-photo.ct-alt img+img{opacity:1}
@@ -43,10 +43,10 @@
   .hm-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:16px}
   .hm-lead{font-size:.92rem;color:var(--quiet);max-width:46em}
   .hm-figure{text-align:right;line-height:1.15;white-space:nowrap}
-  .hm-figure b{display:block;font-size:2.2rem;font-weight:700;color:var(--moss)}
+  .hm-figure b{display:block;font-family:var(--serif);font-size:2.4rem;font-weight:400;color:var(--moss)}
   .hm-figure span{font-size:.78rem;color:var(--faint)}
 
-  .hm-card{position:relative;border:1px solid var(--rule);border-radius:10px;background:#FBFCFC;padding:10px}
+  .hm-card{position:relative;border:1px solid var(--rule);border-radius:14px;background:#FBFCFC;padding:10px}
   #heatmap{width:100%}
   #heatmap svg{display:block;width:100%;height:auto}
   .hm-sphere{fill:#F4F7F8}
