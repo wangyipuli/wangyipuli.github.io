@@ -69,21 +69,21 @@ img,video{max-width:100%}
 
 /* ══ Sidebar ══ */
 .sidebar{
-  position:fixed;top:var(--bar);
-  left:max(0px, calc(50% - var(--page) / 2));
-  width:var(--sidebar);height:calc(100vh - var(--bar));
+  /* The sidebar is itself the white card, inset from its column, so that when a short window
+     makes it scroll, the contents scroll inside the card. */
+  position:fixed;top:calc(var(--bar) + 20px);
+  left:calc(max(0px, 50% - var(--page) / 2) + 22px);
+  width:calc(var(--sidebar) - 34px);height:calc(100vh - var(--bar) - 40px);
+  background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);
   display:flex;flex-direction:column;
-  padding:48px 40px 44px 50px;
+  padding:28px 28px 24px;
   overflow-y:auto;overscroll-behavior:contain;
 }
-/* The white card is drawn behind the sidebar's contents, inset from its edges. */
-.sidebar::before{content:"";position:absolute;inset:20px 12px 20px 22px;background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow)}
-.sidebar>*{position:relative}
 .sidebar::-webkit-scrollbar{width:6px}
 .sidebar::-webkit-scrollbar-thumb{background:rgba(0,0,0,.22);border-radius:3px}
 
 .portrait{
-  width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;
+  width:150px;flex:none;aspect-ratio:1;object-fit:cover;border-radius:50%;
   border:4px solid #fff;box-shadow:0 6px 22px rgba(16,24,22,.14);
   margin-bottom:22px;
 }
@@ -209,23 +209,23 @@ img,video{max-width:100%}
 .empty{font-style:italic;color:var(--faint);font-size:.95rem}
 .empty a{color:var(--moss)}
 
-/* Short windows: the portrait gives up height, and below 780px the spacing tightens, so the
-   contents list and the footer stay on screen. The constants are measured, not guessed: the
-   sidebar minus the portrait is about 650px tall (with the seven-item contents list on About) (with the 56px top bar on top of that). */
-@media(min-width:981px){
-  .portrait{width:clamp(56px,calc(100vh - 772px),276px)}
+/* Short windows: the portrait keeps its 150px, and the rest gives way in order: first the
+   footer goes, then the spacing tightens, and below that the card scrolls. The breakpoints are
+   measured on About, whose seven-item contents list makes it the tallest sidebar. */
+@media(min-width:981px) and (max-height:915px){
+  .sb-foot{display:none}
+  .toc{margin-bottom:0}
 }
-@media(min-width:981px) and (max-height:780px){
-  .sidebar{padding:36px 40px 32px 50px}
-  .portrait{margin-bottom:12px;width:clamp(56px,calc(100vh - 650px),276px)}
+@media(min-width:981px) and (max-height:828px){
+  .sidebar{padding:18px 28px 14px}
+  .portrait{margin-bottom:12px}
   .sb-name{font-size:1.45rem;margin-bottom:4px}
   .sb-cn{font-size:.95rem;margin-bottom:6px}
   .sb-role{margin-bottom:12px;font-size:.88rem}
+  .sb-role strong{font-size:.86rem}
   .icons{margin-bottom:12px}
-  .toc{margin-bottom:10px}
   .toc-label{margin-bottom:5px}
-  .toc a{padding:4px 12px}
-  .sb-foot{padding-top:10px}
+  .toc a{padding:3px 12px}
 }
 
 /* ══ Responsive ══ */
@@ -240,11 +240,10 @@ img,video{max-width:100%}
   .nav a{padding:7px 11px;font-size:.86rem}
   .sidebar{
     position:static;left:auto;width:100%;height:auto;
-    background:var(--paper);border-bottom:1px solid var(--rule);
+    border-radius:0;box-shadow:none;border-bottom:1px solid var(--rule);
     flex-direction:row;flex-wrap:wrap;align-items:center;
     gap:0 20px;padding:22px;overflow:visible;
   }
-  .sidebar::before{display:none}
   .portrait{width:92px;flex:0 0 92px;margin-bottom:0}
   .sb-name{margin-bottom:2px}
   .sb-role{margin-bottom:0;flex:1 1 100%}
