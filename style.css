@@ -192,6 +192,8 @@ img,video{max-width:100%}
   padding:5px 12px;border-radius:8px;
   transition:color .15s ease,background .15s ease;
 }
+/* A focus listed under its theme */
+.toc a.toc-sub{padding-left:26px;font-size:.86rem}
 .toc a:hover{color:var(--moss)}
 .toc a.is-active{color:var(--moss);font-weight:700;background:var(--moss-wash)}
 .shell [id]{scroll-margin-top:84px}
@@ -232,6 +234,7 @@ img,video{max-width:100%}
   .toc-label{display:none}
   .toc a{border:1px solid var(--rule);border-radius:999px;padding:5px 12px;font-size:.82rem}
   .toc a.is-active{border-color:var(--moss)}
+  .toc a.toc-sub{padding-left:12px;font-size:.82rem}
 
   .page{display:block;padding-top:var(--bar)}
   .topbar .nav{padding:0 14px}
