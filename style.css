@@ -58,6 +58,10 @@ img,video{max-width:100%}
 }
 .nav a:hover{background:rgba(16,24,22,.05);color:var(--ink)}
 .nav a[aria-current="page"]{background:var(--moss);color:#fff;font-weight:600}
+/* The logo sits at the left end of the bar and links home; it is not a pill like the page links. */
+.nav a.brand{flex:none;display:flex;align-items:center;padding:0;margin-right:18px;border-radius:8px}
+.nav a.brand:hover{background:none;opacity:.82}
+.nav a.brand img{display:block;height:42px;width:auto;max-width:none}
 
 /* ══ Centred page frame ══ */
 .page{
@@ -239,6 +243,8 @@ img,video{max-width:100%}
   .page{display:block;padding-top:var(--bar)}
   .topbar .nav{padding:0 14px}
   .nav a{padding:7px 11px;font-size:.86rem}
+  .nav a.brand{padding:0;margin-right:8px}
+  .nav a.brand img{height:32px}
   .sidebar{
     position:static;left:auto;width:100%;height:auto;
     border-radius:0;box-shadow:none;border-bottom:1px solid var(--rule);

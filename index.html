@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wangyipu Li</title>
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon.png" type="image/png" sizes="96x96">
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#F3F5F4">
 <link rel="stylesheet" href="style.css">
@@ -55,10 +55,11 @@ catch (e) { document.documentElement.classList.add('intro'); }
   }
   .intro .intro-screen,.intro-leaving .intro-screen{display:flex}
   .intro,.intro body{overflow:hidden}
-  .intro-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 30%;
+  .intro-screen > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 30%;
                     animation:intro-zoom 9s ease-out both}
   .intro-screen::after{content:"";position:absolute;inset:0;background:rgba(2,8,10,.66);opacity:0;animation:intro-in 2.2s ease .7s forwards}
   .intro-copy{position:relative;z-index:1;padding:0 24px;opacity:0;animation:intro-rise 1.2s ease 2.1s forwards}
+  .intro-mark{display:block;height:92px;width:auto;margin:0 auto 26px;filter:drop-shadow(0 2px 18px rgba(0,0,0,.45))}
   .intro-copy small{display:block;font-size:.78rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:#A8E6D2;margin-bottom:18px}
   .intro-copy strong{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5.4vw,4rem);line-height:1.12;letter-spacing:-.02em;text-shadow:0 2px 30px rgba(0,0,0,.5)}
   .intro-enter{
@@ -76,7 +77,7 @@ catch (e) { document.documentElement.classList.add('intro'); }
   @keyframes intro-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   @keyframes intro-zoom{from{transform:scale(1.08)}to{transform:scale(1)}}
   @media (prefers-reduced-motion:reduce){
-    .intro-screen img{animation:none}
+    .intro-screen > img{animation:none}
     .intro-screen::after{animation:none;opacity:1}
     .intro-copy{animation:none;opacity:1}
     .intro-screen{transition:none}
@@ -105,6 +106,7 @@ catch (e) { document.documentElement.classList.add('intro'); }
 <div class="intro-screen" id="intro" role="dialog" aria-modal="true" aria-label="Welcome">
   <img src="image/hero.webp" alt="">
   <div class="intro-copy">
+    <img class="intro-mark" src="image/logo-mark-white.webp" alt="" width="231" height="240">
     <small>Welcome to</small>
     <strong>Wangyipu&rsquo;s Homepage</strong>
     <button class="intro-enter" id="intro-enter" type="button">Enter <span aria-hidden="true">&rarr;</span></button>
@@ -132,6 +134,7 @@ catch (e) { document.documentElement.classList.add('intro'); }
 
 <header class="topbar">
   <nav class="nav">
+    <a class="brand" href="index.html" aria-label="Wangyipu Li &ndash; home"><img src="image/logo.webp" alt="Wangyipu Li" width="429" height="144"></a>
     <a href="index.html" aria-current="page">About</a>
     <a href="research.html">Research</a>
     <a href="publications.html">Publications</a>
