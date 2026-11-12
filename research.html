@@ -166,7 +166,7 @@
           <li><span class="d-n">3</span><div><div class="d-t">Prolongation</div><div class="d-s">daily LE, extended to 2000&ndash;2020</div></div></li>
         </ol>
         <div class="wf-stage">
-          <canvas class="wf-canvas" role="img" aria-label="Animation of one schematic flux record. First the tower observations are drawn over the observation period only, with many gaps where data failed quality control or the instrument was down. Then a machine learning model fills the gaps. Finally the time axis widens to 2000 to 2020 and the record is prolonged in both directions."></canvas>
+          <canvas class="wf-canvas" role="img" aria-label="Animation of one schematic flux record. First the tower record is shown over the observation period only, and the stretches lost to quality control or instrument failure fade out, leaving many gaps. Then a machine learning model fills the gaps. Finally the time axis widens to 2000 to 2020 and the record is prolonged in both directions."></canvas>
         </div>
         <div class="wf-foot">
           <div class="wf-legend"><span class="wf-k wf-k-obs">Tower observations</span><span class="wf-k wf-k-fill">Estimated by bias-corrected random forest</span><span class="wf-k wf-k-gap">Missing data</span></div>
@@ -225,7 +225,7 @@
     }
     function val(t) { var x = (t - Y0) * N, i = Math.max(0, Math.min(V.length - 2, Math.floor(x))); return V[i] + (V[i + 1] - V[i]) * (x - i); }
 
-    var T = { draw: [0.5, 4.2], fill: [6.2, 9.4], zoom: [10.6, 12.8], ext: [12.8, 16.4], end: 21 };
+    var T = { draw: [1.8, 4.2], fill: [6.2, 9.4], zoom: [10.6, 12.8], ext: [12.8, 16.4], end: 21 };
     function seg(t, r) { return Math.max(0, Math.min(1, (t - r[0]) / (r[1] - r[0]))); }
     function ease(p) { return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; }
 
@@ -246,7 +246,7 @@
 
     function frame(t) {
       if (!W) return;
-      var pDraw = seg(t, T.draw), pFill = ease(seg(t, T.fill)), z = ease(seg(t, T.zoom)), pExt = ease(seg(t, T.ext));
+      var pDraw = ease(seg(t, T.draw)), pFill = ease(seg(t, T.fill)), z = ease(seg(t, T.zoom)), pExt = ease(seg(t, T.ext));
       var fade = t > T.end - 0.6 ? Math.max(0, (T.end - t) / 0.6) : Math.min(1, t / 0.5);
       var d0 = O0 + (Y0 - O0) * z, d1 = O1 + (Y1 - O1) * z;
       var L = 6, R = W - 6, top = 30, bot = H - 24;
@@ -280,14 +280,9 @@
       ctx.globalAlpha = fade;
       ctx.strokeStyle = C.base; ctx.beginPath(); ctx.moveTo(L, bot + 0.5); ctx.lineTo(R, bot + 0.5); ctx.stroke();
 
-      /* gaps: hatched once the pen has passed them, fading as they are filled */
-      var cur = O0 + (O1 - O0) * pDraw, fcur = O0 + (O1 - O0) * pFill;
-      GAPS.forEach(function (g) {
-        if (cur < g[0]) return;
-        var shown = Math.min(1, (cur - g[0]) / (g[1] - g[0])), done = Math.max(0, Math.min(1, (fcur - g[0]) / (g[1] - g[0])));
-        ctx.globalAlpha = fade * shown * (1 - 0.7 * done);
-        ctx.fillStyle = hatch; ctx.fillRect(X(g[0]), top, X(g[1]) - X(g[0]), bot - top);
-      });
+      /* gaps: the hatching comes in as the missing stretches fade out, and eases off as they are filled */
+      ctx.globalAlpha = fade * pDraw * (1 - 0.7 * pFill); ctx.fillStyle = hatch;
+      GAPS.forEach(function (g) { ctx.fillRect(X(g[0]), top, X(g[1]) - X(g[0]), bot - top); });
 
       /* gap labels: after the observations are drawn, gone once the axis starts to widen */
       var la = Math.min(seg(t, [T.draw[1], T.draw[1] + 0.5]), 1 - seg(t, [T.zoom[0] - 0.5, T.zoom[0]]));
@@ -308,19 +303,17 @@
       }
 
       ctx.globalAlpha = fade; ctx.lineWidth = 1.6; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-      /* observations, up to the pen, skipping the gaps */
+      /* the record opens complete; the stretches that will go missing then fade away */
+      if (pDraw < 1) { ctx.globalAlpha = fade * (1 - pDraw); GAPS.forEach(function (g) { line(g[0], g[1], C.obs); }); ctx.globalAlpha = fade; }
       var from = O0;
-      GAPS.concat([[O1, O1]]).forEach(function (g) { line(from, Math.min(g[0], cur), C.obs); from = g[1]; });
-      /* filled gaps, up to the second pen */
-      GAPS.forEach(function (g) { line(g[0], Math.min(g[1], fcur), C.fill); });
+      GAPS.concat([[O1, O1]]).forEach(function (g) { line(from, g[0], C.obs); from = g[1]; });
+      /* filled gaps, growing inward from the observations on either side */
+      if (pFill > 0) GAPS.forEach(function (g) {
+        var h = (g[1] - g[0]) / 2 * pFill;
+        line(g[0], g[0] + h, C.fill); line(g[1] - h, g[1], C.fill);
+      });
       /* prolongation, outward from both ends of the observation period */
       if (pExt > 0) { line(O0 - (O0 - Y0) * pExt, O0, C.fill); line(O1, O1 + (Y1 - O1) * pExt, C.fill); }
-      /* the pen */
-      var pen = pDraw > 0 && pDraw < 1 ? cur : (pFill > 0 && pFill < 1 ? fcur : null);
-      if (pen !== null) {
-        ctx.globalAlpha = fade * 0.5; ctx.strokeStyle = pDraw < 1 ? C.obs : C.fill; ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(X(pen), top); ctx.lineTo(X(pen), bot); ctx.stroke();
-      }
       ctx.globalAlpha = 1;
 
       var act = t < T.fill[0] - 0.6 ? 0 : (t < T.zoom[0] - 0.4 ? 1 : 2);
