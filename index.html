@@ -55,7 +55,7 @@ catch (e) { document.documentElement.classList.add('intro'); }
   }
   .intro .intro-screen,.intro-leaving .intro-screen{display:flex}
   .intro,.intro body{overflow:hidden}
-  .intro-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 40%;
+  .intro-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 30%;
                     animation:intro-zoom 9s ease-out both}
   .intro-screen::after{content:"";position:absolute;inset:0;background:rgba(2,8,10,.66);opacity:0;animation:intro-in 2.2s ease .7s forwards}
   .intro-copy{position:relative;z-index:1;padding:0 24px;opacity:0;animation:intro-rise 1.2s ease 2.1s forwards}
@@ -71,8 +71,6 @@ catch (e) { document.documentElement.classList.add('intro'); }
   .intro-enter:hover,.intro-enter:focus-visible{background:#fff;border-color:#fff;color:#0c1f1a;outline:none}
   .intro-enter span{transition:transform .2s ease}
   .intro-enter:hover span{transform:translateX(4px)}
-  /* A tall screen crops the sides, so lean right to keep the satellite in the picture. */
-  @media (orientation:portrait){.intro-screen img{object-position:92% 40%}}
   .intro-leaving .intro-screen{opacity:0;visibility:hidden}
   @keyframes intro-in{to{opacity:1}}
   @keyframes intro-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
