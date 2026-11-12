@@ -57,32 +57,32 @@
   .topic img{display:block;max-width:100%;height:auto;border-radius:12px;box-shadow:0 1px 2px rgba(20,24,28,.06),0 10px 28px -14px rgba(20,24,28,.25)}
   .topic video{display:block;width:100%;height:auto;border-radius:12px;background:var(--moss-wash);box-shadow:0 1px 2px rgba(20,24,28,.06),0 10px 28px -14px rgba(20,24,28,.25)}
   .topic figcaption{font-size:.84rem;font-style:italic;line-height:1.55;color:var(--faint);margin-top:9px}
-  /* Workflow figure: one schematic record on a shared time axis, at each of the three stages */
+  /* Workflow figure: an animated schematic record -- observed with gaps, gap-filled, then prolonged */
   .wf{--obs:#2C7A63;--fill:#C97A1E;container-type:inline-size}
-  .d-row{display:grid;grid-template-columns:196px 1fr;gap:0 12px;align-items:center}
-  .d-row+.d-row{margin-top:14px}
-  .d-label{display:flex;align-items:center;gap:9px}
-  .d-n{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--moss);color:#fff;font-size:.72rem;font-weight:700}
+  .wf-steps{list-style:none;margin:0 0 12px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .wf-steps li{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:12px;border:1px solid var(--rule);opacity:.55;transition:opacity .4s ease,background .4s ease,border-color .4s ease}
+  .wf-steps li.is-done{opacity:.8}
+  .wf-steps li.is-on{opacity:1;background:var(--moss-wash);border-color:transparent}
+  .d-n{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--faint);color:#fff;font-size:.72rem;font-weight:700;transition:background .4s ease}
+  .wf-steps li.is-on .d-n,.wf-steps li.is-done .d-n{background:var(--moss)}
   .d-t{font-size:.86rem;font-weight:700;line-height:1.3;color:var(--ink)}
   .d-s{font-size:.74rem;line-height:1.35;color:var(--quiet)}
-  .d-svg{display:block;width:100%;height:62px}
-  .d-svg *{vector-effect:non-scaling-stroke}
-  .d-svg path{fill:none;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
-  .d-obs{stroke:var(--obs)}.d-fill{stroke:var(--fill)}
-  .d-gap{fill:var(--fill);opacity:.13}
-  .d-grid{stroke:var(--rule)}.d-base{stroke:#CBD4D1}
-  .d-row+.d-row:last-child{margin-top:4px}
-  .d-ticks{position:relative;height:1.1rem;font-size:.72rem;color:var(--faint)}
-  .d-ticks span{position:absolute;top:0;transform:translateX(-50%)}
-  .d-ticks span:first-child{transform:none}
-  .wf-legend{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:10px}
+  .wf-stage{border:1px solid var(--rule);border-radius:12px;padding:6px 10px 2px;background:var(--paper)}
+  .wf-canvas{display:block;width:100%;height:230px}
+  .wf-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;margin-top:10px}
+  .wf-legend{display:flex;flex-wrap:wrap;gap:4px 16px}
   .wf-k{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:var(--quiet)}
   .wf-k::before{content:"";flex:none;width:14px;height:2px;border-radius:2px;background:var(--obs)}
   .wf-k-fill::before{background:var(--fill)}
+  .wf-k-gap::before{height:10px;border-radius:2px;background:repeating-linear-gradient(135deg,rgba(111,122,119,.55) 0 1.5px,rgba(111,122,119,.12) 1.5px 4px)}
+  .wf-replay{font:inherit;font-size:.78rem;font-weight:600;color:var(--moss);background:none;border:1px solid var(--rule);border-radius:999px;padding:4px 12px;cursor:pointer}
+  .wf-replay:hover{background:var(--moss-wash)}
   @container (max-width:560px){
-    .d-row{grid-template-columns:1fr;gap:6px}
-    .d-svg{height:52px}
+    .wf-steps{grid-template-columns:1fr;gap:6px}
+    .wf-steps li{padding:6px 10px}
+    .wf-canvas{height:190px}
   }
+  @media (prefers-reduced-motion:reduce){.wf-replay{display:none}}
 </style>
 <script data-goatcounter="https://wangyipuli.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
@@ -159,24 +159,20 @@
         <span class="key">benchmark dataset</span>
         <span class="key">machine learning</span>
       </div>
-      <figure class="wf">
-        <div class="d" role="img" aria-label="Three rows on a shared 2000 to 2020 time axis: tower observations with gaps, the gap-filled record, and the prolonged record.">
-          <div class="d-row">
-            <div class="d-label"><span class="d-n">1</span><div><div class="d-t">Tower observations</div><div class="d-s">64 FLUXNET2015 sites</div></div></div>
-            <svg class="d-svg" viewBox="0 0 710 62" preserveAspectRatio="none" aria-hidden="true"><line class="d-grid" x1="0.0" y1="0" x2="0.0" y2="62"/><line class="d-grid" x1="169.0" y1="0" x2="169.0" y2="62"/><line class="d-grid" x1="338.1" y1="0" x2="338.1" y2="62"/><line class="d-grid" x1="507.1" y1="0" x2="507.1" y2="62"/><line class="d-grid" x1="676.2" y1="0" x2="676.2" y2="62"/><line class="d-base" x1="0" y1="56.5" x2="710" y2="56.5"/><rect class="d-gap" x="290.8" y="6" width="10.1" height="50"/><rect class="d-gap" x="344.9" y="6" width="23.7" height="50"/><rect class="d-gap" x="422.6" y="6" width="10.1" height="50"/><path class="d-obs" d="M236.7 56.0 L239.1 54.0 L241.5 48.2 L243.9 39.6 L246.3 30.1 L248.7 18.2 L251.2 10.1 L253.6 13.2 L256.0 19.4 L258.4 19.1 L260.8 28.7 L263.2 37.4 L265.6 45.8 L268.1 53.5 L270.5 56.0 L272.9 53.6 L275.3 46.6 L277.7 40.7 L280.1 23.3 L282.6 14.2 L285.0 5.5 L287.4 4.2 L289.8 13.2"/><path class="d-obs" d="M301.9 54.0 L304.3 56.0 L306.7 54.0 L309.1 47.7 L311.5 40.7 L313.9 32.5 L316.4 22.8 L318.8 17.9 L321.2 11.5 L323.6 19.1 L326.0 12.9 L328.4 26.2 L330.9 40.1 L333.3 48.0 L335.7 53.8 L338.1 56.0 L340.5 54.0 L342.9 46.1"/><path class="d-obs" d="M369.5 53.3 L371.9 56.0 L374.3 54.0 L376.7 47.1 L379.1 40.9 L381.6 27.1 L384.0 11.5 L386.4 5.7 L388.8 5.9 L391.2 15.3 L393.6 19.8 L396.1 30.8 L398.5 36.0 L400.9 47.1 L403.3 53.5 L405.7 56.0 L408.1 53.9 L410.5 46.2 L413.0 34.6 L415.4 23.8 L417.8 13.8 L420.2 6.4 L422.6 5.2"/><path class="d-obs" d="M434.7 48.7 L437.1 53.9 L439.5 56.0 L441.9 53.5 L444.4 45.7 L446.8 38.2 L449.2 22.9 L451.6 11.4 L454.0 4.3 L456.4 11.5 L458.8 16.0 L461.3 21.7 L463.7 30.5 L466.1 39.7 L468.5 46.8 L470.9 53.3 L473.3 56.0"/></svg>
-          </div>
-          <div class="d-row">
-            <div class="d-label"><span class="d-n">2</span><div><div class="d-t">Gap filling</div><div class="d-s">half-hourly / hourly LE</div></div></div>
-            <svg class="d-svg" viewBox="0 0 710 62" preserveAspectRatio="none" aria-hidden="true"><line class="d-grid" x1="0.0" y1="0" x2="0.0" y2="62"/><line class="d-grid" x1="169.0" y1="0" x2="169.0" y2="62"/><line class="d-grid" x1="338.1" y1="0" x2="338.1" y2="62"/><line class="d-grid" x1="507.1" y1="0" x2="507.1" y2="62"/><line class="d-grid" x1="676.2" y1="0" x2="676.2" y2="62"/><line class="d-base" x1="0" y1="56.5" x2="710" y2="56.5"/><path class="d-obs" d="M236.7 56.0 L239.1 54.0 L241.5 48.2 L243.9 39.6 L246.3 30.1 L248.7 18.2 L251.2 10.1 L253.6 13.2 L256.0 19.4 L258.4 19.1 L260.8 28.7 L263.2 37.4 L265.6 45.8 L268.1 53.5 L270.5 56.0 L272.9 53.6 L275.3 46.6 L277.7 40.7 L280.1 23.3 L282.6 14.2 L285.0 5.5 L287.4 4.2 L289.8 13.2"/><path class="d-obs" d="M301.9 54.0 L304.3 56.0 L306.7 54.0 L309.1 47.7 L311.5 40.7 L313.9 32.5 L316.4 22.8 L318.8 17.9 L321.2 11.5 L323.6 19.1 L326.0 12.9 L328.4 26.2 L330.9 40.1 L333.3 48.0 L335.7 53.8 L338.1 56.0 L340.5 54.0 L342.9 46.1"/><path class="d-obs" d="M369.5 53.3 L371.9 56.0 L374.3 54.0 L376.7 47.1 L379.1 40.9 L381.6 27.1 L384.0 11.5 L386.4 5.7 L388.8 5.9 L391.2 15.3 L393.6 19.8 L396.1 30.8 L398.5 36.0 L400.9 47.1 L403.3 53.5 L405.7 56.0 L408.1 53.9 L410.5 46.2 L413.0 34.6 L415.4 23.8 L417.8 13.8 L420.2 6.4 L422.6 5.2"/><path class="d-obs" d="M434.7 48.7 L437.1 53.9 L439.5 56.0 L441.9 53.5 L444.4 45.7 L446.8 38.2 L449.2 22.9 L451.6 11.4 L454.0 4.3 L456.4 11.5 L458.8 16.0 L461.3 21.7 L463.7 30.5 L466.1 39.7 L468.5 46.8 L470.9 53.3 L473.3 56.0"/><path class="d-fill" d="M289.8 13.2 L292.2 19.4 L294.6 31.5 L297.0 36.9 L299.5 48.6 L301.9 54.0"/><path class="d-fill" d="M342.9 46.1 L345.3 34.6 L347.8 27.7 L350.2 18.2 L352.6 18.1 L355.0 15.9 L357.4 14.0 L359.8 21.2 L362.2 24.0 L364.7 40.0 L367.1 48.7 L369.5 53.3"/><path class="d-fill" d="M420.2 6.4 L422.6 5.2 L425.0 15.9 L427.4 17.8 L429.9 28.9 L432.3 40.9 L434.7 48.7"/></svg>
-          </div>
-          <div class="d-row">
-            <div class="d-label"><span class="d-n">3</span><div><div class="d-t">Prolongation</div><div class="d-s">daily LE, 2000&ndash;2020</div></div></div>
-            <svg class="d-svg" viewBox="0 0 710 62" preserveAspectRatio="none" aria-hidden="true"><line class="d-grid" x1="0.0" y1="0" x2="0.0" y2="62"/><line class="d-grid" x1="169.0" y1="0" x2="169.0" y2="62"/><line class="d-grid" x1="338.1" y1="0" x2="338.1" y2="62"/><line class="d-grid" x1="507.1" y1="0" x2="507.1" y2="62"/><line class="d-grid" x1="676.2" y1="0" x2="676.2" y2="62"/><line class="d-base" x1="0" y1="56.5" x2="710" y2="56.5"/><path class="d-fill" d="M0.0 56.0 L2.4 54.0 L4.8 46.7 L7.2 40.6 L9.7 27.0 L12.1 19.8 L14.5 18.6 L16.9 9.1 L19.3 18.9 L21.7 18.9 L24.1 31.8 L26.6 40.5 L29.0 47.4 L31.4 53.4 L33.8 56.0 L36.2 53.9 L38.6 46.8 L41.1 34.9 L43.5 26.6 L45.9 19.4 L48.3 3.9 L50.7 16.8 L53.1 5.8 L55.5 20.9 L58.0 31.0 L60.4 40.3 L62.8 47.8 L65.2 53.4 L67.6 56.0 L70.0 53.6 L72.4 46.8 L74.9 38.6 L77.3 26.9 L79.7 24.0 L82.1 18.5 L84.5 14.1 L86.9 8.6 L89.4 19.0 L91.8 29.3 L94.2 37.2 L96.6 47.3 L99.0 53.8 L101.4 56.0 L103.8 53.5 L106.3 48.0 L108.7 37.3 L111.1 27.1 L113.5 12.9 L115.9 7.9 L118.3 12.8 L120.7 3.8 L123.2 23.2 L125.6 28.2 L128.0 36.1 L130.4 48.3 L132.8 53.7 L135.2 56.0 L137.7 53.5 L140.1 46.4 L142.5 37.3 L144.9 23.5 L147.3 20.6 L149.7 8.4 L152.1 7.6 L154.6 10.2 L157.0 18.6 L159.4 23.9 L161.8 34.9 L164.2 47.3 L166.6 53.5 L169.0 56.0 L171.5 53.5 L173.9 46.7 L176.3 34.6 L178.7 24.1 L181.1 20.9 L183.5 13.3 L186.0 6.4 L188.4 19.1 L190.8 18.5 L193.2 30.8 L195.6 40.3 L198.0 48.6 L200.4 53.5 L202.9 56.0 L205.3 53.9 L207.7 47.5 L210.1 35.4 L212.5 31.7 L214.9 18.7 L217.3 10.7 L219.8 2.8 L222.2 6.4 L224.6 13.0 L227.0 29.7 L229.4 38.4 L231.8 47.6 L234.3 53.4 L236.7 56.0"/><path class="d-obs" d="M236.7 56.0 L239.1 54.0 L241.5 48.2 L243.9 39.6 L246.3 30.1 L248.7 18.2 L251.2 10.1 L253.6 13.2 L256.0 19.4 L258.4 19.1 L260.8 28.7 L263.2 37.4 L265.6 45.8 L268.1 53.5 L270.5 56.0 L272.9 53.6 L275.3 46.6 L277.7 40.7 L280.1 23.3 L282.6 14.2 L285.0 5.5 L287.4 4.2 L289.8 13.2 L292.2 19.4 L294.6 31.5 L297.0 36.9 L299.5 48.6 L301.9 54.0 L304.3 56.0 L306.7 54.0 L309.1 47.7 L311.5 40.7 L313.9 32.5 L316.4 22.8 L318.8 17.9 L321.2 11.5 L323.6 19.1 L326.0 12.9 L328.4 26.2 L330.9 40.1 L333.3 48.0 L335.7 53.8 L338.1 56.0 L340.5 54.0 L342.9 46.1 L345.3 34.6 L347.8 27.7 L350.2 18.2 L352.6 18.1 L355.0 15.9 L357.4 14.0 L359.8 21.2 L362.2 24.0 L364.7 40.0 L367.1 48.7 L369.5 53.3 L371.9 56.0 L374.3 54.0 L376.7 47.1 L379.1 40.9 L381.6 27.1 L384.0 11.5 L386.4 5.7 L388.8 5.9 L391.2 15.3 L393.6 19.8 L396.1 30.8 L398.5 36.0 L400.9 47.1 L403.3 53.5 L405.7 56.0 L408.1 53.9 L410.5 46.2 L413.0 34.6 L415.4 23.8 L417.8 13.8 L420.2 6.4 L422.6 5.2 L425.0 15.9 L427.4 17.8 L429.9 28.9 L432.3 40.9 L434.7 48.7 L437.1 53.9 L439.5 56.0 L441.9 53.5 L444.4 45.7 L446.8 38.2 L449.2 22.9 L451.6 11.4 L454.0 4.3 L456.4 11.5 L458.8 16.0 L461.3 21.7 L463.7 30.5 L466.1 39.7 L468.5 46.8 L470.9 53.3 L473.3 56.0"/><path class="d-fill" d="M473.3 56.0 L475.7 53.7 L478.2 46.7 L480.6 35.9 L483.0 31.7 L485.4 15.8 L487.8 5.0 L490.2 4.5 L492.7 7.5 L495.1 18.3 L497.5 30.7 L499.9 35.9 L502.3 47.7 L504.7 53.4 L507.1 56.0 L509.6 53.8 L512.0 47.5 L514.4 34.9 L516.8 25.1 L519.2 22.5 L521.6 17.5 L524.0 15.1 L526.5 5.1 L528.9 13.8 L531.3 31.0 L533.7 35.7 L536.1 45.7 L538.5 53.6 L541.0 56.0 L543.4 53.6 L545.8 48.4 L548.2 41.0 L550.6 22.6 L553.0 16.0 L555.4 11.1 L557.9 1.9 L560.3 12.6 L562.7 12.9 L565.1 24.0 L567.5 39.7 L569.9 48.0 L572.3 53.9 L574.8 56.0 L577.2 53.6 L579.6 48.0 L582.0 38.3 L584.4 31.2 L586.8 12.4 L589.3 13.9 L591.7 9.9 L594.1 10.2 L596.5 12.5 L598.9 28.2 L601.3 35.1 L603.7 47.2 L606.2 53.7 L608.6 56.0 L611.0 54.1 L613.4 47.4 L615.8 39.9 L618.2 32.5 L620.6 13.9 L623.1 16.7 L625.5 9.6 L627.9 7.9 L630.3 17.2 L632.7 29.2 L635.1 37.7 L637.6 47.0 L640.0 53.4 L642.4 56.0 L644.8 53.6 L647.2 48.0 L649.6 39.3 L652.0 24.6 L654.5 17.9 L656.9 10.5 L659.3 4.8 L661.7 4.9 L664.1 18.8 L666.5 26.2 L668.9 37.8 L671.4 47.2 L673.8 53.5 L676.2 56.0 L678.6 53.7 L681.0 47.3 L683.4 34.9 L685.9 25.3 L688.3 12.9 L690.7 4.5 L693.1 13.2 L695.5 10.6 L697.9 12.0 L700.3 23.9 L702.8 40.2 L705.2 48.4 L707.6 53.7 L710.0 56.0"/></svg>
-          </div>
-          <div class="d-row"><div></div><div class="d-ticks" aria-hidden="true"><span style="left:0.00%">2000</span><span style="left:23.81%">2005</span><span style="left:47.62%">2010</span><span style="left:71.43%">2015</span><span style="left:95.24%">2020</span></div></div>
+      <figure class="wf" id="wf-ec">
+        <ol class="wf-steps">
+          <li><span class="d-n">1</span><div><div class="d-t">Tower observations</div><div class="d-s">gaps from quality control and instrument failure</div></div></li>
+          <li><span class="d-n">2</span><div><div class="d-t">Gap filling</div><div class="d-s">half-hourly / hourly LE, machine learning</div></div></li>
+          <li><span class="d-n">3</span><div><div class="d-t">Prolongation</div><div class="d-s">daily LE, extended to 2000&ndash;2020</div></div></li>
+        </ol>
+        <div class="wf-stage">
+          <canvas class="wf-canvas" role="img" aria-label="Animation of one schematic flux record. First the tower observations are drawn over the observation period only, with many gaps where data failed quality control or the instrument was down. Then a machine learning model fills the gaps. Finally the time axis widens to 2000 to 2020 and the record is prolonged in both directions."></canvas>
         </div>
-        <div class="wf-legend"><span class="wf-k wf-k-obs">Observed / gap-filled record</span><span class="wf-k wf-k-fill">Estimated by bias-corrected random forest</span></div>
-        <figcaption>Workflow of the EC data post-processing framework (LE: latent heat flux; curves are schematic).</figcaption>
+        <div class="wf-foot">
+          <div class="wf-legend"><span class="wf-k wf-k-obs">Tower observations</span><span class="wf-k wf-k-fill">Estimated by bias-corrected random forest</span><span class="wf-k wf-k-gap">Missing data</span></div>
+          <button class="wf-replay" type="button">Replay</button>
+        </div>
+        <figcaption>Workflow of the EC data post-processing framework (LE: latent heat flux; the curve is schematic).</figcaption>
       </figure>
     </article>
 
@@ -197,6 +193,166 @@
     </div>
 
   </section>
+
+  <script>
+  /* Animated workflow figure. One schematic record, drawn on a canvas in three acts: the tower
+     observations with their gaps (axis limited to the observation period), the gaps filled, then
+     the axis widening to 2000-2020 while the record is prolonged both ways. Runs only while on
+     screen; with reduced motion it shows the finished picture and does not move. */
+  (function () {
+    var fig = document.getElementById('wf-ec');
+    if (!fig) return;
+    var cv = fig.querySelector('canvas'), ctx = cv.getContext('2d');
+    var steps = fig.querySelectorAll('.wf-steps li');
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var Y0 = 2000, Y1 = 2021, O0 = 2007, O1 = 2015, N = 36;   // N samples a year
+    var GAPS = [[2007.52, 2007.66], [2008.12, 2008.2], [2008.86, 2009.58], [2010.38, 2010.47],
+                [2011.14, 2011.3], [2012.02, 2012.1], [2012.57, 2012.68], [2013.3, 2013.92], [2014.47, 2014.58]];
+    var LABELS = [[2, 'instrument failure'], [6, 'low-quality data']];
+
+    /* Seeded, so the curve is the same on every visit. */
+    var seed = 20240611;
+    function rnd() { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }
+    var V = [], amp = 1, n = 0;
+    for (var i = 0; i <= (Y1 - Y0) * N; i++) {
+      var f = (i % N) / N;
+      if (i % N === 0) amp = 0.72 + 0.28 * rnd();
+      n = 0.55 * n + 0.45 * (rnd() - 0.5);
+      var s = Math.pow(Math.max(0, Math.sin(Math.PI * f)), 1.5);
+      V.push(Math.max(0, amp * s + n * 0.42 * (0.25 + s)));
+    }
+    function val(t) { var x = (t - Y0) * N, i = Math.max(0, Math.min(V.length - 2, Math.floor(x))); return V[i] + (V[i + 1] - V[i]) * (x - i); }
+
+    var T = { draw: [0.5, 4.2], fill: [6.2, 9.4], zoom: [10.6, 12.8], ext: [12.8, 16.4], end: 21 };
+    function seg(t, r) { return Math.max(0, Math.min(1, (t - r[0]) / (r[1] - r[0]))); }
+    function ease(p) { return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; }
+
+    var W = 0, H = 0, hatch = null, css = getComputedStyle(fig);
+    var C = { obs: css.getPropertyValue('--obs').trim() || '#2C7A63', fill: css.getPropertyValue('--fill').trim() || '#C97A1E',
+              rule: '#E6EAE8', base: '#CBD4D1', text: '#6F7A77', ink: '#2F3836' };
+    function size() {
+      var r = cv.getBoundingClientRect(), d = window.devicePixelRatio || 1;
+      W = r.width; H = r.height;
+      if (!W) return;
+      cv.width = Math.round(W * d); cv.height = Math.round(H * d);
+      ctx.setTransform(d, 0, 0, d, 0, 0);
+      var p = document.createElement('canvas'); p.width = p.height = 6 * d;
+      var q = p.getContext('2d'); q.scale(d, d); q.strokeStyle = 'rgba(111,122,119,.5)'; q.lineWidth = 1;
+      q.beginPath(); q.moveTo(-1, 7); q.lineTo(7, -1); q.moveTo(-4, 4); q.lineTo(4, -4); q.moveTo(2, 10); q.lineTo(10, 2); q.stroke();
+      hatch = ctx.createPattern(p, 'repeat');
+    }
+
+    function frame(t) {
+      if (!W) return;
+      var pDraw = seg(t, T.draw), pFill = ease(seg(t, T.fill)), z = ease(seg(t, T.zoom)), pExt = ease(seg(t, T.ext));
+      var fade = t > T.end - 0.6 ? Math.max(0, (T.end - t) / 0.6) : Math.min(1, t / 0.5);
+      var d0 = O0 + (Y0 - O0) * z, d1 = O1 + (Y1 - O1) * z;
+      var L = 6, R = W - 6, top = 30, bot = H - 24;
+      function X(y) { return L + (y - d0) / (d1 - d0) * (R - L); }
+      function Yv(v) { return bot - 3 - v / 1.25 * (bot - top - 6); }
+      function line(a, b, col) {
+        if (b <= a) return;
+        ctx.beginPath(); ctx.moveTo(X(a), Yv(val(a)));
+        for (var k = Math.ceil((a - Y0) * N + 1e-6); k < (b - Y0) * N; k++) ctx.lineTo(X(Y0 + k / N), Yv(V[k]));
+        ctx.lineTo(X(b), Yv(val(b)));
+        ctx.strokeStyle = col; ctx.stroke();
+      }
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalAlpha = fade;
+      ctx.font = '11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif';
+      ctx.textBaseline = 'alphabetic';
+
+      /* year grid and tick labels: every year while zoomed in, every fifth once zoomed out */
+      for (var y = Y0; y <= Y1; y++) {
+        var x = X(y), five = y % 5 === 0, a = five ? 1 : 1 - z;
+        if (x < L - 0.5 || x > R + 0.5 || a <= 0.02) continue;
+        ctx.globalAlpha = fade * a;
+        ctx.strokeStyle = C.rule; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(Math.round(x) + 0.5, top); ctx.lineTo(Math.round(x) + 0.5, bot); ctx.stroke();
+        /* on a narrow figure the yearly labels would collide: show every other one */
+        var thin = (R - L) / (O1 - O0) < 44 && y % 2 === 0;
+        ctx.globalAlpha = fade * (thin ? (five ? z : 0) : a);
+        if (y < Y1) { ctx.fillStyle = C.text; var edge = x < L + 14 ? -1 : (x > R - 14 ? 1 : 0);
+          ctx.textAlign = edge < 0 ? 'left' : (edge > 0 ? 'right' : 'center'); ctx.fillText(y, edge < 0 ? L : (edge > 0 ? R : x), H - 7); }
+      }
+      ctx.globalAlpha = fade;
+      ctx.strokeStyle = C.base; ctx.beginPath(); ctx.moveTo(L, bot + 0.5); ctx.lineTo(R, bot + 0.5); ctx.stroke();
+
+      /* gaps: hatched once the pen has passed them, fading as they are filled */
+      var cur = O0 + (O1 - O0) * pDraw, fcur = O0 + (O1 - O0) * pFill;
+      GAPS.forEach(function (g) {
+        if (cur < g[0]) return;
+        var shown = Math.min(1, (cur - g[0]) / (g[1] - g[0])), done = Math.max(0, Math.min(1, (fcur - g[0]) / (g[1] - g[0])));
+        ctx.globalAlpha = fade * shown * (1 - 0.7 * done);
+        ctx.fillStyle = hatch; ctx.fillRect(X(g[0]), top, X(g[1]) - X(g[0]), bot - top);
+      });
+
+      /* gap labels: after the observations are drawn, gone once the axis starts to widen */
+      var la = Math.min(seg(t, [T.draw[1], T.draw[1] + 0.5]), 1 - seg(t, [T.zoom[0] - 0.5, T.zoom[0]]));
+      if (la > 0) {
+        ctx.globalAlpha = fade * la; ctx.fillStyle = C.ink; ctx.strokeStyle = C.text; ctx.textAlign = 'center';
+        LABELS.forEach(function (l) {
+          var g = GAPS[l[0]], x = (X(g[0]) + X(g[1])) / 2, w = ctx.measureText(l[1]).width / 2;
+          ctx.fillText(l[1], Math.max(L + w, Math.min(R - w, x)), 14);
+          ctx.beginPath(); ctx.moveTo(x, 19); ctx.lineTo(x, top - 2); ctx.stroke();
+        });
+      }
+      /* bracket over the observation period once zoomed out */
+      if (z > 0) {
+        ctx.globalAlpha = fade * z; ctx.strokeStyle = C.obs; ctx.fillStyle = C.obs; ctx.textAlign = 'center'; ctx.lineWidth = 1;
+        var a0 = X(O0), a1 = X(O1);
+        ctx.beginPath(); ctx.moveTo(a0, 24); ctx.lineTo(a0, 19.5); ctx.lineTo(a1, 19.5); ctx.lineTo(a1, 24); ctx.stroke();
+        ctx.fillText('observation period', (a0 + a1) / 2, 13);
+      }
+
+      ctx.globalAlpha = fade; ctx.lineWidth = 1.6; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+      /* observations, up to the pen, skipping the gaps */
+      var from = O0;
+      GAPS.concat([[O1, O1]]).forEach(function (g) { line(from, Math.min(g[0], cur), C.obs); from = g[1]; });
+      /* filled gaps, up to the second pen */
+      GAPS.forEach(function (g) { line(g[0], Math.min(g[1], fcur), C.fill); });
+      /* prolongation, outward from both ends of the observation period */
+      if (pExt > 0) { line(O0 - (O0 - Y0) * pExt, O0, C.fill); line(O1, O1 + (Y1 - O1) * pExt, C.fill); }
+      /* the pen */
+      var pen = pDraw > 0 && pDraw < 1 ? cur : (pFill > 0 && pFill < 1 ? fcur : null);
+      if (pen !== null) {
+        ctx.globalAlpha = fade * 0.5; ctx.strokeStyle = pDraw < 1 ? C.obs : C.fill; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(X(pen), top); ctx.lineTo(X(pen), bot); ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+
+      var act = t < T.fill[0] - 0.6 ? 0 : (t < T.zoom[0] - 0.4 ? 1 : 2);
+      for (var j = 0; j < steps.length; j++) {
+        steps[j].classList.toggle('is-on', still || j === act);
+        steps[j].classList.toggle('is-done', !still && j < act);
+      }
+    }
+
+    var t = 0, last = 0, raf = 0, seen = false;
+    function tick(now) {
+      raf = 0;
+      if (!seen || document.hidden) return;
+      t += Math.min(0.05, (now - last) / 1000 || 0); last = now;
+      if (t >= T.end) t = 0;
+      frame(t);
+      raf = requestAnimationFrame(tick);
+    }
+    function go() { if (!raf && !still) { last = performance.now(); raf = requestAnimationFrame(tick); } }
+    function redraw() { size(); frame(still ? T.end - 2 : t); }
+
+    redraw();
+    window.addEventListener('resize', redraw);
+    if ('ResizeObserver' in window) new ResizeObserver(redraw).observe(cv);
+    if (still) return;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { seen = es[0].isIntersecting; if (seen) go(); }, { threshold: 0.25 }).observe(cv);
+    } else { seen = true; go(); }
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) go(); });
+    fig.querySelector('.wf-replay').addEventListener('click', function () { t = 0; seen = true; go(); });
+  })();
+  </script>
 
   <script>
   /* Each theme's button folds its focuses away. A contents link to a focus inside a folded
