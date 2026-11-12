@@ -10,6 +10,12 @@
 <meta name="theme-color" content="#F3F5F4">
 <link rel="stylesheet" href="style.css">
 <script src="toc.js" defer></script>
+<script>
+/* Show the opening screen once per browser session. Set before the page paints, so the
+   homepage never flashes in front of it; without JavaScript the screen simply never appears. */
+try { if (!sessionStorage.getItem('intro-seen')) document.documentElement.classList.add('intro'); }
+catch (e) { document.documentElement.classList.add('intro'); }
+</script>
 <style>
   /* ── About: a cinematic picture carrying only the headline; the bio sits below it ── */
   .hero{margin-bottom:18px;container-type:inline-size}
@@ -41,6 +47,42 @@
     .hero-lead p{font-size:1.05rem}
   }
   @media (prefers-reduced-motion:reduce){.hero-img{animation:none}}
+  /* ── Opening screen: the picture, which darkens, then a welcome and the way in ── */
+  .intro-screen{
+    display:none;align-items:center;justify-content:center;text-align:center;
+    position:fixed;inset:0;z-index:200;background:#02080a;color:#fff;
+    transition:opacity .9s ease,visibility .9s;
+  }
+  .intro .intro-screen,.intro-leaving .intro-screen{display:flex}
+  .intro,.intro body{overflow:hidden}
+  .intro-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 40%;
+                    animation:intro-zoom 9s ease-out both}
+  .intro-screen::after{content:"";position:absolute;inset:0;background:rgba(2,8,10,.66);opacity:0;animation:intro-in 2.2s ease .7s forwards}
+  .intro-copy{position:relative;z-index:1;padding:0 24px;opacity:0;animation:intro-rise 1.2s ease 2.1s forwards}
+  .intro-copy small{display:block;font-size:.78rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:#A8E6D2;margin-bottom:18px}
+  .intro-copy strong{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5.4vw,4rem);line-height:1.12;letter-spacing:-.02em;text-shadow:0 2px 30px rgba(0,0,0,.5)}
+  .intro-enter{
+    margin-top:38px;display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+    font:inherit;font-size:.95rem;font-weight:600;color:#fff;
+    padding:13px 30px;border-radius:999px;border:1px solid rgba(255,255,255,.6);
+    background:rgba(255,255,255,.12);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    transition:background .2s ease,color .2s ease,border-color .2s ease;
+  }
+  .intro-enter:hover,.intro-enter:focus-visible{background:#fff;border-color:#fff;color:#0c1f1a;outline:none}
+  .intro-enter span{transition:transform .2s ease}
+  .intro-enter:hover span{transform:translateX(4px)}
+  /* A tall screen crops the sides, so lean right to keep the satellite in the picture. */
+  @media (orientation:portrait){.intro-screen img{object-position:92% 40%}}
+  .intro-leaving .intro-screen{opacity:0;visibility:hidden}
+  @keyframes intro-in{to{opacity:1}}
+  @keyframes intro-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes intro-zoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+  @media (prefers-reduced-motion:reduce){
+    .intro-screen img{animation:none}
+    .intro-screen::after{animation:none;opacity:1}
+    .intro-copy{animation:none;opacity:1}
+    .intro-screen{transition:none}
+  }
   .more-row{margin-top:14px}
   .more-btn{
     display:inline-flex;align-items:center;gap:8px;
@@ -61,6 +103,34 @@
 <script data-goatcounter="https://wangyipuli.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
+
+<div class="intro-screen" id="intro" role="dialog" aria-modal="true" aria-label="Welcome">
+  <img src="image/hero.webp" alt="">
+  <div class="intro-copy">
+    <small>Welcome to</small>
+    <strong>Wangyipu&rsquo;s Homepage</strong>
+    <button class="intro-enter" id="intro-enter" type="button">Enter <span aria-hidden="true">&rarr;</span></button>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.documentElement, screen = document.getElementById('intro');
+  if (!root.classList.contains('intro')) { screen.remove(); return; }
+  var btn = document.getElementById('intro-enter');
+  function enter() {
+    try { sessionStorage.setItem('intro-seen', '1'); } catch (e) {}
+    root.classList.add('intro-leaving');
+    root.classList.remove('intro');           // gives the page its scrolling back straight away
+    setTimeout(function () { screen.remove(); root.classList.remove('intro-leaving'); }, 950);
+  }
+  btn.addEventListener('click', enter);
+  document.addEventListener('keydown', function onKey(e) {
+    if (!screen.isConnected) { document.removeEventListener('keydown', onKey); return; }
+    if (e.key === 'Escape') enter();
+  });
+  btn.focus({ preventScroll: true });
+})();
+</script>
 
 <header class="topbar">
   <nav class="nav">
@@ -110,7 +180,7 @@
 
   <section class="hero" id="overview">
     <div class="hero-frame">
-      <img class="hero-img" src="image/hero.webp" alt="The Arctic seen from orbit, with a remote-sensing satellite above the horizon" width="1448" height="1086">
+      <img class="hero-img" src="image/hero.webp" alt="North America seen from orbit, with a remote-sensing satellite scanning the surface" width="1619" height="971">
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="hero-over">
         <div class="hero-eyebrow">About me</div>
