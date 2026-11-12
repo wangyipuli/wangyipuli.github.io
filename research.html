@@ -22,6 +22,32 @@
   .topic img{display:block;max-width:100%;height:auto;border-radius:12px;box-shadow:0 1px 2px rgba(20,24,28,.06),0 10px 28px -14px rgba(20,24,28,.25)}
   .topic video{display:block;width:100%;height:auto;border-radius:12px;background:var(--moss-wash);box-shadow:0 1px 2px rgba(20,24,28,.06),0 10px 28px -14px rgba(20,24,28,.25)}
   .topic figcaption{font-size:.84rem;font-style:italic;line-height:1.55;color:var(--faint);margin-top:9px}
+  /* Workflow figure: one schematic record on a shared time axis, at each of the three stages */
+  .wf{--obs:#2C7A63;--fill:#C97A1E;container-type:inline-size}
+  .d-row{display:grid;grid-template-columns:196px 1fr;gap:0 12px;align-items:center}
+  .d-row+.d-row{margin-top:14px}
+  .d-label{display:flex;align-items:center;gap:9px}
+  .d-n{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--moss);color:#fff;font-size:.72rem;font-weight:700}
+  .d-t{font-size:.86rem;font-weight:700;line-height:1.3;color:var(--ink)}
+  .d-s{font-size:.74rem;line-height:1.35;color:var(--quiet)}
+  .d-svg{display:block;width:100%;height:62px}
+  .d-svg *{vector-effect:non-scaling-stroke}
+  .d-svg path{fill:none;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
+  .d-obs{stroke:var(--obs)}.d-fill{stroke:var(--fill)}
+  .d-gap{fill:var(--fill);opacity:.13}
+  .d-grid{stroke:var(--rule)}.d-base{stroke:#CBD4D1}
+  .d-row+.d-row:last-child{margin-top:4px}
+  .d-ticks{position:relative;height:1.1rem;font-size:.72rem;color:var(--faint)}
+  .d-ticks span{position:absolute;top:0;transform:translateX(-50%)}
+  .d-ticks span:first-child{transform:none}
+  .wf-legend{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:10px}
+  .wf-k{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:var(--quiet)}
+  .wf-k::before{content:"";flex:none;width:14px;height:2px;border-radius:2px;background:var(--obs)}
+  .wf-k-fill::before{background:var(--fill)}
+  @container (max-width:560px){
+    .d-row{grid-template-columns:1fr;gap:6px}
+    .d-svg{height:52px}
+  }
 </style>
 <script data-goatcounter="https://wangyipuli.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
@@ -102,9 +128,24 @@
         <span class="key">benchmark dataset</span>
         <span class="key">machine learning</span>
       </div>
-      <figure>
-        <img src="image/essd-17-3835-2025-avatar-web.png" alt="Workflow of the EC data post-processing framework">
-        <figcaption>Workflow of the EC data post-processing framework.</figcaption>
+      <figure class="wf">
+        <div class="d" role="img" aria-label="Three rows on a shared 2000 to 2020 time axis: tower observations with gaps, the gap-filled record, and the prolonged record.">
+          <div class="d-row">
+            <div class="d-label"><span class="d-n">1</span><div><div class="d-t">Tower observations</div><div class="d-s">64 FLUXNET2015 sites</div></div></div>
+            <svg class="d-svg" viewBox="0 0 710 62" preserveAspectRatio="none" aria-hidden="true"><line class="d-grid" x1="0.0" y1="0" x2="0.0" y2="62"/><line class="d-grid" x1="169.0" y1="0" x2="169.0" y2="62"/><line class="d-grid" x1="338.1" y1="0" x2="338.1" y2="62"/><line class="d-grid" x1="507.1" y1="0" x2="507.1" y2="62"/><line class="d-grid" x1="676.2" y1="0" x2="676.2" y2="62"/><line class="d-base" x1="0" y1="56.5" x2="710" y2="56.5"/><rect class="d-gap" x="290.8" y="6" width="10.1" height="50"/><rect class="d-gap" x="344.9" y="6" width="23.7" height="50"/><rect class="d-gap" x="422.6" y="6" width="10.1" height="50"/><path class="d-obs" d="M236.7 56.0 L239.1 54.0 L241.5 48.2 L243.9 39.6 L246.3 30.1 L248.7 18.2 L251.2 10.1 L253.6 13.2 L256.0 19.4 L258.4 19.1 L260.8 28.7 L263.2 37.4 L265.6 45.8 L268.1 53.5 L270.5 56.0 L272.9 53.6 L275.3 46.6 L277.7 40.7 L280.1 23.3 L282.6 14.2 L285.0 5.5 L287.4 4.2 L289.8 13.2"/><path class="d-obs" d="M301.9 54.0 L304.3 56.0 L306.7 54.0 L309.1 47.7 L311.5 40.7 L313.9 32.5 L316.4 22.8 L318.8 17.9 L321.2 11.5 L323.6 19.1 L326.0 12.9 L328.4 26.2 L330.9 40.1 L333.3 48.0 L335.7 53.8 L338.1 56.0 L340.5 54.0 L342.9 46.1"/><path class="d-obs" d="M369.5 53.3 L371.9 56.0 L374.3 54.0 L376.7 47.1 L379.1 40.9 L381.6 27.1 L384.0 11.5 L386.4 5.7 L388.8 5.9 L391.2 15.3 L393.6 19.8 L396.1 30.8 L398.5 36.0 L400.9 47.1 L403.3 53.5 L405.7 56.0 L408.1 53.9 L410.5 46.2 L413.0 34.6 L415.4 23.8 L417.8 13.8 L420.2 6.4 L422.6 5.2"/><path class="d-obs" d="M434.7 48.7 L437.1 53.9 L439.5 56.0 L441.9 53.5 L444.4 45.7 L446.8 38.2 L449.2 22.9 L451.6 11.4 L454.0 4.3 L456.4 11.5 L458.8 16.0 L461.3 21.7 L463.7 30.5 L466.1 39.7 L468.5 46.8 L470.9 53.3 L473.3 56.0"/></svg>
+          </div>
+          <div class="d-row">
+            <div class="d-label"><span class="d-n">2</span><div><div class="d-t">Gap filling</div><div class="d-s">half-hourly / hourly LE</div></div></div>
+            <svg class="d-svg" viewBox="0 0 710 62" preserveAspectRatio="none" aria-hidden="true"><line class="d-grid" x1="0.0" y1="0" x2="0.0" y2="62"/><line class="d-grid" x1="169.0" y1="0" x2="169.0" y2="62"/><line class="d-grid" x1="338.1" y1="0" x2="338.1" y2="62"/><line class="d-grid" x1="507.1" y1="0" x2="507.1" y2="62"/><line class="d-grid" x1="676.2" y1="0" x2="676.2" y2="62"/><line class="d-base" x1="0" y1="56.5" x2="710" y2="56.5"/><path class="d-obs" d="M236.7 56.0 L239.1 54.0 L241.5 48.2 L243.9 39.6 L246.3 30.1 L248.7 18.2 L251.2 10.1 L253.6 13.2 L256.0 19.4 L258.4 19.1 L260.8 28.7 L263.2 37.4 L265.6 45.8 L268.1 53.5 L270.5 56.0 L272.9 53.6 L275.3 46.6 L277.7 40.7 L280.1 23.3 L282.6 14.2 L285.0 5.5 L287.4 4.2 L289.8 13.2"/><path class="d-obs" d="M301.9 54.0 L304.3 56.0 L306.7 54.0 L309.1 47.7 L311.5 40.7 L313.9 32.5 L316.4 22.8 L318.8 17.9 L321.2 11.5 L323.6 19.1 L326.0 12.9 L328.4 26.2 L330.9 40.1 L333.3 48.0 L335.7 53.8 L338.1 56.0 L340.5 54.0 L342.9 46.1"/><path class="d-obs" d="M369.5 53.3 L371.9 56.0 L374.3 54.0 L376.7 47.1 L379.1 40.9 L381.6 27.1 L384.0 11.5 L386.4 5.7 L388.8 5.9 L391.2 15.3 L393.6 19.8 L396.1 30.8 L398.5 36.0 L400.9 47.1 L403.3 53.5 L405.7 56.0 L408.1 53.9 L410.5 46.2 L413.0 34.6 L415.4 23.8 L417.8 13.8 L420.2 6.4 L422.6 5.2"/><path class="d-obs" d="M434.7 48.7 L437.1 53.9 L439.5 56.0 L441.9 53.5 L444.4 45.7 L446.8 38.2 L449.2 22.9 L451.6 11.4 L454.0 4.3 L456.4 11.5 L458.8 16.0 L461.3 21.7 L463.7 30.5 L466.1 39.7 L468.5 46.8 L470.9 53.3 L473.3 56.0"/><path class="d-fill" d="M289.8 13.2 L292.2 19.4 L294.6 31.5 L297.0 36.9 L299.5 48.6 L301.9 54.0"/><path class="d-fill" d="M342.9 46.1 L345.3 34.6 L347.8 27.7 L350.2 18.2 L352.6 18.1 L355.0 15.9 L357.4 14.0 L359.8 21.2 L362.2 24.0 L364.7 40.0 L367.1 48.7 L369.5 53.3"/><path class="d-fill" d="M420.2 6.4 L422.6 5.2 L425.0 15.9 L427.4 17.8 L429.9 28.9 L432.3 40.9 L434.7 48.7"/></svg>
+          </div>
+          <div class="d-row">
+            <div class="d-label"><span class="d-n">3</span><div><div class="d-t">Prolongation</div><div class="d-s">daily LE, 2000&ndash;2020</div></div></div>
+            <svg class="d-svg" viewBox="0 0 710 62" preserveAspectRatio="none" aria-hidden="true"><line class="d-grid" x1="0.0" y1="0" x2="0.0" y2="62"/><line class="d-grid" x1="169.0" y1="0" x2="169.0" y2="62"/><line class="d-grid" x1="338.1" y1="0" x2="338.1" y2="62"/><line class="d-grid" x1="507.1" y1="0" x2="507.1" y2="62"/><line class="d-grid" x1="676.2" y1="0" x2="676.2" y2="62"/><line class="d-base" x1="0" y1="56.5" x2="710" y2="56.5"/><path class="d-fill" d="M0.0 56.0 L2.4 54.0 L4.8 46.7 L7.2 40.6 L9.7 27.0 L12.1 19.8 L14.5 18.6 L16.9 9.1 L19.3 18.9 L21.7 18.9 L24.1 31.8 L26.6 40.5 L29.0 47.4 L31.4 53.4 L33.8 56.0 L36.2 53.9 L38.6 46.8 L41.1 34.9 L43.5 26.6 L45.9 19.4 L48.3 3.9 L50.7 16.8 L53.1 5.8 L55.5 20.9 L58.0 31.0 L60.4 40.3 L62.8 47.8 L65.2 53.4 L67.6 56.0 L70.0 53.6 L72.4 46.8 L74.9 38.6 L77.3 26.9 L79.7 24.0 L82.1 18.5 L84.5 14.1 L86.9 8.6 L89.4 19.0 L91.8 29.3 L94.2 37.2 L96.6 47.3 L99.0 53.8 L101.4 56.0 L103.8 53.5 L106.3 48.0 L108.7 37.3 L111.1 27.1 L113.5 12.9 L115.9 7.9 L118.3 12.8 L120.7 3.8 L123.2 23.2 L125.6 28.2 L128.0 36.1 L130.4 48.3 L132.8 53.7 L135.2 56.0 L137.7 53.5 L140.1 46.4 L142.5 37.3 L144.9 23.5 L147.3 20.6 L149.7 8.4 L152.1 7.6 L154.6 10.2 L157.0 18.6 L159.4 23.9 L161.8 34.9 L164.2 47.3 L166.6 53.5 L169.0 56.0 L171.5 53.5 L173.9 46.7 L176.3 34.6 L178.7 24.1 L181.1 20.9 L183.5 13.3 L186.0 6.4 L188.4 19.1 L190.8 18.5 L193.2 30.8 L195.6 40.3 L198.0 48.6 L200.4 53.5 L202.9 56.0 L205.3 53.9 L207.7 47.5 L210.1 35.4 L212.5 31.7 L214.9 18.7 L217.3 10.7 L219.8 2.8 L222.2 6.4 L224.6 13.0 L227.0 29.7 L229.4 38.4 L231.8 47.6 L234.3 53.4 L236.7 56.0"/><path class="d-obs" d="M236.7 56.0 L239.1 54.0 L241.5 48.2 L243.9 39.6 L246.3 30.1 L248.7 18.2 L251.2 10.1 L253.6 13.2 L256.0 19.4 L258.4 19.1 L260.8 28.7 L263.2 37.4 L265.6 45.8 L268.1 53.5 L270.5 56.0 L272.9 53.6 L275.3 46.6 L277.7 40.7 L280.1 23.3 L282.6 14.2 L285.0 5.5 L287.4 4.2 L289.8 13.2 L292.2 19.4 L294.6 31.5 L297.0 36.9 L299.5 48.6 L301.9 54.0 L304.3 56.0 L306.7 54.0 L309.1 47.7 L311.5 40.7 L313.9 32.5 L316.4 22.8 L318.8 17.9 L321.2 11.5 L323.6 19.1 L326.0 12.9 L328.4 26.2 L330.9 40.1 L333.3 48.0 L335.7 53.8 L338.1 56.0 L340.5 54.0 L342.9 46.1 L345.3 34.6 L347.8 27.7 L350.2 18.2 L352.6 18.1 L355.0 15.9 L357.4 14.0 L359.8 21.2 L362.2 24.0 L364.7 40.0 L367.1 48.7 L369.5 53.3 L371.9 56.0 L374.3 54.0 L376.7 47.1 L379.1 40.9 L381.6 27.1 L384.0 11.5 L386.4 5.7 L388.8 5.9 L391.2 15.3 L393.6 19.8 L396.1 30.8 L398.5 36.0 L400.9 47.1 L403.3 53.5 L405.7 56.0 L408.1 53.9 L410.5 46.2 L413.0 34.6 L415.4 23.8 L417.8 13.8 L420.2 6.4 L422.6 5.2 L425.0 15.9 L427.4 17.8 L429.9 28.9 L432.3 40.9 L434.7 48.7 L437.1 53.9 L439.5 56.0 L441.9 53.5 L444.4 45.7 L446.8 38.2 L449.2 22.9 L451.6 11.4 L454.0 4.3 L456.4 11.5 L458.8 16.0 L461.3 21.7 L463.7 30.5 L466.1 39.7 L468.5 46.8 L470.9 53.3 L473.3 56.0"/><path class="d-fill" d="M473.3 56.0 L475.7 53.7 L478.2 46.7 L480.6 35.9 L483.0 31.7 L485.4 15.8 L487.8 5.0 L490.2 4.5 L492.7 7.5 L495.1 18.3 L497.5 30.7 L499.9 35.9 L502.3 47.7 L504.7 53.4 L507.1 56.0 L509.6 53.8 L512.0 47.5 L514.4 34.9 L516.8 25.1 L519.2 22.5 L521.6 17.5 L524.0 15.1 L526.5 5.1 L528.9 13.8 L531.3 31.0 L533.7 35.7 L536.1 45.7 L538.5 53.6 L541.0 56.0 L543.4 53.6 L545.8 48.4 L548.2 41.0 L550.6 22.6 L553.0 16.0 L555.4 11.1 L557.9 1.9 L560.3 12.6 L562.7 12.9 L565.1 24.0 L567.5 39.7 L569.9 48.0 L572.3 53.9 L574.8 56.0 L577.2 53.6 L579.6 48.0 L582.0 38.3 L584.4 31.2 L586.8 12.4 L589.3 13.9 L591.7 9.9 L594.1 10.2 L596.5 12.5 L598.9 28.2 L601.3 35.1 L603.7 47.2 L606.2 53.7 L608.6 56.0 L611.0 54.1 L613.4 47.4 L615.8 39.9 L618.2 32.5 L620.6 13.9 L623.1 16.7 L625.5 9.6 L627.9 7.9 L630.3 17.2 L632.7 29.2 L635.1 37.7 L637.6 47.0 L640.0 53.4 L642.4 56.0 L644.8 53.6 L647.2 48.0 L649.6 39.3 L652.0 24.6 L654.5 17.9 L656.9 10.5 L659.3 4.8 L661.7 4.9 L664.1 18.8 L666.5 26.2 L668.9 37.8 L671.4 47.2 L673.8 53.5 L676.2 56.0 L678.6 53.7 L681.0 47.3 L683.4 34.9 L685.9 25.3 L688.3 12.9 L690.7 4.5 L693.1 13.2 L695.5 10.6 L697.9 12.0 L700.3 23.9 L702.8 40.2 L705.2 48.4 L707.6 53.7 L710.0 56.0"/></svg>
+          </div>
+          <div class="d-row"><div></div><div class="d-ticks" aria-hidden="true"><span style="left:0.00%">2000</span><span style="left:23.81%">2005</span><span style="left:47.62%">2010</span><span style="left:71.43%">2015</span><span style="left:95.24%">2020</span></div></div>
+        </div>
+        <div class="wf-legend"><span class="wf-k wf-k-obs">Observed / gap-filled record</span><span class="wf-k wf-k-fill">Estimated by bias-corrected random forest</span></div>
+        <figcaption>Workflow of the EC data post-processing framework (LE: latent heat flux; curves are schematic).</figcaption>
       </figure>
     </article>
 
