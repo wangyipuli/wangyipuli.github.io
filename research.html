@@ -225,7 +225,7 @@
     }
     function val(t) { var x = (t - Y0) * N, i = Math.max(0, Math.min(V.length - 2, Math.floor(x))); return V[i] + (V[i + 1] - V[i]) * (x - i); }
 
-    var T = { draw: [0.7, 3.1], fill: [5.1, 8.3], zoom: [9.5, 11.7], ext: [11.7, 15.3], end: 19.9 };
+    var T = { draw: [0.7, 3.1], fill: [4.1, 7.3], zoom: [7.9, 10.1], ext: [10.1, 13.7], end: 18.3 };
     function seg(t, r) { return Math.max(0, Math.min(1, (t - r[0]) / (r[1] - r[0]))); }
     function ease(p) { return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; }
 
