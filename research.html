@@ -84,9 +84,9 @@
   <nav class="toc" aria-label="On this page">
     <div class="toc-label">On this page</div>
     <a href="#overview">Overview</a>
-    <a href="#land-et">Land evapotranspiration</a>
-    <a class="toc-sub" href="#et-hourly">Global hourly ET estimation</a>
+    <a href="#land-et">Evapotranspiration: from site to satellite</a>
     <a class="toc-sub" href="#ec-post">Eddy covariance data post-processing</a>
+    <a class="toc-sub" href="#et-hourly">Global hourly ET estimation</a>
   </nav>
 
   <div class="sb-foot">
@@ -102,22 +102,7 @@
   </section>
 
   <section class="band" id="land-et">
-    <div class="band-head"><h2>Land Evapotranspiration</h2></div>
-
-    <article class="topic" id="et-hourly">
-      <h3>Global Hourly ET Estimation</h3>
-      <p>I build deep learning models trained under a pre-training and fine-tuning strategy, and apply them to very large volumes of multi-source data to produce global evapotranspiration mapping at 0.05&deg; and hourly resolution.</p>
-      <div class="keys">
-        <span class="key">deep learning</span>
-        <span class="key">pre-training and fine-tuning</span>
-        <span class="key">hourly ET</span>
-        <span class="key">global mapping</span>
-      </div>
-      <figure>
-        <video src="videos/et_diurnal_cycle.mp4" autoplay loop muted playsinline preload="metadata"></video>
-        <figcaption>Mean diurnal cycle of global evapotranspiration (latent heat flux) in 2019, from this study and from ERA5-Land, with land means over East and Southeast Asia and North America.</figcaption>
-      </figure>
-    </article>
+    <div class="band-head"><h2>Evapotranspiration: from site to satellite</h2></div>
 
     <article class="topic" id="ec-post">
       <h3>Eddy Covariance Data Post-processing</h3>
@@ -146,6 +131,21 @@
         </div>
         <div class="wf-legend"><span class="wf-k wf-k-obs">Observed / gap-filled record</span><span class="wf-k wf-k-fill">Estimated by bias-corrected random forest</span></div>
         <figcaption>Workflow of the EC data post-processing framework (LE: latent heat flux; curves are schematic).</figcaption>
+      </figure>
+    </article>
+
+    <article class="topic" id="et-hourly">
+      <h3>Global Hourly ET Estimation</h3>
+      <p>I build deep learning models trained under a pre-training and fine-tuning strategy, and apply them to very large volumes of multi-source data to produce global evapotranspiration mapping at 0.05&deg; and hourly resolution.</p>
+      <div class="keys">
+        <span class="key">deep learning</span>
+        <span class="key">pre-training and fine-tuning</span>
+        <span class="key">hourly ET</span>
+        <span class="key">global mapping</span>
+      </div>
+      <figure>
+        <video src="videos/et_diurnal_cycle.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        <figcaption>Mean diurnal cycle of global evapotranspiration (latent heat flux) in 2019, from this study and from ERA5-Land, with land means over East and Southeast Asia and North America.</figcaption>
       </figure>
     </article>
 
