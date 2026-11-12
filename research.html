@@ -225,7 +225,7 @@
     }
     function val(t) { var x = (t - Y0) * N, i = Math.max(0, Math.min(V.length - 2, Math.floor(x))); return V[i] + (V[i + 1] - V[i]) * (x - i); }
 
-    var T = { draw: [0.7, 3.1], fill: [4.1, 7.3], zoom: [7.9, 10.1], ext: [10.1, 13.7], end: 18.3 };
+    var T = { draw: [0.5, 1.9], fill: [2.4, 5.6], zoom: [5.9, 7.2], ext: [7.2, 10.8], end: 13.4 };
     function seg(t, r) { return Math.max(0, Math.min(1, (t - r[0]) / (r[1] - r[0]))); }
     function ease(p) { return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; }
 
@@ -285,7 +285,7 @@
       GAPS.forEach(function (g) { ctx.fillRect(X(g[0]), top, X(g[1]) - X(g[0]), bot - top); });
 
       /* gap labels: after the observations are drawn, gone once the axis starts to widen */
-      var la = Math.min(seg(t, [T.draw[1], T.draw[1] + 0.5]), 1 - seg(t, [T.zoom[0] - 0.5, T.zoom[0]]));
+      var la = Math.min(seg(t, [T.draw[1], T.draw[1] + 0.5]), 1 - seg(t, [T.zoom[0] - 0.3, T.zoom[0]]));
       if (la > 0) {
         ctx.globalAlpha = fade * la; ctx.fillStyle = C.ink; ctx.strokeStyle = C.text; ctx.textAlign = 'center';
         LABELS.forEach(function (l) {
@@ -316,7 +316,7 @@
       if (pExt > 0) { line(O0 - (O0 - Y0) * pExt, O0, C.fill); line(O1, O1 + (Y1 - O1) * pExt, C.fill); }
       ctx.globalAlpha = 1;
 
-      var act = t < T.fill[0] - 0.6 ? 0 : (t < T.zoom[0] - 0.4 ? 1 : 2);
+      var act = t < T.fill[0] - 0.3 ? 0 : (t < T.zoom[0] - 0.2 ? 1 : 2);
       for (var j = 0; j < steps.length; j++) {
         steps[j].classList.toggle('is-on', still || j === act);
         steps[j].classList.toggle('is-done', !still && j < act);
