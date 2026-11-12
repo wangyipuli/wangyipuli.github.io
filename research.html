@@ -11,10 +11,18 @@
 <link rel="stylesheet" href="style.css">
 <script src="toc.js" defer></script>
 <style>
+  /* A theme is the card's heading; the focuses under it are numbered. */
+  .theme{counter-reset:focus}
+  .theme .band-head{display:block;padding-bottom:18px;margin-bottom:24px;border-bottom:1px solid var(--rule)}
+  .theme-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--moss-bright);margin-bottom:8px}
+  .theme .band-head h2{font-size:2rem;line-height:1.15}
+  .topic h3{display:flex;align-items:baseline;gap:12px}
+  .topic h3::before{counter-increment:focus;content:counter(focus,decimal-leading-zero);flex:none;font-family:var(--font);font-size:.8rem;font-weight:700;letter-spacing:.08em;color:var(--moss-bright)}
+  @media(max-width:600px){.theme .band-head h2{font-size:1.6rem}}
   .topic{padding-bottom:26px}
   .topic:last-child{padding-bottom:0}
   .topic+.topic{border-top:1px solid var(--rule);padding-top:26px}
-  .topic h3{font-family:var(--serif);font-size:1.3rem;font-weight:400;margin-bottom:8px;line-height:1.35}
+  .topic h3{font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:8px;line-height:1.35}
   .topic p{font-size:.95rem;line-height:1.78;color:var(--body)}
   .topic .keys{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
   .key{font-size:.8rem;font-weight:700;color:var(--moss);background:var(--moss-wash);padding:5px 12px;border-radius:999px}
@@ -101,8 +109,11 @@
     <p>The themes I work on.</p>
   </section>
 
-  <section class="band" id="land-et">
-    <div class="band-head"><h2>Evapotranspiration: from site to satellite</h2></div>
+  <section class="band theme" id="land-et">
+    <div class="band-head">
+      <div class="theme-eyebrow">Theme</div>
+      <h2>Evapotranspiration: from site to satellite</h2>
+    </div>
 
     <article class="topic" id="ec-post">
       <h3>Eddy Covariance Data Post-processing</h3>
