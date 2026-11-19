@@ -1,9 +1,9 @@
 {
   "period": "all time",
-  "total": 365,
+  "total": 366,
   "countries": {
-    "US": 364,
+    "US": 365,
     "CA": 1
   },
-  "updated": "2026-11-18"
+  "updated": "2026-11-19"
 }
